@@ -16,18 +16,17 @@ func generate_terrain():
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise.fractal_octaves = 5
 	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
-	noise.fractal_gain = 0.3
-	noise.frequency = 0.005
-	var noise_layer_1 = FastNoiseLite.new()
-	noise_layer_1.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise_layer_1.frequency = 0.01
+	noise.fractal_lacunarity = 1.9
+	noise.fractal_gain = 0.41
+	noise.fractal_octaves = 7
+	noise.frequency = 0.003
+
 	
 	surfaceTool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in range(z_size+1):
 		for x in range(x_size+1):
-			var y = noise.get_noise_2d(x,z)**2 * 50 + noise_layer_1.get_noise_2d(x,z) * 20
+			var y = noise.get_noise_2d(x,z)**2 * 75
 			
 			surfaceTool.set_uv(Vector2(inverse_lerp(0, x_size, x), inverse_lerp(0, z_size, z)))
 			
