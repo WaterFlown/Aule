@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxptu5aoa6ixy"]
+
+[ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
+[ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
+
+[node name="Editor" type="Node"]
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = -1
+offset_left = -4800.0
+offset_top = -4800.0
+offset_right = 4800.0
+offset_bottom = 4800.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_ba0ut")
+stretch_mode = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+limit_enabled = false
+limit_left = -1600
+limit_top = -1600
+limit_right = 1600
+limit_bottom = 1600
+script = ExtResource("1_pxqd5")

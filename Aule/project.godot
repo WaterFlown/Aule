@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="Aule"
+run/main_scene="uid://bd1wg4eynxp1l"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Aule"
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "orange",
+"res://scripts/": "teal"
+}

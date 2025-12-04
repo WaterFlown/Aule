@@ -19,6 +19,7 @@ func generate_terrain():
 	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
 	noise.fractal_lacunarity = 1.9
 	noise.fractal_gain = 0.41
+	noise.fractal_lacunarity = 1.8
 	noise.fractal_octaves = 7
 	noise.frequency = 0.003
 
