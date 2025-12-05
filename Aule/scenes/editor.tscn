@@ -6,17 +6,40 @@
 [node name="Editor" type="Node"]
 
 [node name="Background" type="TextureRect" parent="."]
-anchors_preset = -1
 offset_left = -4800.0
 offset_top = -4800.0
 offset_right = 4800.0
 offset_bottom = 4800.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_ba0ut")
 stretch_mode = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="UI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Inspector" type="Control" parent="UI/UI"]
+layout_mode = 1
+anchor_right = 0.20833333
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="UI/UI/Inspector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Camera" type="Camera2D" parent="."]
 limit_enabled = false
