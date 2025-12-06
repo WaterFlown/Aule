@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=6 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="4_q68jb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxqd5"]
+bg_color = Color(0.105882354, 0.11372549, 0.12156863, 1)
+
+[sub_resource type="Theme" id="Theme_ba0ut"]
+Panel/styles/panel = SubResource("StyleBoxFlat_pxqd5")
 
 [node name="Editor" type="Node"]
 
@@ -25,13 +32,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="Inspector" type="Control" parent="UI/UI"]
 layout_mode = 1
-anchor_right = 0.20833333
+anchors_preset = 9
 anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
+offset_right = 301.0
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="UI/UI/Inspector"]
 layout_mode = 1
@@ -40,6 +48,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_ba0ut")
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera" type="Camera2D" parent="."]
 limit_enabled = false
@@ -48,3 +58,9 @@ limit_top = -1600
 limit_right = 1600
 limit_bottom = 1600
 script = ExtResource("1_pxqd5")
+zoom_increment = Vector2(0.15, 0.15)
+min_zoom = Vector2(0.5, 0.5)
+xy_scroll_limits = Vector2(2400, 2400)
+
+[node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
+metadata/_edit_use_anchors_ = true
