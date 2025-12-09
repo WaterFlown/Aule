@@ -63,4 +63,3 @@ min_zoom = Vector2(0.5, 0.5)
 xy_scroll_limits = Vector2(2400, 2400)
 
 [node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
-metadata/_edit_use_anchors_ = true

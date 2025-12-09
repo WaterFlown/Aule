@@ -13,7 +13,7 @@ var target_zoom = zoom
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT || event.button_mask == MOUSE_BUTTON_MASK_MIDDLE:
 			position.x = clamp(position.x - event.relative.x / zoom.x, -xy_scroll_limits.x, xy_scroll_limits.x)
 			position.y = clamp(position.y - event.relative.y / zoom.y, -xy_scroll_limits.y, xy_scroll_limits.y)
 

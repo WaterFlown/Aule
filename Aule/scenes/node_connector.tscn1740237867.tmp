@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckbe5tfouwoce"]
+
+[ext_resource type="Texture2D" uid="uid://tkvpxpqd8v8v" path="res://assets/placeholder/connector.png" id="1_mtaps"]
+[ext_resource type="Script" uid="uid://dkjgnqwvodm3l" path="res://scripts/editor/node_connector.gd" id="2_07kt7"]
+
+[node name="Connector" type="TextureRect"]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 56.0
+offset_bottom = 112.0
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+mouse_default_cursor_shape = 3
+texture = ExtResource("1_mtaps")
+script = ExtResource("2_07kt7")
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
