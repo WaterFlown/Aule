@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_63wie"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r00q"]
-bg_color = Color(0.3, 0.13340001, 0.0059999945, 1)
+bg_color = Color(0.07669621, 0.23039189, 0.33695891, 1)
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5

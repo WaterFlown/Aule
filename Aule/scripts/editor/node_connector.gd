@@ -1,10 +1,15 @@
 class_name NodeConnector extends TextureRect
 @export var IOtype: Globals.NodeConnectorIOType = Globals.NodeConnectorIOType.INPUT
 
+var inited: bool = false
+
 var dragging: bool = false
 var drag_line: Line2D = null
 var center_offset: Vector2 = Vector2(32,64)
 
+signal start_connecting(from: NodeConnector)
+signal stop_connecting()
+signal mouse_hover(connector: NodeConnector, enter: bool)
 
 func _ready():
 	if IOtype == Globals.NodeConnectorIOType.INPUT:
@@ -26,20 +31,38 @@ func start_drag():
 	drag_line.antialiased = true
 	drag_line.width = 10
 	drag_line.default_color = Color(1.0, 1.0, 1.0, 0.8)
+	
+	drag_line.z_index = 5
 	add_child(drag_line)
+	start_connecting.emit(self)
 
 func stop_drag():
 	if drag_line:
 		drag_line.queue_free()
 	dragging = false
+	stop_connecting.emit()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_LEFT:
 		if event.pressed:
 			start_drag()
-		else:
+		elif dragging:
 			stop_drag()
 
 func _process(delta):
+	if Globals.editor and not inited:
+		start_connecting.connect(Globals.editor.start_connecting.bind())
+		stop_connecting.connect(Globals.editor.stop_connecting.bind())
+		mouse_hover.connect(Globals.editor.connector_hovering.bind())
+		inited = true
+	
 	if drag_line:
 		drag_line.set_point_position(1, get_local_mouse_position()-position)
+
+
+func _on_mouse_entered():
+	mouse_hover.emit(self, true)
+
+
+func _on_mouse_exited():
+	mouse_hover.emit(self, false)
