@@ -29,7 +29,7 @@ func connector_hovering(connector:NodeConnector, enter:bool):
 func handle_connecting():
 	if connecting and connecting_from:
 		if not connecting_to and hovering_connector:
-			if connecting_from.IOtype != hovering_connector.IOtype: #check compatibility too later
+			if connecting_from.IOtype != hovering_connector.IOtype and (connecting_from.parent != hovering_connector.parent): #check compatibility and if nodes are already connected too later
 				connecting_to = hovering_connector
 
 

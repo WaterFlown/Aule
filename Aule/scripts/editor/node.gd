@@ -1,4 +1,5 @@
 class_name EditorNode extends Control
+@export var connector_label: RichTextLabel
 
 signal move_node_to_top
 # connect all children signals on parent node. Then move_child(passed node, get_child_count()-1)
@@ -14,3 +15,9 @@ func _on_gui_input(event):
 			drag_position = null
 	if event is InputEventMouseMotion and drag_position:
 		global_position = get_global_mouse_position() - drag_position
+
+func connector_hovering(connector: NodeConnector, enter: bool):
+	if connector_label and enter:
+		connector_label.text = connector.label
+	else:
+		connector_label.text = ""

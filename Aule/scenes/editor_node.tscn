@@ -6,21 +6,21 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r00q"]
 bg_color = Color(0.07669621, 0.23039189, 0.33695891, 1)
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
-[node name="Editor Node" type="Control"]
+[node name="Editor Node" type="Control" node_paths=PackedStringArray("connector_label")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.0
+offset_left = -134.0
 offset_top = -129.0
-offset_right = 174.0
+offset_right = 134.0
 offset_bottom = 129.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -28,6 +28,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6r00q")
+connector_label = NodePath("Connector Label")
 
 [node name="Node Background" type="Panel" parent="."]
 layout_mode = 1
@@ -41,27 +42,60 @@ size_flags_vertical = 4
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_6r00q")
 
-[node name="Connector" parent="." instance=ExtResource("2_63wie")]
+[node name="Connector Label" type="RichTextLabel" parent="."]
+z_index = 5
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.9770115
-anchor_top = 0.5968992
-anchor_right = 0.9770115
-anchor_bottom = 0.5968992
-grow_horizontal = 1
-grow_vertical = 1
-IOtype = 1
-metadata/_edit_use_anchors_ = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.0
+offset_top = -32.0
+offset_right = 162.0
+offset_bottom = -6.0
+grow_horizontal = 2
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Connector2" parent="." instance=ExtResource("2_63wie")]
+[node name="Input Connectors Container" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.022988506
-anchor_top = 0.5968992
-anchor_right = 0.022988506
-anchor_bottom = 0.5968992
-grow_horizontal = 1
-grow_vertical = 1
-metadata/_edit_use_anchors_ = true
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 64.0
+offset_bottom = 774.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Connector2" parent="Input Connectors Container" instance=ExtResource("2_63wie")]
+layout_mode = 2
+
+[node name="Connector" parent="Input Connectors Container" instance=ExtResource("2_63wie")]
+layout_mode = 2
+
+[node name="Output Connectors Container2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 48.0
+offset_bottom = 774.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Connector2" parent="Output Connectors Container2" instance=ExtResource("2_63wie")]
+layout_mode = 2
+IOtype = 1
+
+[node name="Connector" parent="Output Connectors Container2" instance=ExtResource("2_63wie")]
+layout_mode = 2
+IOtype = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

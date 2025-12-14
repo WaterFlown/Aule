@@ -15,10 +15,10 @@ Panel/styles/panel = SubResource("StyleBoxFlat_pxqd5")
 script = ExtResource("1_q68jb")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_left = -4800.0
-offset_top = -4800.0
-offset_right = 4800.0
-offset_bottom = 4800.0
+offset_left = -6000.0
+offset_top = -6000.0
+offset_right = 6000.0
+offset_bottom = 6000.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_ba0ut")
@@ -65,13 +65,13 @@ min_zoom = Vector2(0.5, 0.5)
 xy_scroll_limits = Vector2(2400, 2400)
 
 [node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -524.0
-offset_top = -15.0
-offset_right = -176.0
-offset_bottom = 243.0
+offset_left = 252.0
+offset_top = -85.0
+offset_right = 520.0
+offset_bottom = 173.0
 
 [node name="Editor Node2" parent="." instance=ExtResource("4_q68jb")]
-offset_left = 372.0
-offset_top = 193.0
-offset_right = 720.0
-offset_bottom = 451.0
+offset_left = -411.0
+offset_top = 69.0
+offset_right = -143.0
+offset_bottom = 327.0

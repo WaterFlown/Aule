@@ -1,21 +1,21 @@
 class_name NodeConnector extends TextureRect
 @export var IOtype: Globals.NodeConnectorIOType = Globals.NodeConnectorIOType.INPUT
+@export var label: String = "This connector does not have a description"
+@onready var parent = get_parent().get_parent()
 
 var inited: bool = false
 
+
 var dragging: bool = false
 var drag_line: Line2D = null
-var center_offset: Vector2 = Vector2(32,64)
+var center_offset: Vector2 = pivot_offset
 
 signal start_connecting(from: NodeConnector)
 signal stop_connecting()
 signal mouse_hover(connector: NodeConnector, enter: bool)
 
 func _ready():
-	if IOtype == Globals.NodeConnectorIOType.INPUT:
-		pass
-	elif IOtype == Globals.NodeConnectorIOType.OUTPUT:
-		flip_h = true
+	pass
 
 func start_drag():
 	dragging = true
@@ -54,6 +54,7 @@ func _process(delta):
 		start_connecting.connect(Globals.editor.start_connecting.bind())
 		stop_connecting.connect(Globals.editor.stop_connecting.bind())
 		mouse_hover.connect(Globals.editor.connector_hovering.bind())
+		mouse_hover.connect(parent.connector_hovering.bind())
 		inited = true
 	
 	if drag_line:
