@@ -1,10 +1,11 @@
 class_name NodeConnector extends TextureRect
+@export var id: int = 0
 @export var IOtype: Globals.NodeConnectorIOType = Globals.NodeConnectorIOType.INPUT
 @export var label: String = "This connector does not have a description"
-@onready var parent = get_parent().get_parent()
+@onready var parent: EditorNode = get_parent().get_parent()
 
 var inited: bool = false
-
+var connected: bool = false
 
 var dragging: bool = false
 var drag_line: Line2D = null
@@ -16,6 +17,12 @@ signal mouse_hover(connector: NodeConnector, enter: bool)
 
 func _ready():
 	pass
+
+func get_id() -> int:
+	return id
+
+func get_node_id() -> int:
+	return parent.get_id()
 
 func start_drag():
 	dragging = true

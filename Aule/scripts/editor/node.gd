@@ -1,10 +1,27 @@
 class_name EditorNode extends Control
+var id = null
+
 @export var connector_label: RichTextLabel
+@export var connectors: Array[NodeConnector] = []
+var inited = false
 
 signal move_node_to_top
-# connect all children signals on parent node. Then move_child(passed node, get_child_count()-1)
-
 var drag_position = null
+
+func initing():
+	if not inited:
+		Globals.editor.register_node(self)
+		move_node_to_top.connect(Globals.editor.move_node_to_top.bind())
+		inited = true
+
+func get_id() -> int:
+	return id
+
+func get_connector_by_id(id: int) -> NodeConnector:
+	for connector in connectors:
+		if connector.id == id:
+			return connector
+	return null
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
@@ -21,3 +38,7 @@ func connector_hovering(connector: NodeConnector, enter: bool):
 		connector_label.text = connector.label
 	else:
 		connector_label.text = ""
+
+func _process(delta):
+	initing()
+	

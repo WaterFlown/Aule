@@ -65,13 +65,13 @@ min_zoom = Vector2(0.5, 0.5)
 xy_scroll_limits = Vector2(2400, 2400)
 
 [node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
-offset_left = 252.0
-offset_top = -85.0
-offset_right = 520.0
-offset_bottom = 173.0
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 120.0
+offset_bottom = 108.0
 
 [node name="Editor Node2" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -411.0
-offset_top = 69.0
-offset_right = -143.0
-offset_bottom = 327.0
+offset_left = 853.0
+offset_top = -129.0
+offset_right = 1013.0
+offset_bottom = 43.0
