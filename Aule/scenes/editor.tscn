@@ -71,7 +71,13 @@ offset_right = 120.0
 offset_bottom = 108.0
 
 [node name="Editor Node2" parent="." instance=ExtResource("4_q68jb")]
-offset_left = 853.0
-offset_top = -129.0
-offset_right = 1013.0
-offset_bottom = 43.0
+offset_left = 320.0
+offset_top = -50.0
+offset_right = 480.0
+offset_bottom = 122.0
+
+[node name="Editor Node3" parent="." instance=ExtResource("4_q68jb")]
+offset_left = 131.0
+offset_top = -317.0
+offset_right = 291.0
+offset_bottom = -145.0

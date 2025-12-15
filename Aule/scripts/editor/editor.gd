@@ -52,15 +52,19 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	
 	
 	var connection: Connection = Connection.new()
-	connection.from_node = from.get_node_id()
-	connection.to_node = to.get_node_id()
-	connection.from_connector = from.get_id()
-	connection.to_connector = to.get_id()
+	if from.IOtype == Globals.NodeConnectorIOType.OUTPUT and to.IOtype == Globals.NodeConnectorIOType.INPUT: #FROM is not output, TO is not input
+		connection.from_node = from.get_node_id()
+		connection.to_node = to.get_node_id()
+		connection.from_connector = from.get_id()
+		connection.to_connector = to.get_id()
+	else:
+		connection.from_node = to.get_node_id()
+		connection.to_node = from.get_node_id()
+		connection.from_connector = to.get_id()
+		connection.to_connector = from.get_id()
+	
+	
 	connections.append(connection)
-	
-	from.connected = true
-	to.connected = true
-	
 	from.connected = true
 	to.connected = true
 	
