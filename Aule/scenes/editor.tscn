@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=8 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
 [ext_resource type="Script" uid="uid://c575a1xmt45kw" path="res://scripts/editor/editor.gd" id="1_q68jb"]
+[ext_resource type="PackedScene" uid="uid://rkm8xc1pmsu1" path="res://scenes/editor_connection_line_manager.tscn" id="2_xg7d5"]
 [ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="4_q68jb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxqd5"]
@@ -11,8 +12,11 @@ bg_color = Color(0.105882354, 0.11372549, 0.12156863, 1)
 [sub_resource type="Theme" id="Theme_ba0ut"]
 Panel/styles/panel = SubResource("StyleBoxFlat_pxqd5")
 
-[node name="Editor" type="Node"]
+[node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager")]
 script = ExtResource("1_q68jb")
+connection_line_manager = NodePath("Connection Line Manager")
+
+[node name="Connection Line Manager" parent="." instance=ExtResource("2_xg7d5")]
 
 [node name="Background" type="TextureRect" parent="."]
 offset_left = -6000.0
@@ -26,6 +30,7 @@ stretch_mode = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 
 [node name="UI" type="Control" parent="UI"]
 layout_mode = 3

@@ -1,5 +1,7 @@
 class_name Editor extends Node
 
+@export var connection_line_manager: ConnectionLineManager
+
 @onready var global_node_id = 0
 
 var connecting: bool = false
@@ -39,10 +41,10 @@ func remove_connection(index: int):
 	var connection: Connection = connections.pop_at(index)
 	var from_node: EditorNode = nodes.get(connection.from_node)
 	var to_node: EditorNode = nodes.get(connection.to_node)
-	from_node.get_connector_by_id(connection.from_connector).connected = false
-	to_node.get_connector_by_id(connection.to_connector).connected = false
+	from_node.get_connector_by_id(connection.from_connector).disconnect_connectors()
+	to_node.get_connector_by_id(connection.to_connector).disconnect_connectors()
 	
-	print("removed conn")
+	connection_line_manager.remove_line(connection.from_node, connection.to_node, connection.from_connector, connection.to_connector)
 	
 
 func create_connection(from: NodeConnector, to: NodeConnector):
@@ -65,8 +67,8 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	
 	
 	connections.append(connection)
-	from.connected = true
-	to.connected = true
+	from.connect_connectors(to)
+	to.connect_connectors(from)
 	
 	print(connections)
 	

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rkm8xc1pmsu1"]
+
+[ext_resource type="Script" uid="uid://dhwrd73y7s6qm" path="res://scripts/editor/editor_connection_line_manager.gd" id="1_26oga"]
+
+[node name="Connection Line Manager" type="Node"]
+script = ExtResource("1_26oga")

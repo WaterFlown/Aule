@@ -7,6 +7,8 @@ class_name NodeConnector extends TextureRect
 var inited: bool = false
 var connected: bool = false
 
+var connection_line: Line2D = null
+
 var dragging: bool = false
 var drag_line: Line2D = null
 var center_offset: Vector2 = pivot_offset
@@ -24,6 +26,17 @@ func get_id() -> int:
 func get_node_id() -> int:
 	return parent.get_id()
 
+func connect_connectors(other: NodeConnector):
+	connected = true
+	if(IOtype == Globals.NodeConnectorIOType.OUTPUT):
+		Globals.editor.connection_line_manager.add_line(parent.get_id(), other.parent.get_id(), get_id(), other.get_id())
+	
+func disconnect_connectors():
+	connected = false
+	if connection_line:
+		connection_line.queue_free()
+
+
 func start_drag():
 	dragging = true
 	drag_line = Line2D.new()
@@ -35,8 +48,7 @@ func start_drag():
 	drag_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	drag_line.joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	drag_line.antialiased = true
-	drag_line.width = 10
+	drag_line.width = 20
 	drag_line.default_color = Color(1.0, 1.0, 1.0, 0.8)
 	
 	drag_line.z_index = 5

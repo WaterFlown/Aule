@@ -6,6 +6,7 @@ var id = null
 var inited = false
 
 signal move_node_to_top
+signal moved_node
 var drag_position = null
 
 func initing():
@@ -32,6 +33,7 @@ func _on_gui_input(event):
 			drag_position = null
 	if event is InputEventMouseMotion and drag_position:
 		global_position = get_global_mouse_position() - drag_position
+		emit_signal("moved_node")
 
 func connector_hovering(connector: NodeConnector, enter: bool):
 	if connector_label and enter:
