@@ -3,16 +3,20 @@ var id = null
 
 @export var connector_label: RichTextLabel
 @export var connectors: Array[NodeConnector] = []
+@export var node_highlight: Panel
 var inited = false
+var selected = false
 
 signal move_node_to_top
 signal moved_node
+signal select_node
 var drag_position = null
 
 func initing():
 	if not inited:
 		Globals.editor.register_node(self)
 		move_node_to_top.connect(Globals.editor.move_node_to_top.bind())
+		select_node.connect(Globals.editor.select_node.bind())
 		inited = true
 
 func get_id() -> int:
@@ -24,11 +28,21 @@ func get_connector_by_id(id: int) -> NodeConnector:
 			return connector
 	return null
 
+func select():
+	selected = true
+	node_highlight.visible = true
+
+func unselect():
+	selected = false
+	node_highlight.visible = false
+
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			drag_position = get_global_mouse_position() - global_position
 			emit_signal("move_node_to_top", self)
+			if not selected:
+				emit_signal("select_node", self)
 		else:
 			drag_position = null
 	if event is InputEventMouseMotion and drag_position:

@@ -25,7 +25,7 @@ func _ready():
 	end_cap_mode = Line2D.LINE_CAP_ROUND
 	joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	width = 4
+	width = 2
 	default_color = Color(1.0, 1.0, 1.0, 1.0)
 	z_index = 5
 	

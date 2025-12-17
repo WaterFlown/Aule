@@ -1,7 +1,6 @@
 class_name Editor extends Node
 
 @export var connection_line_manager: ConnectionLineManager
-
 @onready var global_node_id = 0
 
 var connecting: bool = false
@@ -13,14 +12,28 @@ var connecting_to: NodeConnector = null
 var nodes := {}
 var connections := []
 
+var selected_node: EditorNode = null
+
 func _ready():
 	Globals.editor = self
+
+func select_node(node: EditorNode):
+	if selected_node:
+		selected_node.unselect()
+	selected_node = node
+	node.select()
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_mask == MOUSE_BUTTON_LEFT:
+			if selected_node:
+				selected_node.unselect()
+				selected_node = null
 
 func register_node(node: EditorNode):
 	node.id = global_node_id
 	nodes[node.id] = node
 	global_node_id += 1
-	print(nodes)
 
 func start_connecting(from: NodeConnector):
 	connecting = true

@@ -19,6 +19,7 @@ connection_line_manager = NodePath("Connection Line Manager")
 [node name="Connection Line Manager" parent="." instance=ExtResource("2_xg7d5")]
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -20
 offset_left = -6000.0
 offset_top = -6000.0
 offset_right = 6000.0
@@ -70,19 +71,13 @@ min_zoom = Vector2(0.5, 0.5)
 xy_scroll_limits = Vector2(2400, 2400)
 
 [node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -40.0
-offset_top = -64.0
-offset_right = 120.0
-offset_bottom = 108.0
+offset_left = -730.0
+offset_top = -290.0
+offset_right = -570.0
+offset_bottom = -118.0
 
 [node name="Editor Node2" parent="." instance=ExtResource("4_q68jb")]
-offset_left = 320.0
-offset_top = -50.0
-offset_right = 480.0
-offset_bottom = 122.0
-
-[node name="Editor Node3" parent="." instance=ExtResource("4_q68jb")]
-offset_left = 131.0
-offset_top = -317.0
-offset_right = 291.0
-offset_bottom = -145.0
+offset_left = -466.0
+offset_top = -283.0
+offset_right = -306.0
+offset_bottom = -111.0

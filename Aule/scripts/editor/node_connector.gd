@@ -35,6 +35,7 @@ func disconnect_connectors():
 	connected = false
 	if connection_line:
 		connection_line.queue_free()
+		
 
 
 func start_drag():
@@ -48,7 +49,7 @@ func start_drag():
 	drag_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	drag_line.joint_mode = Line2D.LINE_JOINT_ROUND
 	
-	drag_line.width = 20
+	drag_line.width = 8
 	drag_line.default_color = Color(1.0, 1.0, 1.0, 0.8)
 	
 	drag_line.z_index = 5
