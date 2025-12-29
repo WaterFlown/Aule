@@ -8,7 +8,8 @@ extends MeshInstance3D
 
 func _ready():
 	generate_terrain()
-	
+
+
 func generate_terrain():
 	var a_mesh: ArrayMesh
 	var surfaceTool = SurfaceTool.new()

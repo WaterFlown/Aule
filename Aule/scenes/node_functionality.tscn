@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5eey8l4dgp0q"]
+
+[ext_resource type="Script" uid="uid://hj2sh1s1cuo1" path="res://scripts/editor/functionalities/NodeFunctionality.cs" id="1_lqdkc"]
+
+[node name="None" type="Node"]
+script = ExtResource("1_lqdkc")

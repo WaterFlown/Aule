@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ywxov3t4uw4n"]
+[gd_scene load_steps=6 format=3 uid="uid://ywxov3t4uw4n"]
 
 [ext_resource type="Script" uid="uid://cbb4nudb2arud" path="res://scripts/editor/node.gd" id="1_6r00q"]
 [ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_63wie"]
+[ext_resource type="PackedScene" uid="uid://5eey8l4dgp0q" path="res://scenes/node_functionality.tscn" id="3_hkpfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63wie"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -27,7 +28,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="Editor Node" type="Control" node_paths=PackedStringArray("connector_label", "connectors", "node_highlight")]
+[node name="Editor Node" type="Control" node_paths=PackedStringArray("functionality", "connector_label", "connectors", "node_highlight")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,6 +45,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6r00q")
+functionality = NodePath("None")
 connector_label = NodePath("Connector Label")
 connectors = [NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector2")]
 node_highlight = NodePath("Node Highlight")
@@ -128,5 +130,25 @@ alignment = 1
 layout_mode = 2
 id = 3
 IOtype = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_right = 85.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Basic Noise"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="None" parent="." instance=ExtResource("3_hkpfa")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -23,12 +23,12 @@ func select_node(node: EditorNode):
 	selected_node = node
 	node.select()
 
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.button_mask == MOUSE_BUTTON_LEFT:
-			if selected_node:
-				selected_node.unselect()
-				selected_node = null
+#func _unhandled_input(event):
+	#if event is InputEventMouseButton:
+		#if event.button_mask == MOUSE_BUTTON_LEFT:
+			#if selected_node:
+				#selected_node.unselect()
+				#selected_node = null
 
 func register_node(node: EditorNode):
 	node.id = global_node_id
@@ -85,6 +85,17 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	
 	print(connections)
 	
+	
+func get_connection(node_id: int, connector_id: int) -> Connection:
+	for c_connection: Connection in connections:
+		if ((c_connection.to_node == node_id && c_connection.to_connector == connector_id) || (c_connection.from_node == node_id && c_connection.from_connector == connector_id)):
+			return c_connection
+	return null
+
+func get_node_from_id(id) -> EditorNode:
+	if nodes[id]:
+		return nodes[id]
+	return null
 
 func connector_hovering(connector:NodeConnector, enter:bool):
 	if enter and hovering_connector != connector:

@@ -1,6 +1,6 @@
 class_name EditorNode extends Control
 var id = null
-
+@export var functionality: NodeFunctionality
 @export var connector_label: RichTextLabel
 @export var connectors: Array[NodeConnector] = []
 @export var node_highlight: Panel
