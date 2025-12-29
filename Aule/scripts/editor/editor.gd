@@ -86,15 +86,22 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	print(connections)
 	
 	
-func get_connection(node_id: int, connector_id: int) -> Connection:
+func get_connection_to(node_id: int, connector_id: int) -> Connection:
 	for c_connection: Connection in connections:
-		if ((c_connection.to_node == node_id && c_connection.to_connector == connector_id) || (c_connection.from_node == node_id && c_connection.from_connector == connector_id)):
+		if (c_connection.to_node == node_id && c_connection.to_connector == connector_id):
 			return c_connection
 	return null
 
-func get_node_from_id(id) -> EditorNode:
+func get_node_from_id(id: int) -> EditorNode:
 	if nodes[id]:
 		return nodes[id]
+	return null
+
+## get_connection_to and get_node_from_id call in one function
+func get_node_connected_to(node_id: int, connector_id: int) -> EditorNode:
+	var connection: Connection = get_connection_to(node_id, connector_id);
+	if connection:
+		return get_node_from_id(connection.from_node)
 	return null
 
 func connector_hovering(connector:NodeConnector, enter:bool):

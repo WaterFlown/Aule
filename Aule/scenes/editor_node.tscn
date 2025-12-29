@@ -128,7 +128,7 @@ alignment = 1
 
 [node name="Connector2" parent="Output Connectors Container2" instance=ExtResource("2_63wie")]
 layout_mode = 2
-id = 3
+id = 2
 IOtype = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
