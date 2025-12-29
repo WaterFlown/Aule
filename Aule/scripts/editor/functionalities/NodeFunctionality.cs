@@ -3,8 +3,11 @@ using System;
 
 [GlobalClass]
 public partial class NodeFunctionality : Node {
+	public int parentID = -1;
+	
 	public virtual float[,] evaluate(int port){
 		float[,] a = {};
+		a = getFromInput(0);
 		return a;
 	}
 	
@@ -21,8 +24,12 @@ public partial class NodeFunctionality : Node {
 	}
 	public float[,] getFromInput(int to_port) {
 		GodotObject editor = (GodotObject)GetNode<Node>("/root/Globals").Get("editor");
-		GodotObject connection = (GodotObject)editor.Call("get_connection_to", (int)((GodotObject)GetParent()).Call("get_id"), to_port);
-		NodeFunctionality otherFunctionality = ((NodeFunctionality)((GodotObject)editor.Call("get_node_connected_to", GetParent().Call("get_id"), to_port)).Get("functionality"));
+		GodotObject connection = (GodotObject)editor.Call("get_connection_to", parentID, to_port);
+		if (connection == null) {
+			float[,] empty = {};
+			return empty;
+		}
+		NodeFunctionality otherFunctionality = ((NodeFunctionality)((GodotObject)editor.Call("get_node_connected_to", parentID, to_port)).Get("functionality"));
 		return otherFunctionality.evaluate((int)connection.Get("connector_from"));
 	}
 }

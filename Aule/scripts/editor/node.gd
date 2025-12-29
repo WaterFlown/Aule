@@ -17,6 +17,7 @@ func initing():
 		Globals.editor.register_node(self)
 		move_node_to_top.connect(Globals.editor.move_node_to_top.bind())
 		select_node.connect(Globals.editor.select_node.bind())
+		functionality.parentID = id;
 		inited = true
 
 func get_id() -> int:
