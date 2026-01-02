@@ -1,5 +1,7 @@
 extends Node
 
-@onready var editor: Editor = null
-
 enum NodeConnectorIOType {INPUT, OUTPUT}
+
+@onready var editor: Editor = null
+@onready var terrain: Terrain = null
+@onready var terrain_size: Vector2i = Vector2(512, 512)

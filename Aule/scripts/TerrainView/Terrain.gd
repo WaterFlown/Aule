@@ -1,5 +1,4 @@
-@tool
-extends MeshInstance3D
+class_name Terrain extends MeshInstance3D
 
 @export var x_size = 20
 @export var z_size = 20
@@ -7,32 +6,40 @@ extends MeshInstance3D
 #@export var visualization = false
 
 func _ready():
-	generate_terrain()
+	Globals.terrain = self
+	generate_terrain([[]]) #passing in an empty 2d array so it renders a flat plane
 
-
-func generate_terrain():
+func generate_terrain(heightmap: Array[Array]):
 	var a_mesh: ArrayMesh
 	var surfaceTool = SurfaceTool.new()
 	
-	var noise = FastNoiseLite.new()
-	noise.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
-	noise.fractal_lacunarity = 1.9
-	noise.fractal_gain = 0.41
-	noise.fractal_lacunarity = 1.8
-	noise.fractal_octaves = 7
-	noise.frequency = 0.003
-
+	#var noise = FastNoiseLite.new()
+	#noise.seed = randi()
+	#noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	#noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
+	#noise.fractal_lacunarity = 1.8
+	#noise.fractal_gain = 0.41
+	#noise.fractal_octaves = 6
+	#noise.frequency = 0.003
 	
+	if heightmap.is_empty() or heightmap[0].is_empty():
+		heightmap.resize(Globals.terrain_size.x)
+		for z in range(Globals.terrain_size.x):
+			heightmap[z].resize(Globals.terrain_size.y)
+			for x in range(Globals.terrain_size.y):
+				heightmap[z][x] = 0
+	
+	x_size = heightmap.size()-1
+	z_size = heightmap[0].size()-1
+
 	surfaceTool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in range(z_size+1):
 		for x in range(x_size+1):
-			var y = noise.get_noise_2d(x,z)**2 * 75
+			var y = heightmap[z][x]
 			
 			surfaceTool.set_uv(Vector2(inverse_lerp(0, x_size, x), inverse_lerp(0, z_size, z)))
-			
 			surfaceTool.add_vertex(Vector3(x,y,z))
+
 			#if visualization:
 				#draw_sphere(Vector3(x,y,z))
 	
@@ -69,4 +76,4 @@ func _process(delta):
 		update = false
 		for i in get_children():
 			i.free()
-		generate_terrain()
+		generate_terrain([[]])

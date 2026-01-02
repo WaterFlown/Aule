@@ -23,6 +23,14 @@ func select_node(node: EditorNode):
 	selected_node = node
 	node.select()
 
+
+func run():
+	if selected_node:
+		print("run")
+		Globals.terrain.generate_terrain([[]])
+	else:
+		pass
+
 #func _unhandled_input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_mask == MOUSE_BUTTON_LEFT:
@@ -121,3 +129,10 @@ func move_node_to_top(node: EditorNode):
 
 func _process(delta):
 	handle_connecting()
+
+
+
+
+func _on_run_button_pressed():
+	run()
+	

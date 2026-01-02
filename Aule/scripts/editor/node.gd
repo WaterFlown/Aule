@@ -23,9 +23,9 @@ func initing():
 func get_id() -> int:
 	return id
 
-func get_connector_by_id(id: int) -> NodeConnector:
+func get_connector_by_id(connector_id: int) -> NodeConnector:
 	for connector in connectors:
-		if connector.id == id:
+		if connector.id == connector_id:
 			return connector
 	return null
 
