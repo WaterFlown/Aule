@@ -27,7 +27,7 @@ func select_node(node: EditorNode):
 func run():
 	if selected_node:
 		print("run")
-		Globals.terrain.generate_terrain([[]])
+		Globals.terrain.generate_terrain(selected_node.functionality.output())
 	else:
 		pass
 

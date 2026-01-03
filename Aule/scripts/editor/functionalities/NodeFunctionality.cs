@@ -4,11 +4,27 @@ using System;
 [GlobalClass]
 public partial class NodeFunctionality : Node {
 	public int parentID = -1;
+	[Export]
+	public int defaultOutputPortID = 2;
 	
 	public virtual float[,] evaluate(int port){
 		float[,] a = {};
 		a = getFromInput(0);
+		if (a.GetLength(0) == 0) {
+			Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
+			float[,] flat = new float[(int)terrain_size.X, (int)terrain_size.Y];
+			for (int i = 0; i < flat.GetLength(0); i++) {
+				for (int j = 0; j < flat.GetLength(1); j++) {
+					flat[i, j] = 0;
+				}
+			}
+			a = flat;
+		}
 		return a;
+	}
+	
+	public Godot.Collections.Array output() {
+		return convertToGDArray(evaluate(defaultOutputPortID));
 	}
 	
 	public Godot.Collections.Array convertToGDArray(float[,] arrayToConvert) {
