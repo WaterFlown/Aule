@@ -2,7 +2,6 @@ class_name ConnectionLineManager extends Node
 
 var lines: Array[ConnectionLine] = []
 
-
 func add_line(from_node: int, to_node: int, from_connector: int, to_connector: int):
 	var line = ConnectionLine.new()
 	line.from_node = from_node

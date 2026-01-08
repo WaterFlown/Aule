@@ -69,6 +69,11 @@ func remove_connection(index: int):
 	
 
 func create_connection(from: NodeConnector, to: NodeConnector):
+	if is_cycle(from.parent.get_id(), to.parent.get_id()):
+		return
+	elif is_cycle(to.parent.get_id(), from.parent.get_id()):
+		return
+	
 	for c_connection in connections:
 		if (c_connection.to_connector == to.get_id() and c_connection.to_node == to.get_node_id()) or (c_connection.from_connector == to.get_id() and c_connection.from_node == to.get_node_id()):
 			remove_connection(connections.find(c_connection))
@@ -92,8 +97,8 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	to.connect_connectors(from)
 	
 	print(connections)
-	
-	
+
+##Gets connection to node on a specific connector
 func get_connection_to(node_id: int, connector_id: int) -> Connection:
 	for c_connection: Connection in connections:
 		if (c_connection.to_node == node_id && c_connection.to_connector == connector_id):
@@ -112,6 +117,22 @@ func get_node_connected_to(node_id: int, connector_id: int) -> EditorNode:
 		return get_node_from_id(connection.from_node)
 	return null
 
+##Returns if a path already exists between two nodes.
+func is_cycle(from_node: int, to_node: int):
+	return path_exists(from_node, to_node, {})
+## Recursive function that checks path existance. CALL is_cycle INSTEAD.
+func path_exists(from_node: int, to_node: int, visited: Dictionary) -> bool:
+	if from_node == to_node:
+		return true
+	visited[from_node] = true
+	for c in connections:
+		if c.to_node == from_node:
+			var next_id = c.from_node
+			if not visited.has(next_id):
+				if path_exists(next_id, to_node, visited):
+					return true
+	return false
+
 func connector_hovering(connector:NodeConnector, enter:bool):
 	if enter and hovering_connector != connector:
 		hovering_connector = connector
@@ -129,9 +150,6 @@ func move_node_to_top(node: EditorNode):
 
 func _process(delta):
 	handle_connecting()
-
-
-
 
 func _on_run_button_pressed():
 	run()

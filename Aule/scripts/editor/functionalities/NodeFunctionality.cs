@@ -11,14 +11,37 @@ public partial class NodeFunctionality : Node {
 		float[,] a = {};
 		a = getFromInput(0);
 		if (a.GetLength(0) == 0) {
+			/*FastNoiseLite noise = new FastNoiseLite();
+			noise.SetFrequency(0.0005f);
+			noise.SetFractalType(FastNoiseLite.FractalTypeEnum.Fbm);
+			
+			noise.SetFractalLacunarity(2f);
+			noise.SetFractalGain(0.7f);
+			noise.SetNoiseType(FastNoiseLite.NoiseTypeEnum.Simplex);*/
+			
+			
 			Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
 			float[,] flat = new float[(int)terrain_size.X, (int)terrain_size.Y];
 			for (int i = 0; i < flat.GetLength(0); i++) {
 				for (int j = 0; j < flat.GetLength(1); j++) {
-					flat[i, j] = 0;
+					flat[i, j] = 0;//noise.GetNoise2D(i, j) * 50;
 				}
 			}
 			a = flat;
+		} 
+		else {
+			/*FastNoiseLite noise = new FastNoiseLite();
+			noise.SetFrequency(0.0005f);
+			noise.SetFractalType(FastNoiseLite.FractalTypeEnum.Fbm);
+			
+			noise.SetFractalLacunarity(2f);
+			noise.SetFractalGain(0.7f);
+			noise.SetNoiseType(FastNoiseLite.NoiseTypeEnum.Simplex);*/
+			for (int i = 0; i < a.GetLength(0); i++) {
+				for (int j = 0; j < a.GetLength(1); j++) {
+					a[i, j] += 0;//noise.GetNoise2D(i, j) * 50;
+				}	
+			}
 		}
 		return a;
 	}

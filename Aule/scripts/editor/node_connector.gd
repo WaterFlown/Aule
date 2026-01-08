@@ -1,6 +1,7 @@
 class_name NodeConnector extends TextureRect
 @export var id: int = 0
 @export var IOtype: Globals.NodeConnectorIOType = Globals.NodeConnectorIOType.INPUT
+@export var IOCategory: Globals.NodeConnectorCategory = Globals.NodeConnectorCategory.DEFAULT
 @export var label: String = "This connector does not have a description"
 @onready var parent: EditorNode = get_parent().get_parent()
 
