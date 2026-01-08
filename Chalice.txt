@@ -1,0 +1,11 @@
+- app, editor, terrainview distinction
+- inner workings terrain mesh generatinga (input -> generation of vertices & indices)
+- hitrost izvajanja -> c#, gdscript za ui, meshgen etc. <!>
+
+- entire node graph system (NE node functionality oz krkol z c#)
+	- zgradba / delovanje noda (in connectorjev)
+	- workspace (mostly camera panning and zooming?)
+	- connection storage system, node ids
+	- rekurziven check za preverjanje infinite loopov v node graphu <!>
+
+- koncept node functionalitijev (input -> output, why there are multiple inputs and what they do)

@@ -4,9 +4,19 @@ using System;
 [GlobalClass]
 public partial class NodeFunctionality : Node {
 	public int parentID = -1;
+	public int seed = 0;
+	public bool seed_set = false;
 	[Export]
 	public int defaultOutputPortID = 2;
 	
+	public override void _Ready() {
+		if (seed_set == false)
+		{
+			seed = (int)GD.Randi();
+			seed_set = true;
+		}
+	}
+
 	public virtual float[,] evaluate(int port){
 		float[,] a = {};
 		a = getFromInput(0);
