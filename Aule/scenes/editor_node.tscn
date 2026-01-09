@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ywxov3t4uw4n"]
+[gd_scene load_steps=7 format=3 uid="uid://ywxov3t4uw4n"]
 
 [ext_resource type="Script" uid="uid://cbb4nudb2arud" path="res://scripts/editor/node.gd" id="1_6r00q"]
 [ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_63wie"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_qn4us"]
 [ext_resource type="PackedScene" uid="uid://5eey8l4dgp0q" path="res://scenes/node_functionality.tscn" id="3_hkpfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63wie"]
@@ -88,6 +89,7 @@ offset_top = -32.0
 offset_right = 162.0
 offset_bottom = -6.0
 grow_horizontal = 2
+theme = ExtResource("2_qn4us")
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
@@ -146,6 +148,7 @@ offset_right = 85.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_qn4us")
 text = "None"
 scroll_active = false
 horizontal_alignment = 1
