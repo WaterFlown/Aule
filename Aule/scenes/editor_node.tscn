@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://ywxov3t4uw4n"]
+[gd_scene load_steps=8 format=3 uid="uid://ywxov3t4uw4n"]
 
 [ext_resource type="Script" uid="uid://cbb4nudb2arud" path="res://scripts/editor/node.gd" id="1_6r00q"]
 [ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_63wie"]
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_qn4us"]
 [ext_resource type="PackedScene" uid="uid://5eey8l4dgp0q" path="res://scenes/node_functionality.tscn" id="3_hkpfa"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63wie"]
+[sub_resource type="Theme" id="Theme_qn4us"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn4us"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -51,7 +53,7 @@ connector_label = NodePath("Connector Label")
 connectors = [NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector2")]
 node_highlight = NodePath("Node Highlight")
 
-[node name="Node Highlight" type="Panel" parent="."]
+[node name="Node Highlight" type="PanelContainer" parent="."]
 visible = false
 z_index = -1
 layout_mode = 1
@@ -64,7 +66,8 @@ offset_right = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_63wie")
+theme = SubResource("Theme_qn4us")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qn4us")
 
 [node name="Node Background" type="Panel" parent="."]
 layout_mode = 1

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://devdrs4jeyij5"]
+
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="1_knh86"]
+[ext_resource type="Script" uid="uid://d1v6xoxum1kq0" path="res://scripts/editor/inspector/inspector.gd" id="2_2da8q"]
+
+[node name="NodeInspector" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_knh86")
+theme_type_variation = &"NodeInspectorPanel"
+script = ExtResource("2_2da8q")
+
+[node name="NodeName" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.058000002
+anchor_bottom = 0.058000002
+offset_left = 16.0
+offset_top = -19.640003
+offset_right = 281.0
+offset_bottom = 20.359997
+text = "Basic Node"

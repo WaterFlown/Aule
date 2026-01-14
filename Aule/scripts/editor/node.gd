@@ -3,7 +3,7 @@ var id = null
 @export var functionality: NodeFunctionality
 @export var connector_label: RichTextLabel
 @export var connectors: Array[NodeConnector] = []
-@export var node_highlight: Panel
+@export var node_highlight: PanelContainer
 var inited = false
 var selected = false
 
@@ -58,4 +58,6 @@ func connector_hovering(connector: NodeConnector, enter: bool):
 
 func _process(delta):
 	initing()
-	
+
+func set_property(property, value):
+	functionality.properties[property] = value
