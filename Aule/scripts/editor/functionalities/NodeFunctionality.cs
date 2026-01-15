@@ -16,6 +16,7 @@ public partial class NodeFunctionality : Node {
 			int seed = 0;
 			seed = (int)GD.Randi();
 			properties["seed"] = seed;
+			properties["foo"] = 0;
 			seed_set = true;
 		}
 	}
@@ -37,7 +38,7 @@ public partial class NodeFunctionality : Node {
 			float[,] flat = new float[(int)terrain_size.X, (int)terrain_size.Y];
 			for (int i = 0; i < flat.GetLength(0); i++) {
 				for (int j = 0; j < flat.GetLength(1); j++) {
-					flat[i, j] = 0;//noise.GetNoise2D(i, j) * 50;
+					flat[i, j] = (float)properties["foo"];//noise.GetNoise2D(i, j) * 50;
 				}
 			}
 			a = flat;
@@ -52,7 +53,7 @@ public partial class NodeFunctionality : Node {
 			noise.SetNoiseType(FastNoiseLite.NoiseTypeEnum.Simplex);*/
 			for (int i = 0; i < a.GetLength(0); i++) {
 				for (int j = 0; j < a.GetLength(1); j++) {
-					a[i, j] += 0;//noise.GetNoise2D(i, j) * 50;
+					a[i, j] += (float)properties["foo"];//noise.GetNoise2D(i, j) * 50;
 				}	
 			}
 		}

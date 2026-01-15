@@ -14,6 +14,10 @@ var connections := []
 
 var selected_node: EditorNode = null
 
+
+@export var inspector_container: Control
+var node_inspector: NodeInspector = null
+
 func _ready():
 	Globals.editor = self
 
@@ -22,7 +26,14 @@ func select_node(node: EditorNode):
 		selected_node.unselect()
 	selected_node = node
 	node.select()
+	set_inspector()
 
+func set_inspector():
+	if (node_inspector):
+		node_inspector.queue_free()
+	var inspector_scene = load(selected_node.inspector)
+	node_inspector = inspector_scene.instantiate()
+	inspector_container.add_child(node_inspector)
 
 func run():
 	if selected_node:

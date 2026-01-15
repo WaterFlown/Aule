@@ -1,12 +1,13 @@
 class_name NodeInspector extends Panel
 
 func _ready():
-	pass
+	initialize_fields()
 
-func connect_signals():
+func initialize_fields():
 	for child in get_children():
 		if child is InspectorInput:
 			child.connect("updated", field_updated)
+			child.set_value(Globals.editor.selected_node.get_property(child.property))
 
-func field_updated():
-	pass
+func field_updated(field: InspectorInput):
+	Globals.editor.selected_node.set_property(field.property, field.get_value())

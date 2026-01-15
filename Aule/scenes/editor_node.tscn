@@ -31,7 +31,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="Editor Node" type="Control" node_paths=PackedStringArray("functionality", "connector_label", "connectors", "node_highlight")]
+[node name="Editor Node" type="Control" node_paths=PackedStringArray("functionality", "connectors", "connector_label", "node_highlight")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,8 +49,8 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6r00q")
 functionality = NodePath("None")
-connector_label = NodePath("Connector Label")
 connectors = [NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector2")]
+connector_label = NodePath("Connector Label")
 node_highlight = NodePath("Node Highlight")
 
 [node name="Node Highlight" type="PanelContainer" parent="."]

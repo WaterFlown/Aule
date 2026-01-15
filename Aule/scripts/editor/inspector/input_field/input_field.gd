@@ -1,6 +1,10 @@
 class_name InspectorInput extends Control
+@export var property: String = ""
 
-signal updated
+signal updated(field: InspectorInput)
 
-func get_input():
+func get_value():
 	pass
+
+func set_value(val):
+	self.value = val

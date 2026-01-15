@@ -1,9 +1,12 @@
 class_name EditorNode extends Control
 var id = null
-@export var functionality: NodeFunctionality
-@export var connector_label: RichTextLabel
+@export var functionality: NodeFunctionality ##This node's functionality
+@export var inspector = "res://scenes/inspector/inspector_base.tscn" ##Path to this node's inspector in assets
 @export var connectors: Array[NodeConnector] = []
-@export var node_highlight: PanelContainer
+
+@export var connector_label: RichTextLabel ##This node's connector description display. Already included, changing is not needed.
+@export var node_highlight: PanelContainer ##This node's hightlight. Already included, changing is not needed.
+
 var inited = false
 var selected = false
 
@@ -61,3 +64,6 @@ func _process(delta):
 
 func set_property(property, value):
 	functionality.properties[property] = value
+
+func get_property(property):
+	return functionality.properties[property]
