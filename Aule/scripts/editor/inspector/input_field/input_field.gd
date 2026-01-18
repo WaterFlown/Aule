@@ -7,4 +7,5 @@ func get_value():
 	pass
 
 func set_value(val):
-	self.value = val
+	if val != null:
+		self.value = val

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqhtq6ig18ve"]
+
+[ext_resource type="Script" uid="uid://3hnc4q2yaif1" path="res://scripts/editor/inspector/input_field/slider_input.gd" id="1_ligbk"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_58rxi"]
+
+[node name="Slider Input" type="HSlider" node_paths=PackedStringArray("numeric_input")]
+offset_right = 158.0
+offset_bottom = 16.0
+max_value = 1000.0
+script = ExtResource("1_ligbk")
+numeric_input = NodePath("Numeric Input")
+
+[node name="Numeric Input" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 164.0
+offset_top = -8.0
+offset_right = 250.5625
+offset_bottom = 23.0
+theme = ExtResource("2_58rxi")
+max_value = 1000.0
+update_on_text_changed = true
+
+[connection signal="drag_ended" from="." to="." method="_on_drag_ended"]
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]
+[connection signal="value_changed" from="Numeric Input" to="." method="_on_numeric_input_value_changed"]

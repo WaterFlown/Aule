@@ -66,4 +66,6 @@ func set_property(property, value):
 	functionality.properties[property] = value
 
 func get_property(property):
-	return functionality.properties[property]
+	if functionality.properties.has(property):
+		return functionality.properties[property]
+	return null

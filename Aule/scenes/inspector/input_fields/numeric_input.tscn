@@ -7,6 +7,7 @@
 offset_right = 86.5625
 offset_bottom = 31.0
 theme = ExtResource("1_kfqsx")
+update_on_text_changed = true
 script = ExtResource("2_1f0mj")
 
 [connection signal="value_changed" from="." to="." method="_on_value_changed"]

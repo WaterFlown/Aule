@@ -40,9 +40,8 @@ mouse_filter = 2
 
 [node name="InspectorContainer" type="Control" parent="UI/UI"]
 layout_mode = 1
-anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 301.0
+offset_right = 404.0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
@@ -54,7 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5lcyj")
-metadata/_edit_use_anchors_ = true
 
 [node name="RunButton" type="TextureButton" parent="UI/UI"]
 layout_mode = 1
