@@ -9,3 +9,4 @@
 	- rekurziven check za preverjanje infinite loopov v node graphu <!>
 
 - koncept node functionalitijev (input -> output, why there are multiple inputs and what they do)
+- inspector, kako dela

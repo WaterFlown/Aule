@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://vjm820hapxpv"]
+
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="1_wplqq"]
+[ext_resource type="Script" uid="uid://hnyhbwpcj7lp" path="res://scripts/editor/node_add_tree.gd" id="2_dm8qs"]
+[ext_resource type="Script" uid="uid://b5waib8e8mu0d" path="res://scripts/editor/node_add_entry.gd" id="3_nnsi8"]
+
+[node name="NodeAdder" type="Tree" node_paths=PackedStringArray("entries")]
+offset_right = 334.0
+offset_bottom = 246.0
+theme = ExtResource("1_wplqq")
+hide_root = true
+script = ExtResource("2_dm8qs")
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise")]
+
+[node name="Generators" type="Node" parent="."]
+script = ExtResource("3_nnsi8")
+category = true
+text = "Generators"
+id = "generators"
+
+[node name="Basic Noise" type="Node" parent="Generators"]
+script = ExtResource("3_nnsi8")
+text = "Basic Noise"
+id = "basic_noise"
+node = "res://scenes/editor_node.tscn"
+child_of = "generators"
+
+[connection signal="item_activated" from="." to="." method="_on_item_activated"]

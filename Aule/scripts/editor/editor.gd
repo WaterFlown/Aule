@@ -14,7 +14,7 @@ var connections := []
 
 var selected_node: EditorNode = null
 
-
+@export var camera: Camera2D
 @export var inspector_container: Control
 var node_inspector: NodeInspector = null
 
@@ -161,6 +161,29 @@ func move_node_to_top(node: EditorNode):
 
 func _process(delta):
 	handle_connecting()
+	
+func _input(event):
+	if event.is_action_pressed("ui_text_delete"):
+		delete_selected_node()
+
+func add_node(path: String): ##Places an editor node where the camera is
+	var node: EditorNode = load(path).instantiate()
+	node.position = camera.position - camera.get_viewport_rect().size / 2.0
+	add_child(node)
+
+func delete_selected_node():
+	if selected_node:
+		var connections_to_delete: Array[Connection]
+		for connection: Connection in connections:
+			if connection.from_node == selected_node.id or connection.to_node == selected_node.id:
+				connections_to_delete.append(connection)
+		for connection in connections_to_delete:
+			remove_connection(connections.find(connection))
+		
+		selected_node.unselect()
+		node_inspector.queue_free()
+		selected_node.queue_free()
+		
 
 func _on_run_button_pressed():
 	run()

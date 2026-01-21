@@ -12,4 +12,5 @@ func initialize_fields():
 			child.set_value(Globals.editor.selected_node.get_property(child.property))
 
 func field_updated(field: InspectorInput):
-	Globals.editor.selected_node.set_property(field.property, field.get_value())
+	if Globals.editor.selected_node:
+		Globals.editor.selected_node.set_property(field.property, field.get_value())
