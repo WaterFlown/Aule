@@ -25,3 +25,4 @@ func _on_item_activated():
 			if id == entry.id:
 				Globals.editor.add_node(entry.node)
 				break
+	Globals.editor.node_adder_window.close()

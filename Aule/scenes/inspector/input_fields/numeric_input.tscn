@@ -6,6 +6,7 @@
 [node name="Numeric Input" type="SpinBox"]
 offset_right = 86.5625
 offset_bottom = 31.0
+pivot_offset = Vector2(0, 15)
 theme = ExtResource("1_kfqsx")
 update_on_text_changed = true
 script = ExtResource("2_1f0mj")

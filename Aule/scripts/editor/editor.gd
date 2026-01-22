@@ -17,6 +17,7 @@ var selected_node: EditorNode = null
 @export var camera: Camera2D
 @export var inspector_container: Control
 var node_inspector: NodeInspector = null
+var node_adder_window: NodeAdderWindow = null
 
 func _ready():
 	Globals.editor = self
@@ -145,14 +146,16 @@ func path_exists(from_node: int, to_node: int, visited: Dictionary) -> bool:
 	return false
 
 func connector_hovering(connector:NodeConnector, enter:bool):
-	if enter and hovering_connector != connector:
+	if enter:# and hovering_connector != connector:
+		print("add")
 		hovering_connector = connector
 	else:
+		print("remove")
 		hovering_connector = null
 
 func handle_connecting():
 	if connecting and connecting_from:
-		if not connecting_to and hovering_connector:
+		if hovering_connector and connecting_to != hovering_connector:
 			if connecting_from.IOtype != hovering_connector.IOtype and (connecting_from.parent != hovering_connector.parent): #check compatibility and if nodes are already connected too later
 				connecting_to = hovering_connector
 
@@ -162,9 +165,11 @@ func move_node_to_top(node: EditorNode):
 func _process(delta):
 	handle_connecting()
 	
-func _input(event):
-	if event.is_action_pressed("ui_text_delete"):
+func _unhandled_input(event):
+	if event.is_action_pressed("remove"):
 		delete_selected_node()
+	elif event.is_action_pressed("add_node"):
+		open_node_adder()
 
 func add_node(path: String): ##Places an editor node where the camera is
 	var node: EditorNode = load(path).instantiate()
@@ -183,7 +188,11 @@ func delete_selected_node():
 		selected_node.unselect()
 		node_inspector.queue_free()
 		selected_node.queue_free()
-		
+
+func open_node_adder():
+	if !node_adder_window:
+		node_adder_window = load("res://scenes/node_adder/node_adder_window.tscn").instantiate()
+		add_child(node_adder_window)
 
 func _on_run_button_pressed():
 	run()

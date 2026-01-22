@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=8 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="4_5lcyj"]
 [ext_resource type="Texture2D" uid="uid://tkvpxpqd8v8v" path="res://assets/placeholder/connector.png" id="4_eqbpn"]
 [ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="4_q68jb"]
-[ext_resource type="PackedScene" uid="uid://vjm820hapxpv" path="res://scenes/node_adder/NodeAddTree.tscn" id="6_5tm2q"]
 
 [node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager", "camera", "inspector_container")]
 script = ExtResource("1_q68jb")
@@ -67,11 +66,6 @@ offset_bottom = 64.0
 grow_horizontal = 0
 texture_normal = ExtResource("4_eqbpn")
 
-[node name="NodeAdder" parent="UI/UI" instance=ExtResource("6_5tm2q")]
-layout_mode = 0
-offset_left = 404.0
-offset_right = 738.0
-
 [node name="Camera" type="Camera2D" parent="."]
 limit_enabled = false
 limit_left = -1600
@@ -88,17 +82,5 @@ offset_left = -551.0
 offset_top = -372.0
 offset_right = -391.0
 offset_bottom = -200.0
-
-[node name="Editor Node2" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -845.0
-offset_top = -369.0
-offset_right = -685.0
-offset_bottom = -197.0
-
-[node name="Editor Node3" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -708.0
-offset_top = 37.0
-offset_right = -548.0
-offset_bottom = 209.0
 
 [connection signal="pressed" from="UI/UI/RunButton" to="." method="_on_run_button_pressed"]
