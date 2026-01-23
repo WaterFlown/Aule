@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://bpriwjj1k8afr" path="res://scripts/editor/inspector/input_field/checkbox_input.gd" id="2_utmbt"]
 
 [node name="CheckBox Input" type="CheckBox"]
-offset_right = 70.0
-offset_bottom = 31.0
+offset_right = 16.0
+offset_bottom = 16.0
 theme = ExtResource("1_5yxkt")
-text = "None"
 script = ExtResource("2_utmbt")
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]
