@@ -15,9 +15,16 @@ var connections := []
 var selected_node: EditorNode = null
 
 @export var camera: Camera2D
+@export_group("Inspector")
 @export var inspector_container: Control
+@export var close_button: Button
 var node_inspector: NodeInspector = null
+var node_inspector_enabled = true
 var node_adder_window: NodeAdderWindow = null
+
+#@export_subgroup("Toolbar")
+#@export var close_button: Button
+#@export var add_button: Button
 
 func _ready():
 	Globals.editor = self
@@ -193,7 +200,21 @@ func open_node_adder():
 	if !node_adder_window:
 		node_adder_window = load("res://scenes/node_adder/node_adder_window.tscn").instantiate()
 		add_child(node_adder_window)
+func toggle_inspector():
+	if node_inspector_enabled:
+		inspector_container.position.x = -1 * inspector_container.size.x
+		node_inspector_enabled = false
+	else:
+		inspector_container.position.x = 0
+		node_inspector_enabled = true
 
 func _on_run_button_pressed():
 	run()
-	
+
+func _on_add_button_pressed():
+	open_node_adder()
+
+func _on_close_button_pressed():
+	toggle_inspector()
+	var icon: TextureRect = close_button.get_child(0)
+	icon.flip_h = !icon.flip_h 

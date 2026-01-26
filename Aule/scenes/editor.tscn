@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=9 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
@@ -6,12 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://rkm8xc1pmsu1" path="res://scenes/editor_connection_line_manager.tscn" id="2_xg7d5"]
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="4_5lcyj"]
 [ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="4_q68jb"]
+[ext_resource type="Texture2D" uid="uid://c5vvkfav1s8d7" path="res://assets/editor/icons/inspector_close.png" id="5_5lcyj"]
 
-[node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager", "camera", "inspector_container")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqbpn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager", "camera", "inspector_container", "close_button")]
 script = ExtResource("1_q68jb")
 connection_line_manager = NodePath("Connection Line Manager")
 camera = NodePath("Camera")
 inspector_container = NodePath("UI/UI/InspectorContainer")
+close_button = NodePath("UI/UI/InspectorContainer/Toolbar/ButtonContainer/CloseButton")
 
 [node name="Connection Line Manager" parent="." instance=ExtResource("2_xg7d5")]
 
@@ -55,16 +62,75 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5lcyj")
 
+[node name="Toolbar" type="VBoxContainer" parent="UI/UI/InspectorContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 4.0
+offset_right = 61.0
+offset_bottom = 544.0
+
+[node name="ButtonContainer" type="Panel" parent="UI/UI/InspectorContainer/Toolbar"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_eqbpn")
+
+[node name="CloseButton" type="Button" parent="UI/UI/InspectorContainer/Toolbar/ButtonContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5lcyj")
+
+[node name="Icon" type="TextureRect" parent="UI/UI/InspectorContainer/Toolbar/ButtonContainer/CloseButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_5lcyj")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ButtonContainer2" type="Panel" parent="UI/UI/InspectorContainer/Toolbar"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_eqbpn")
+
+[node name="AddButton" type="Button" parent="UI/UI/InspectorContainer/Toolbar/ButtonContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5lcyj")
+text = "Add"
+
 [node name="RunButton" type="Button" parent="UI/UI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -64.0
-offset_bottom = 64.0
+offset_left = -73.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 45.0
 grow_horizontal = 0
 theme = ExtResource("4_5lcyj")
-text = "-"
+text = "Render"
 
 [node name="Camera" type="Camera2D" parent="."]
 limit_enabled = false
@@ -83,4 +149,6 @@ offset_top = -372.0
 offset_right = -391.0
 offset_bottom = -200.0
 
+[connection signal="pressed" from="UI/UI/InspectorContainer/Toolbar/ButtonContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/UI/InspectorContainer/Toolbar/ButtonContainer2/AddButton" to="." method="_on_add_button_pressed"]
 [connection signal="pressed" from="UI/UI/RunButton" to="." method="_on_run_button_pressed"]
