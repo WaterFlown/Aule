@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ywxov3t4uw4n"]
+[gd_scene load_steps=7 format=3 uid="uid://ywxov3t4uw4n"]
 
 [ext_resource type="Script" uid="uid://cbb4nudb2arud" path="res://scripts/editor/node.gd" id="1_6r00q"]
-[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_63wie"]
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_qn4us"]
 [ext_resource type="PackedScene" uid="uid://5eey8l4dgp0q" path="res://scenes/node_functionality.tscn" id="3_hkpfa"]
 
@@ -48,8 +47,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6r00q")
-functionality = NodePath("None")
-connectors = [NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector2")]
+functionality = NodePath("Fuctionality")
+connectors = [NodePath(""), NodePath(""), NodePath("")]
 connector_label = NodePath("Connector Label")
 node_highlight = NodePath("Node Highlight")
 
@@ -109,14 +108,6 @@ scale = Vector2(0.25, 0.25)
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="Connector2" parent="Input Connectors Container" instance=ExtResource("2_63wie")]
-layout_mode = 2
-label = "Primary Input"
-
-[node name="Connector" parent="Input Connectors Container" instance=ExtResource("2_63wie")]
-layout_mode = 2
-id = 1
-
 [node name="Output Connectors Container2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 11
@@ -132,13 +123,7 @@ scale = Vector2(0.25, 0.25)
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="Connector2" parent="Output Connectors Container2" instance=ExtResource("2_63wie")]
-layout_mode = 2
-id = 2
-IOtype = 1
-label = "Primary Output"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="."]
 z_index = 1
 layout_mode = 1
 anchors_preset = 7
@@ -157,6 +142,6 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="None" parent="." instance=ExtResource("3_hkpfa")]
+[node name="Fuctionality" parent="." instance=ExtResource("3_hkpfa")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

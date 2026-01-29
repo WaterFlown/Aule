@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd4cqbr26014e"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_b24qv"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_3iott"]
+[ext_resource type="Script" uid="uid://b1lk5ct67upi1" path="res://scripts/editor/functionalities/Noise.cs" id="3_23ynn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3iott"]
+bg_color = Color(0.58, 0.3074, 0.0348, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.47, 0.24440002, 0.04700001, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_b24qv")]
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector3"), NodePath("Output Connectors Container2/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_3iott")
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_3iott")]
+layout_mode = 2
+label = "Primary input"
+
+[node name="Connector2" parent="Input Connectors Container" index="1" instance=ExtResource("2_3iott")]
+layout_mode = 2
+id = 1
+label = "Mask input"
+
+[node name="Connector3" parent="Input Connectors Container" index="2" instance=ExtResource("2_3iott")]
+layout_mode = 2
+id = 2
+IOCategory = 1
+label = "Distortion input"
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_3iott")]
+layout_mode = 2
+id = 3
+IOtype = 1
+label = "Primary output"
+
+[node name="Title" parent="." index="5"]
+text = "Noise"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_23ynn")
+defaultOutputPortID = 3

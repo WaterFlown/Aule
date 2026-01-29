@@ -46,7 +46,7 @@ func set_inspector():
 func run():
 	if selected_node:
 		print("run")
-		Globals.terrain.generate_terrain(selected_node.functionality.output())
+		Globals.terrain.generate_terrain(selected_node.functionality.Output())
 	else:
 		pass
 
@@ -91,6 +91,9 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 	if is_cycle(from.parent.get_id(), to.parent.get_id()):
 		return
 	elif is_cycle(to.parent.get_id(), from.parent.get_id()):
+		return
+	
+	if from.IOCategory != to.IOCategory:
 		return
 	
 	for c_connection in connections:

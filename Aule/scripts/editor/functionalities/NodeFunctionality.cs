@@ -15,15 +15,20 @@ public partial class NodeFunctionality : Node {
 		{
 			int seed = 0;
 			seed = (int)GD.Randi();
-			properties["seed"] = seed;
+			properties["Seed"] = seed;
 			properties["foo"] = 0;
 			seed_set = true;
 		}
+		Initialize();
+	}
+	public virtual void Initialize()
+	{
+		
 	}
 
-	public virtual float[,] evaluate(int port){
+	public virtual T[,] Evaluate<T>(int port){
 		float[,] a = {};
-		a = getFromInput(0);
+		a = getFromInput<float>(0);
 		if (a.GetLength(0) == 0) {
 			/*FastNoiseLite noise = new FastNoiseLite();
 			noise.Seed = (int)properties["seed"];
@@ -45,28 +50,20 @@ public partial class NodeFunctionality : Node {
 			a = flat;
 		} 
 		else {
-			FastNoiseLite noise = new FastNoiseLite();
-			noise.Seed = (int)properties["seed"];
-			noise.SetFrequency(0.0005f);
-			noise.SetFractalType(FastNoiseLite.FractalTypeEnum.Fbm);
-			
-			noise.SetFractalLacunarity(2f);
-			noise.SetFractalGain(0.7f);
-			noise.SetNoiseType(FastNoiseLite.NoiseTypeEnum.Simplex);
 			for (int i = 0; i < a.GetLength(0); i++) {
 				for (int j = 0; j < a.GetLength(1); j++) {
-					a[i, j] += (float)properties["foo"];// + noise.GetNoise2D(i, j) * 100;
+					a[i, j] += (float)properties["foo"];
 				}	
 			}
 		}
-		return a;
+		return (T[,])(object)a;
 	}
 	
-	public Godot.Collections.Array output() {
-		return convertToGDArray(evaluate(defaultOutputPortID));
+	public Godot.Collections.Array Output() {
+		return ConvertToGDArray(Evaluate<float>(defaultOutputPortID));
 	}
 	
-	public Godot.Collections.Array convertToGDArray(float[,] arrayToConvert) {
+	public static Godot.Collections.Array ConvertToGDArray(float[,] arrayToConvert) {
 		Godot.Collections.Array convertedArray = [];
 		for (int i = 0; i < arrayToConvert.GetLength(0); i++) {
 			Godot.Collections.Array innerArray = [];
@@ -77,14 +74,14 @@ public partial class NodeFunctionality : Node {
 		}
 		return convertedArray;
 	}
-	public float[,] getFromInput(int to_port) {
+	public T[,] getFromInput<T>(int to_port) {
 		GodotObject editor = (GodotObject)GetNode<Node>("/root/Globals").Get("editor");
 		GodotObject connection = (GodotObject)editor.Call("get_connection_to", parentID, to_port);
 		if (connection == null) {
-			float[,] empty = {};
+			T[,] empty = {};
 			return empty;
 		}
 		NodeFunctionality otherFunctionality = ((NodeFunctionality)((GodotObject)editor.Call("get_node_connected_to", parentID, to_port)).Get("functionality"));
-		return otherFunctionality.evaluate((int)connection.Get("connector_from"));
+		return otherFunctionality.Evaluate<T>((int)connection.Get("connector_from"));
 	}
 }

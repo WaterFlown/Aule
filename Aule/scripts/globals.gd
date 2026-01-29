@@ -1,7 +1,7 @@
 extends Node
 
 enum NodeConnectorIOType {INPUT, OUTPUT}
-enum NodeConnectorCategory {DEFAULT}
+enum NodeConnectorCategory {DEFAULT, VECTOR2}
 
 @onready var editor: Editor = null
 @onready var terrain: Terrain = null

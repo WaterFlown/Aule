@@ -25,7 +25,7 @@ id = "generators"
 script = ExtResource("3_pl7dn")
 text = "Basic Noise"
 id = "basic_noise"
-node = "res://scenes/editor_node.tscn"
+node = "res://scenes/editor_nodes/noise.tscn"
 child_of = "generators"
 
 [connection signal="item_activated" from="." to="." method="_on_item_activated"]

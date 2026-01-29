@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=8 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
 [ext_resource type="Script" uid="uid://c575a1xmt45kw" path="res://scripts/editor/editor.gd" id="1_q68jb"]
 [ext_resource type="PackedScene" uid="uid://rkm8xc1pmsu1" path="res://scenes/editor_connection_line_manager.tscn" id="2_xg7d5"]
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="4_5lcyj"]
-[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="4_q68jb"]
 [ext_resource type="Texture2D" uid="uid://c5vvkfav1s8d7" path="res://assets/editor/icons/inspector_close.png" id="5_5lcyj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqbpn"]
@@ -142,12 +141,6 @@ script = ExtResource("1_pxqd5")
 zoom_increment = Vector2(0.15, 0.15)
 min_zoom = Vector2(0.5, 0.5)
 xy_scroll_limits = Vector2(2400, 2400)
-
-[node name="Editor Node" parent="." instance=ExtResource("4_q68jb")]
-offset_left = -551.0
-offset_top = -372.0
-offset_right = -391.0
-offset_bottom = -200.0
 
 [connection signal="pressed" from="UI/UI/InspectorContainer/Toolbar/ButtonContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/UI/InspectorContainer/Toolbar/ButtonContainer2/AddButton" to="." method="_on_add_button_pressed"]

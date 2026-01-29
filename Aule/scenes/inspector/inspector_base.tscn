@@ -106,7 +106,7 @@ offset_right = 164.5625
 tooltip_text = "Lorem Ipsum"
 allow_greater = true
 allow_lesser = true
-property = "seed"
+property = "Seed"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0"]
 layout_mode = 1
