@@ -1,0 +1,363 @@
+[gd_scene load_steps=6 format=3 uid="uid://b02okkr2yhaui"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_2471a"]
+[ext_resource type="PackedScene" uid="uid://4d1a54tc7tl" path="res://scenes/inspector/input_fields/numeric_input.tscn" id="2_kye58"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="3_k7xiq"]
+[ext_resource type="PackedScene" uid="uid://5utpryjkbjlj" path="res://scenes/inspector/input_fields/selection_input.tscn" id="4_ddhxq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_2471a")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/Selection Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 2/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 3/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 4/Selection Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 5/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 6/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 7/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 8/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 9/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 10/Selection Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 11/Numeric Input")]
+
+[node name="NodeName" parent="." index="0"]
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.027
+offset_left = 7.0
+offset_right = 287.0
+offset_bottom = 39.84
+text = "Noise"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Description"
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 260.0
+allow_greater = true
+allow_lesser = true
+property = "Seed"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 93.0
+offset_bottom = 31.0
+theme = ExtResource("3_k7xiq")
+text = "Seed"
+vertical_alignment = 1
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="0"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 100.0
+offset_bottom = 29.0
+theme = ExtResource("3_k7xiq")
+text = "Noise Type"
+vertical_alignment = 1
+
+[node name="Selection Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="1" instance=ExtResource("4_ddhxq")]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 341.0
+offset_bottom = 30.0
+item_count = 6
+popup/item_0/text = "Simplex"
+popup/item_0/id = 0
+popup/item_1/text = "Simplex Smooth"
+popup/item_1/id = 1
+popup/item_2/text = "Cellular"
+popup/item_2/id = 2
+popup/item_3/text = "Perlin"
+popup/item_3/id = 3
+popup/item_4/text = "Value Cubic"
+popup/item_4/id = 4
+popup/item_5/text = "Value"
+popup/item_5/id = 5
+values = Dictionary[int, Variant]({
+0: 0,
+1: 1,
+2: 2,
+3: 3,
+4: 4,
+5: 5
+})
+property = "NoiseType"
+
+[node name="InputContainerPanel 2" type="Panel" parent="ScrollContainer/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 100.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Frequency"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 216.0
+step = 0.1
+allow_greater = true
+scaling = 1000.0
+property = "Frequency"
+
+[node name="InputContainerPanel 3" type="Panel" parent="ScrollContainer/VBoxContainer" index="4"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 3" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 100.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Strength"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 3" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 216.0
+step = 0.001
+value = 1.0
+allow_greater = true
+allow_lesser = true
+property = "Strength"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer/InputContainerPanel 3" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.1
+anchor_right = 4.8
+anchor_bottom = 1.1
+offset_top = -2.0
+offset_right = -0.00012207031
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InputContainerPanel 4" type="Panel" parent="ScrollContainer/VBoxContainer" index="5"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 4" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 100.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Fractal Type"
+vertical_alignment = 1
+
+[node name="Selection Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 4" index="1" instance=ExtResource("4_ddhxq")]
+layout_mode = 0
+offset_left = 101.0
+offset_right = 341.0
+offset_bottom = 30.0
+item_count = 4
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Fbm"
+popup/item_1/id = 1
+popup/item_2/text = "Ridged"
+popup/item_2/id = 2
+popup/item_3/text = "Ping Pong"
+popup/item_3/id = 3
+values = Dictionary[int, Variant]({
+0: 0,
+1: 1,
+2: 2,
+3: 3
+})
+property = "FractalType"
+
+[node name="InputContainerPanel 5" type="Panel" parent="ScrollContainer/VBoxContainer" index="6"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 5" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Weighted Fractal Strength"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 5" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+step = 0.001
+allow_greater = true
+property = "FractalWeightedStrength"
+
+[node name="InputContainerPanel 6" type="Panel" parent="ScrollContainer/VBoxContainer" index="7"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 6" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Fractal Gain"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 6" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+step = 0.01
+allow_greater = true
+scaling = 10.0
+property = "FractalGain"
+
+[node name="InputContainerPanel 7" type="Panel" parent="ScrollContainer/VBoxContainer" index="8"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 7" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Fractal Lacunarity"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 7" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+step = 0.01
+allow_greater = true
+scaling = 5.0
+property = "FractalLacunarity"
+
+[node name="InputContainerPanel 8" type="Panel" parent="ScrollContainer/VBoxContainer" index="9"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 8" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Fractal Octaves"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 8" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+max_value = 10.0
+allow_greater = true
+property = "FractalOctaves"
+
+[node name="InputContainerPanel 9" type="Panel" parent="ScrollContainer/VBoxContainer" index="10"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 9" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 194.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Fractal Ping Pong Strength"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 9" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+max_value = 10.0
+allow_greater = true
+scaling = 5.0
+property = "FractalPingPongStrength"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer/InputContainerPanel 9" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.1
+anchor_right = 4.8
+anchor_bottom = 1.1
+offset_top = -2.0
+offset_right = -0.00012207031
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InputContainerPanel 10" type="Panel" parent="ScrollContainer/VBoxContainer" index="11"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 10" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 194.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Cellular Distance Function"
+vertical_alignment = 1
+
+[node name="Selection Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 10" index="1" instance=ExtResource("4_ddhxq")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 382.0
+offset_bottom = 30.0
+item_count = 4
+popup/item_0/text = "Euclidean"
+popup/item_0/id = 0
+popup/item_1/text = "Squared Euclidean"
+popup/item_1/id = 1
+popup/item_2/text = "Manhattan"
+popup/item_2/id = 2
+popup/item_3/text = "Hybrid"
+popup/item_3/id = 3
+values = Dictionary[int, Variant]({
+0: 0,
+1: 1,
+2: 2,
+3: 3
+})
+property = "CellularDistanceFunction"
+
+[node name="InputContainerPanel 11" type="Panel" parent="ScrollContainer/VBoxContainer" index="12"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 11" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_k7xiq")
+text = "Cellular Jitter"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 11" index="1" instance=ExtResource("2_kye58")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+max_value = 1.0
+step = 0.01
+property = "CellularJitter"

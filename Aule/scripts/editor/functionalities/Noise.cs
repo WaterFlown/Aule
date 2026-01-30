@@ -33,6 +33,8 @@ public partial class Noise : NodeFunctionality
 		properties["Frequency"] = noise.Frequency;
 		properties["NoiseType"] = (int)noise.NoiseType;
 		properties["Offset"] = noise.Offset;
+
+		properties["Strength"] = 1.0f;
     }
 	private float GetValue(int x, int y, bool UseDistortion, bool UseMask, bool CreatePrimaryMap) // x,y positions for 2D noise, distortion and mask coordinates, enable distortion and mask, CreatePrimaryMap - primary map is empty and needs to be created
 	{
@@ -44,11 +46,11 @@ public partial class Noise : NodeFunctionality
 		if (UseDistortion)
 		{
 			Vector2 distortion = DistortionMap[x, y];
-			current += noise.GetNoise2D(x + distortion.X, y + distortion.Y);
+			current += noise.GetNoise2D(x + distortion.X, y + distortion.Y) * (float)properties["Strength"];
 		}
 		else
 		{
-			current += noise.GetNoise2D(x, y);
+			current += noise.GetNoise2D(x, y) * (float)properties["Strength"];
 		}	
 
 		if (UseMask)
@@ -109,7 +111,7 @@ public partial class Noise : NodeFunctionality
 		else {
 			for (int i = 0; i < PrimaryMap.GetLength(0); i++) {
 				for (int j = 0; j < PrimaryMap.GetLength(1); j++) {
-					PrimaryMap[i, j] += GetValue(i, j, UseDistortion, UseMask, false);
+					PrimaryMap[i, j] = GetValue(i, j, UseDistortion, UseMask, false);
 				}	
 			}
 		}
