@@ -30,21 +30,12 @@ public partial class NodeFunctionality : Node {
 		float[,] a = {};
 		a = getFromInput<float>(0);
 		if (a.GetLength(0) == 0) {
-			/*FastNoiseLite noise = new FastNoiseLite();
-			noise.Seed = (int)properties["seed"];
-			noise.SetFrequency(0.0005f);
-			noise.SetFractalType(FastNoiseLite.FractalTypeEnum.Fbm);
-			
-			noise.SetFractalLacunarity(2f);
-			noise.SetFractalGain(0.7f);
-			noise.SetNoiseType(FastNoiseLite.NoiseTypeEnum.Simplex);*/
-			
 			
 			Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
 			float[,] flat = new float[(int)terrain_size.X, (int)terrain_size.Y];
 			for (int i = 0; i < flat.GetLength(0); i++) {
 				for (int j = 0; j < flat.GetLength(1); j++) {
-					flat[i, j] = (float)properties["foo"];// +noise.GetNoise2D(i, j) * 100;
+					flat[i, j] = (float)properties["foo"];
 				}
 			}
 			a = flat;
@@ -59,7 +50,7 @@ public partial class NodeFunctionality : Node {
 		return (T[,])(object)a;
 	}
 	
-	public Godot.Collections.Array Output() {
+	public virtual Godot.Collections.Array Output() {
 		return ConvertToGDArray(Evaluate<float>(defaultOutputPortID));
 	}
 	

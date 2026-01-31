@@ -10,3 +10,5 @@
 
 - koncept node functionalitijev (input -> output, why there are multiple inputs and what they do)
 - inspector, kako dela
+
+- Noise node, opis, kako dela -> Kaj je mask, distortion (svoj node potem), primary input

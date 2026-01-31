@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_84ri2")
 hide_root = true
 script = ExtResource("2_iynou")
-entries = [NodePath("Generators"), NodePath("Generators/Basic Noise")]
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion")]
 
 [node name="Generators" type="Node" parent="."]
 script = ExtResource("3_pl7dn")
@@ -23,9 +23,16 @@ id = "generators"
 
 [node name="Basic Noise" type="Node" parent="Generators"]
 script = ExtResource("3_pl7dn")
-text = "Basic Noise"
+text = "Noise"
 id = "basic_noise"
 node = "res://scenes/editor_nodes/noise.tscn"
+child_of = "generators"
+
+[node name="Distortion" type="Node" parent="Generators"]
+script = ExtResource("3_pl7dn")
+text = "Distortion"
+id = "basic_distortion"
+node = "res://scenes/editor_nodes/distortion.tscn"
 child_of = "generators"
 
 [connection signal="item_activated" from="." to="." method="_on_item_activated"]

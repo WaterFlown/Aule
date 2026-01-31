@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://4utmo1vhi2hq"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_xowgk"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_kjn08"]
+[ext_resource type="Script" uid="uid://7ybyw4wu4kxe" path="res://scripts/editor/functionalities/Distortion.cs" id="3_kjn08"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjt4t"]
+bg_color = Color(0.21729998, 0.41, 0.21729998, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1386, 0.33, 0.1386, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_xowgk")]
+connectors = [NodePath("Output Connectors Container2/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_sjt4t")
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_kjn08")]
+layout_mode = 2
+IOtype = 1
+IOCategory = 1
+label = "Distortion Output"
+
+[node name="Title" parent="." index="5"]
+text = "Distortion"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_kjn08")

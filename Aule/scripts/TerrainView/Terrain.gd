@@ -20,7 +20,6 @@ func generate_terrain(heightmap: Array):
 			heightmap[z].resize(Globals.terrain_size.y)
 			for x in range(Globals.terrain_size.y):
 				heightmap[z][x] = 0
-	
 	x_size = heightmap.size()-1
 	z_size = heightmap[0].size()-1
 

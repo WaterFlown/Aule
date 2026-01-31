@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxptu5aoa6ixy"]
+[gd_scene load_steps=9 format=3 uid="uid://cxptu5aoa6ixy"]
 
 [ext_resource type="Texture2D" uid="uid://b4iwxkmyuvqr8" path="res://assets/placeholder/background_tile.png" id="1_ba0ut"]
 [ext_resource type="Script" uid="uid://bbmppy2a6sxj4" path="res://scripts/editor/camera.gd" id="1_pxqd5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://rkm8xc1pmsu1" path="res://scenes/editor_connection_line_manager.tscn" id="2_xg7d5"]
 [ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="4_5lcyj"]
 [ext_resource type="Texture2D" uid="uid://c5vvkfav1s8d7" path="res://assets/editor/icons/inspector_close.png" id="5_5lcyj"]
+[ext_resource type="Texture2D" uid="uid://dff2o3o1xjvg8" path="res://assets/editor/icons/add_node_icon.png" id="6_5lcyj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqbpn"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -116,7 +117,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_5lcyj")
-text = "Add"
+
+[node name="Icon" type="TextureRect" parent="UI/UI/InspectorContainer/Toolbar/ButtonContainer2/AddButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_5lcyj")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="RunButton" type="Button" parent="UI/UI"]
 layout_mode = 1

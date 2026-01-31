@@ -8,7 +8,7 @@
 oversampling_override = 1.0
 title = "Add node"
 initial_position = 2
-size = Vector2i(920, 540)
+size = Vector2i(612, 540)
 popup_window = true
 min_size = Vector2i(460, 270)
 accessibility_name = "Add node"
