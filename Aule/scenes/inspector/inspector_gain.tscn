@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1tvajxgkhhka"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_ablyi"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_daa4g"]
+[ext_resource type="PackedScene" uid="uid://kqhtq6ig18ve" path="res://scenes/inspector/input_fields/slider_input.tscn" id="3_t5tyr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_ablyi")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Slider Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/Slider Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Gain"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 93.0
+offset_bottom = 31.0
+theme = ExtResource("2_daa4g")
+text = "Gain"
+vertical_alignment = 1
+
+[node name="Slider Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_t5tyr")]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 7.0
+offset_right = 268.0
+offset_bottom = 23.0
+min_value = 1.0
+max_value = 5.0
+step = 0.1
+value = 1.0
+property = "Gain"
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 93.0
+offset_bottom = 31.0
+theme = ExtResource("2_daa4g")
+text = "Bias"
+vertical_alignment = 1
+
+[node name="Slider Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="1" instance=ExtResource("3_t5tyr")]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 7.0
+offset_right = 268.0
+offset_bottom = 23.0
+max_value = 10.0
+step = 0.1
+property = "Bias"

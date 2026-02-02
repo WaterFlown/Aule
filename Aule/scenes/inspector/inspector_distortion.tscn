@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgh7s0qhr15se"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_t51t3"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_0vwsf"]
+[ext_resource type="PackedScene" uid="uid://4d1a54tc7tl" path="res://scenes/inspector/input_fields/numeric_input.tscn" id="3_6qccd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_t51t3")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/Numeric Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Distortion"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Distortion"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 129.0
+offset_bottom = 31.0
+theme = ExtResource("2_0vwsf")
+text = "Strength"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_6qccd")]
+layout_mode = 0
+offset_left = 108.0
+offset_right = 194.5625
+allow_greater = true
+property = "Strength"
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 129.0
+offset_bottom = 31.0
+theme = ExtResource("2_0vwsf")
+text = "Frequency"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="1" instance=ExtResource("3_6qccd")]
+layout_mode = 0
+offset_left = 108.0
+offset_right = 194.5625
+allow_greater = true
+scaling = 1000.0
+property = "Frequency"

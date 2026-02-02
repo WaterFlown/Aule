@@ -34,7 +34,7 @@ public partial class Noise : NodeFunctionality
 		properties["NoiseType"] = (int)noise.NoiseType;
 		properties["Offset"] = noise.Offset;
 
-		properties["Strength"] = 1.0f;
+		properties["Strength"] = 0.1f;
     }
 	private float GetValue(int x, int y, bool UseDistortion, bool UseMask, bool CreatePrimaryMap) // x,y positions for 2D noise, distortion and mask coordinates, enable distortion and mask, CreatePrimaryMap - primary map is empty and needs to be created
 	{
@@ -58,7 +58,7 @@ public partial class Noise : NodeFunctionality
 			current *= MaskMap[x, y];
 		}
 
-		return current;
+		return Math.Clamp(current, -1f, 1f);
 	}
 	public override T[,] Evaluate<T>(int port){
 		noise.Seed = (int)properties["Seed"];

@@ -14,6 +14,9 @@ func _ready():
 
 func get_value():
 	return self.value
+func set_value(val):
+	self.value = val
+	numeric_input.value = val
 
 func _on_drag_ended(value_changed):
 	updated.emit(self)

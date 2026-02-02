@@ -22,6 +22,9 @@ public partial class Distortion : NodeFunctionality
 	}
 
 	public override T[,] Evaluate<T>(int port){
+		NoiseX.SetFrequency((float)properties["Frequency"]);
+		NoiseY.SetFrequency(NoiseX.GetFrequency());
+
 		Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
 		Vector2[,] PrimaryDistortionMap = new Vector2[(int)terrain_size.X, (int)terrain_size.Y];
 		for (int i = 0; i < PrimaryDistortionMap.GetLength(0); i++) {

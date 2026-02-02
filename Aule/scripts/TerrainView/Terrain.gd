@@ -13,6 +13,8 @@ func generate_terrain(heightmap: Array):
 	var a_mesh: ArrayMesh
 	var surfaceTool = SurfaceTool.new()
 	
+	var max_height = Globals.terrain_height
+	
 	if heightmap.is_empty():
 		heightmap.resize(Globals.terrain_size.x)
 		for z in range(Globals.terrain_size.x):
@@ -26,7 +28,7 @@ func generate_terrain(heightmap: Array):
 	surfaceTool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in range(z_size+1):
 		for x in range(x_size+1):
-			var y = heightmap[z][x]
+			var y = heightmap[z][x] * max_height
 			
 			surfaceTool.set_uv(Vector2(inverse_lerp(0, x_size, x), inverse_lerp(0, z_size, z)))
 			surfaceTool.add_vertex(Vector3(x,y,z))
@@ -52,6 +54,7 @@ func generate_terrain(heightmap: Array):
 	a_mesh = surfaceTool.commit()
 	mesh = a_mesh
 	
+	print("Rendered")
 
 #func draw_sphere(pos:Vector3):
 	#var sphere = MeshInstance3D.new()

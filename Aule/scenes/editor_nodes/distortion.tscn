@@ -17,10 +17,19 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_xowgk")]
+offset_top = -52.0
+offset_bottom = 40.0
+inspector = "res://scenes/inspector/inspector_distortion.tscn"
 connectors = [NodePath("Output Connectors Container2/Connector")]
 
 [node name="Node Background" parent="." index="1"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_sjt4t")
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 276.0
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 276.0
 
 [node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_kjn08")]
 layout_mode = 2

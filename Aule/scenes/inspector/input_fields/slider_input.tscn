@@ -11,11 +11,15 @@ script = ExtResource("1_ligbk")
 numeric_input = NodePath("Numeric Input")
 
 [node name="Numeric Input" type="SpinBox" parent="."]
-layout_mode = 0
-offset_left = 164.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 6.0
 offset_top = -8.0
-offset_right = 250.5625
+offset_right = 92.5625
 offset_bottom = 23.0
+grow_horizontal = 0
 theme = ExtResource("2_58rxi")
 max_value = 1000.0
 update_on_text_changed = true
