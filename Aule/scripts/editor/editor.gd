@@ -90,8 +90,8 @@ func remove_connection(index: int):
 func create_connection(from: NodeConnector, to: NodeConnector):
 	if is_cycle(from.parent.get_id(), to.parent.get_id()):
 		return
-	elif is_cycle(to.parent.get_id(), from.parent.get_id()):
-		return
+	#elif is_cycle(to.parent.get_id(), from.parent.get_id()):
+	#	return
 	
 	if from.IOCategory != to.IOCategory:
 		return
@@ -139,19 +139,32 @@ func get_node_connected_to(node_id: int, connector_id: int) -> EditorNode:
 		return get_node_from_id(connection.from_node)
 	return null
 
+#region Cycle detection
 ##Returns if a path already exists between two nodes.
 func is_cycle(from_node: int, to_node: int):
-	return path_exists(from_node, to_node, {})
+	return path_exists_forward(from_node, to_node, {}) or path_exists_backwards(from_node, to_node, {})
 ## Recursive function that checks path existance. CALL is_cycle INSTEAD.
-func path_exists(from_node: int, to_node: int, visited: Dictionary) -> bool:
+func path_exists_forward(from_node: int, to_node: int, visited: Dictionary) -> bool:
 	if from_node == to_node:
 		return true
+	visited[to_node] = true
+	for c in connections:
+		if c.from_node == to_node:
+			var next_id = c.to_node
+			if not visited.has(next_id):
+				if path_exists_forward(from_node, next_id, visited):
+					return true
+	return false
+## Recursive function that checks path existance. CALL is_cycle INSTEAD.
+func path_exists_backwards(from_node: int, to_node: int, visited: Dictionary) -> bool:
+	if from_node == to_node:
+			return true
 	visited[from_node] = true
 	for c in connections:
 		if c.to_node == from_node:
 			var next_id = c.from_node
 			if not visited.has(next_id):
-				if path_exists(next_id, to_node, visited):
+				if path_exists_backwards(next_id, to_node, visited):
 					return true
 	return false
 

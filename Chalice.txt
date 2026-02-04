@@ -8,7 +8,20 @@
 	- connection storage system, node ids
 	- rekurziven check za preverjanje infinite loopov v node graphu <!>
 
-- koncept node functionalitijev (input -> output, why there are multiple inputs and what they do)
+- koncept node functionalitijev (input -> output, why there are multiple inputs and what they do) -> basic output od -1 do 1, množnje z terrain height
 - inspector, kako dela
 
 - Noise node, opis, kako dela -> Kaj je mask, distortion (svoj node potem), primary input
+- Distortion node
+- Gain and Bias node
+
+
+Brez gd docs in yt
+https://iquilezles.org/articles/morenoise/
+https://popcar.bearblog.dev/using-godot-for-gui-app-development/#the-secret-sauce-gdextension
+https://en.wikipedia.org/wiki/Digital_elevation_model
+https://github.com/dandrino/terrain-erosion-3-ways/tree/master
+http://www.firespark.de/resources/downloads/implementation%20of%20a%20methode%20for%20hydraulic%20erosion.pdf
+https://github.com/Auburn/FastNoiseLite
+https://gamedev.stackexchange.com/questions/116205/terracing-mountain-features
+https://www.redblobgames.com/maps/terrain-from-noise/

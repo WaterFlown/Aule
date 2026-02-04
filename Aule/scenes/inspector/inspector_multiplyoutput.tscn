@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cba24l0dt0l65"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_24ri5"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_24ri5")]
+inputs = []
+
+[node name="NodeName" parent="." index="0"]
+text = "Multiply Output"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Copies the value of the primary input to every primary output this node has"

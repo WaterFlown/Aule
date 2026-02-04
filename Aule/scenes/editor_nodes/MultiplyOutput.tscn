@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://b74u11tks4sys"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_sokc0"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_wlyf0"]
+[ext_resource type="Script" uid="uid://badiq3w7wc482" path="res://scripts/editor/functionalities/MultiplyOutput.cs" id="3_ug4e4"]
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_sokc0")]
+offset_top = -74.0
+offset_bottom = 74.0
+inspector = "res://scenes/inspector/inspector_multiplyoutput.tscn"
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector"), NodePath("Output Connectors Container2/Connector2"), NodePath("Output Connectors Container2/Connector3"), NodePath("Output Connectors Container2/Connector4")]
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 444.0
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_wlyf0")]
+layout_mode = 2
+label = "Primary Input"
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 444.0
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_wlyf0")]
+layout_mode = 2
+id = 1
+IOtype = 1
+label = "Primary Output"
+
+[node name="Connector2" parent="Output Connectors Container2" index="1" instance=ExtResource("2_wlyf0")]
+layout_mode = 2
+id = 2
+IOtype = 1
+label = "Primary Output"
+
+[node name="Connector3" parent="Output Connectors Container2" index="2" instance=ExtResource("2_wlyf0")]
+layout_mode = 2
+id = 3
+IOtype = 1
+label = "Primary Output"
+
+[node name="Connector4" parent="Output Connectors Container2" index="3" instance=ExtResource("2_wlyf0")]
+layout_mode = 2
+id = 4
+IOtype = 1
+label = "Primary Output"
+
+[node name="Title" parent="." index="5"]
+text = "Multiply Output"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_ug4e4")
+defaultOutputPortID = 1
