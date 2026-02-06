@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0b7xfb3pxmh"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_3760r"]
+[ext_resource type="PackedScene" uid="uid://qswlcbd1wnsn" path="res://scenes/inspector/input_fields/button_input.tscn" id="2_imhxa"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="3_imhxa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_imhxa"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_3760r")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Button Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 2/Button Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Export"
+
+[node name="Button Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0" instance=ExtResource("2_imhxa")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 248.0
+offset_top = -15.0
+offset_right = 346.0
+offset_bottom = 13.0
+grow_horizontal = 1
+text = "Export"
+property = "ExportPressed"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 190.0
+offset_bottom = 30.0
+theme = ExtResource("3_imhxa")
+text = "Export heightmap to file"
+vertical_alignment = 1
+
+[node name="InputContainerPanel 2" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="Button Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="0" instance=ExtResource("2_imhxa")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 248.0
+offset_top = -15.0
+offset_right = 346.0
+offset_bottom = 13.0
+grow_horizontal = 1
+text = "Select"
+property = "SelectPrimaryExportPathPress"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="1"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("3_imhxa")
+text = "Select heightmap export path"
+vertical_alignment = 1
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_imhxa")

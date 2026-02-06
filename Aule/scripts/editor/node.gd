@@ -37,6 +37,7 @@ func select():
 	node_highlight.visible = true
 
 func unselect():
+	functionality.Deselect()
 	selected = false
 	node_highlight.visible = false
 
@@ -69,3 +70,7 @@ func get_property(property):
 	if functionality.properties.has(property):
 		return functionality.properties[property]
 	return null
+
+
+func HeightmapFileDialogCloseRequested():
+	pass # Replace with function body.

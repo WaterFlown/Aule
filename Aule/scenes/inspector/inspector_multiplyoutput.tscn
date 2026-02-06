@@ -9,4 +9,4 @@ inputs = []
 text = "Multiply Output"
 
 [node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
-text = "Copies the value of the primary input to every primary output this node has"
+text = "Copies the height or mask value of the primary input to every primary output this node has"

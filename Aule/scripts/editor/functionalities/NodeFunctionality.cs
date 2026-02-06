@@ -25,7 +25,10 @@ public partial class NodeFunctionality : Node {
 	{
 		
 	}
-
+	public virtual void Deselect()
+	{
+		
+	}
 	public virtual T[,] Evaluate<T>(int port){
 		float[,] a = {};
 		a = getFromInput<float>(0);

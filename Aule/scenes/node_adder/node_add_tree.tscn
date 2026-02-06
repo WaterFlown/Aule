@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_84ri2")
 hide_root = true
 script = ExtResource("2_iynou")
-entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Operation"), NodePath("Operation/Multiply Output")]
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Export"), NodePath("Export/Export")]
 
 [node name="Generators" type="Node" parent="."]
 script = ExtResource("3_pl7dn")
@@ -58,7 +58,27 @@ id = "operation"
 script = ExtResource("3_pl7dn")
 text = "Multiply Output"
 id = "multiply_output"
-node = "res://scenes/editor_nodes/MultiplyOutput.tscn"
+node = "res://scenes/editor_nodes/multiply_output.tscn"
 child_of = "operation"
+
+[node name="Combiner" type="Node" parent="Operation"]
+script = ExtResource("3_pl7dn")
+text = "Combiner"
+id = "combiner"
+node = "res://scenes/editor_nodes/combiner.tscn"
+child_of = "operation"
+
+[node name="Export" type="Node" parent="."]
+script = ExtResource("3_pl7dn")
+category = true
+text = "Export"
+id = "exports"
+
+[node name="Export" type="Node" parent="Export"]
+script = ExtResource("3_pl7dn")
+text = "Export"
+id = "export"
+node = "res://scenes/editor_nodes/export_node.tscn"
+child_of = "exports"
 
 [connection signal="item_activated" from="." to="." method="_on_item_activated"]

@@ -14,6 +14,10 @@
 - Noise node, opis, kako dela -> Kaj je mask, distortion (svoj node potem), primary input
 - Distortion node
 - Gain and Bias node
+- Exporting
+//- Combiner
+//- Mask
+//- Radial Gradient
 
 
 Brez gd docs in yt

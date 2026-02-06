@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://du1hdttbqhtok"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_82x36"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_5ltgq"]
+[ext_resource type="Script" uid="uid://6pe0gvdmseqc" path="res://scripts/editor/functionalities/Combiner.cs" id="3_5ltgq"]
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_82x36")]
+offset_bottom = 62.0
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector3"), NodePath("Input Connectors Container/Connector4"), NodePath("Output Connectors Container2/Connector")]
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 444.0
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_5ltgq")]
+layout_mode = 2
+label = "Primary Input"
+
+[node name="Connector2" parent="Input Connectors Container" index="1" instance=ExtResource("2_5ltgq")]
+layout_mode = 2
+id = 1
+label = "Heightmap Input"
+
+[node name="Connector3" parent="Input Connectors Container" index="2" instance=ExtResource("2_5ltgq")]
+layout_mode = 2
+id = 2
+label = "Heightmap Input"
+
+[node name="Connector4" parent="Input Connectors Container" index="3" instance=ExtResource("2_5ltgq")]
+layout_mode = 2
+id = 3
+label = "Heightmap Input"
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 444.0
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_5ltgq")]
+layout_mode = 2
+id = 4
+IOtype = 1
+label = "Primary Output"
+
+[node name="Title" parent="." index="5"]
+text = "Combiner"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_5ltgq")

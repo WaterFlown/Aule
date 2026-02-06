@@ -45,7 +45,8 @@ IOtype = 1
 label = "Primary Output"
 
 [node name="Title" parent="." index="5"]
-text = "Multiply Output"
+offset_bottom = 40.0
+text = "Multiply Height/Mask Output"
 
 [node name="Fuctionality" parent="." index="6"]
 script = ExtResource("3_ug4e4")

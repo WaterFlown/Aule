@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddq2hl3g2f4yy"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_al5mh"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_0evrd"]
+[ext_resource type="Script" uid="uid://b3csfiiw0wfyl" path="res://scripts/editor/functionalities/Export.cs" id="3_0evrd"]
+[ext_resource type="PackedScene" uid="uid://dd7m8atrq5c77" path="res://scenes/editor_nodes/export_dependencies/file_dialog.tscn" id="4_7o2mg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7o2mg"]
+bg_color = Color(0.24674998, 0.42, 0.189, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2031059, 0.41603068, 0.2071791, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_al5mh")]
+offset_left = -91.0
+offset_top = -89.0
+offset_right = 91.0
+offset_bottom = 89.0
+inspector = "res://scenes/inspector/inspector_export.tscn"
+connectors = [NodePath("Input Connectors Container/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_7o2mg")
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 534.0
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_0evrd")]
+layout_mode = 2
+label = "Primary Heightmap Export"
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 534.0
+
+[node name="Title" parent="." index="5"]
+text = "Export"
+
+[node name="Fuctionality" parent="." index="6" node_paths=PackedStringArray("heightmapFileDialog")]
+script = ExtResource("3_0evrd")
+heightmapFileDialog = NodePath("HeightmapFileDialog")
+defaultOutputPortID = 1
+
+[node name="HeightmapFileDialog" parent="Fuctionality" index="0" instance=ExtResource("4_7o2mg")]
+
+[connection signal="canceled" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogCanceled"]
+[connection signal="close_requested" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogCloseRequested"]
+[connection signal="confirmed" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogConfirmed"]

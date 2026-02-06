@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Aule"
 run/main_scene="uid://bd1wg4eynxp1l"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
