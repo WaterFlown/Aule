@@ -25,12 +25,14 @@ public partial class Distortion : NodeFunctionality
 		NoiseX.SetFrequency((float)properties["Frequency"]);
 		NoiseY.SetFrequency(NoiseX.GetFrequency());
 
+		float strength = (float)properties["Strength"];
+
 		Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
 		Vector2[,] PrimaryDistortionMap = new Vector2[(int)terrain_size.X, (int)terrain_size.Y];
 		for (int i = 0; i < PrimaryDistortionMap.GetLength(0); i++) {
 			for (int j = 0; j < PrimaryDistortionMap.GetLength(1); j++) {
-				PrimaryDistortionMap[i, j].X = NoiseX.GetNoise2D(i, j) * (float)properties["Strength"];
-                PrimaryDistortionMap[i, j].Y = NoiseY.GetNoise2D(i, j) * (float)properties["Strength"];
+				PrimaryDistortionMap[i, j].X = NoiseX.GetNoise2D(i, j) * strength;
+                PrimaryDistortionMap[i, j].Y = NoiseY.GetNoise2D(i, j) * strength;
 			}
 		}
 		return (T[,])(object)PrimaryDistortionMap;

@@ -1,8 +1,19 @@
 using Godot;
 using System;
+using System.Linq;
+using System.Threading;
+
 
 public partial class Noise : NodeFunctionality
 {
+	private struct ThreadData
+	{
+		public int StartY;
+		public int EndY;
+		public bool CreatePrimaryMap;
+		public bool UseDistortion;
+		public bool UseMask;
+	}
 	FastNoiseLite noise = new FastNoiseLite();
 	float[,] PrimaryMap = {};
 	Vector2[,] DistortionMap = {};
@@ -36,32 +47,72 @@ public partial class Noise : NodeFunctionality
 
 		properties["Strength"] = 0.1f;
     }
-	private float GetValue(int x, int y, bool UseDistortion, bool UseMask, bool CreatePrimaryMap) // x,y positions for 2D noise, distortion and mask coordinates, enable distortion and mask, CreatePrimaryMap - primary map is empty and needs to be created
+	private float GetValue(int x, int y, FastNoiseLite tnoise, bool UseDistortion, bool UseMask, bool CreatePrimaryMap) // x,y positions for 2D noise, distortion and mask coordinates, enable distortion and mask, CreatePrimaryMap - primary map is empty and needs to be created
 	{
+		float strength = (float)properties["Strength"];
 		float current = 0f;
 		if (!CreatePrimaryMap)
 		{
 			current = PrimaryMap[x, y];
 		}
+
 		if (UseDistortion)
 		{
 			Vector2 distortion = DistortionMap[x, y];
-			current += noise.GetNoise2D(x + distortion.X, y + distortion.Y) * (float)properties["Strength"];
+			current += tnoise.GetNoise2D(x + distortion.X, y + distortion.Y) * strength;
 		}
 		else
 		{
-			current += noise.GetNoise2D(x, y) * (float)properties["Strength"];
+			current += tnoise.GetNoise2D(x, y) * strength;
 		}	
 
 		if (UseMask)
 		{
-			current *= MaskMap[x, y];
+			current *= Mathf.InverseLerp(-1f, 1f, MaskMap[x, y]);
+			
 		}
 
 		return Math.Clamp(current, -1f, 1f);
 	}
+
+	private void ThreadGenerate(object data)
+	{
+		ThreadData tdata = (ThreadData)data;
+		FastNoiseLite tnoise = new FastNoiseLite();
+		tnoise.Seed = (int)properties["Seed"];
+		tnoise.CellularDistanceFunction = (FastNoiseLite.CellularDistanceFunctionEnum)(int)properties["CellularDistanceFunction"];
+		tnoise.CellularJitter = (float)properties["CellularJitter"];
+		tnoise.CellularReturnType = (FastNoiseLite.CellularReturnTypeEnum)(int)properties["CellularReturnType"];
+		tnoise.DomainWarpAmplitude = (float)properties["DomainWarpAmplitude"];
+		tnoise.DomainWarpEnabled = (bool)properties["DomainWarpEnabled"];
+		tnoise.DomainWarpFractalGain = (float)properties["DomainWarpFractalGain"];
+		tnoise.DomainWarpFractalLacunarity = (float)properties["DomainWarpFractalLacunarity"];
+		tnoise.DomainWarpFractalOctaves = (int)properties["DomainWarpFractalOctaves"];
+		tnoise.DomainWarpFrequency = (float)properties["DomainWarpFrequency"];
+		tnoise.DomainWarpFractalType = (FastNoiseLite.DomainWarpFractalTypeEnum)(FastNoiseLite.FractalTypeEnum)(int)properties["DomainWarpFractalType"];
+		tnoise.DomainWarpType = (FastNoiseLite.DomainWarpTypeEnum)(int)properties["DomainWarpType"];
+		tnoise.FractalGain = (float)properties["FractalGain"];
+		tnoise.FractalLacunarity = (float)properties["FractalLacunarity"];
+		tnoise.FractalOctaves = (int)properties["FractalOctaves"];
+		tnoise.FractalPingPongStrength = (float)properties["FractalPingPongStrength"];
+		tnoise.FractalType = (FastNoiseLite.FractalTypeEnum)(int)properties["FractalType"];
+		tnoise.Frequency = (float)properties["Frequency"];
+		tnoise.NoiseType = (FastNoiseLite.NoiseTypeEnum)(int)properties["NoiseType"];
+		tnoise.Offset = (Vector3)properties["Offset"];
+	
+		tnoise.DomainWarpEnabled = false;
+
+		for (int y = tdata.StartY; y < tdata.EndY; y++)
+		{
+			for (int x = 0; x < PrimaryMap.GetLength(0); x++)
+			{
+				PrimaryMap[x, y] = GetValue(x, y, tnoise, tdata.UseDistortion, tdata.UseMask, tdata.CreatePrimaryMap);
+			}
+		}
+
+	}
 	public override T[,] Evaluate<T>(int port){
-		noise.Seed = (int)properties["Seed"];
+		/*noise.Seed = (int)properties["Seed"];
 		noise.CellularDistanceFunction = (FastNoiseLite.CellularDistanceFunctionEnum)(int)properties["CellularDistanceFunction"];
 		noise.CellularJitter = (float)properties["CellularJitter"];
 		noise.CellularReturnType = (FastNoiseLite.CellularReturnTypeEnum)(int)properties["CellularReturnType"];
@@ -80,7 +131,7 @@ public partial class Noise : NodeFunctionality
 		noise.FractalType = (FastNoiseLite.FractalTypeEnum)(int)properties["FractalType"];
 		noise.Frequency = (float)properties["Frequency"];
 		noise.NoiseType = (FastNoiseLite.NoiseTypeEnum)(int)properties["NoiseType"];
-		noise.Offset = (Vector3)properties["Offset"];
+		noise.Offset = (Vector3)properties["Offset"];*/
 
 		
 		PrimaryMap = getFromInput<float>(0);
@@ -97,24 +148,49 @@ public partial class Noise : NodeFunctionality
 		{
 			UseMask = true;
 		}
+		Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
+		bool CreatePrimaryMap = false;
 
 		if (PrimaryMap.GetLength(0) == 0) {
-			Vector2 terrain_size = (Vector2)GetNode<Node>("/root/Globals").Get("terrain_size");
-			float[,] CreatedPrimaryMap = new float[(int)terrain_size.X, (int)terrain_size.Y];
-			for (int i = 0; i < CreatedPrimaryMap.GetLength(0); i++) {
-				for (int j = 0; j < CreatedPrimaryMap.GetLength(1); j++) {
-					CreatedPrimaryMap[i, j] = GetValue(i, j, UseDistortion, UseMask, true);
-				}
-			}
-			PrimaryMap = CreatedPrimaryMap;
+			PrimaryMap = new float[(int)terrain_size.X, (int)terrain_size.Y];
+			CreatePrimaryMap = true;	
 		} 
-		else {
-			for (int i = 0; i < PrimaryMap.GetLength(0); i++) {
-				for (int j = 0; j < PrimaryMap.GetLength(1); j++) {
-					PrimaryMap[i, j] = GetValue(i, j, UseDistortion, UseMask, false);
-				}	
-			}
+		
+		int threadCount = OS.GetProcessorCount() - 1;
+		if (threadCount < 1)
+		{
+			threadCount = 1;
 		}
+		int rowsPerThread = PrimaryMap.GetLength(1) / threadCount;
+		
+		Thread[] threads = new Thread[threadCount];
+		for (int i = 0; i < threadCount; i++)
+		{
+			int startY = i * rowsPerThread;
+			int endY = startY + rowsPerThread;
+
+			if (i == threadCount - 1)
+			{
+				endY = PrimaryMap.GetLength(1);
+			}
+
+			ThreadData data = new ThreadData();
+			data.StartY = startY;
+			data.EndY = endY;
+			data.CreatePrimaryMap = CreatePrimaryMap;
+			data.UseDistortion = UseDistortion;
+			data.UseMask = UseMask;
+
+			Thread t = new Thread(ThreadGenerate);
+			t.Start(data);
+			threads[i] = t;
+		}
+
+	for (int i = 0; i < threads.Length; i++)
+	{
+		threads[i].Join();
+	}
+
 		return (T[,])(object)PrimaryMap;
 	}
     
