@@ -47,7 +47,9 @@ heightmapFileDialog = NodePath("HeightmapFileDialog")
 defaultOutputPortID = 1
 
 [node name="HeightmapFileDialog" parent="Fuctionality" index="0" instance=ExtResource("4_7o2mg")]
+always_on_top = false
 
 [connection signal="canceled" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogCanceled"]
 [connection signal="close_requested" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogCloseRequested"]
 [connection signal="confirmed" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogConfirmed"]
+[connection signal="file_selected" from="Fuctionality/HeightmapFileDialog" to="Fuctionality" method="HeightmapFileDialogConfirmed"]

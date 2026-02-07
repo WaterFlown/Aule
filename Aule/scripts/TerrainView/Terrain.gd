@@ -15,6 +15,10 @@ func generate_terrain(heightmap: Array):
 	
 	var max_height = Globals.terrain_height
 	
+	if (Globals.editor && Globals.editor.generation_popup):
+		Globals.editor.generation_popup.set_text("Generating terrain model...")
+		await get_tree().process_frame
+	
 	if heightmap.is_empty():
 		heightmap.resize(Globals.terrain_size.x)
 		for z in range(Globals.terrain_size.x):
@@ -54,7 +58,8 @@ func generate_terrain(heightmap: Array):
 	a_mesh = surfaceTool.commit()
 	mesh = a_mesh
 	
-	print("Rendered")
+	if Globals.editor:
+		Globals.editor.close_generation_popup()
 
 #func draw_sphere(pos:Vector3):
 	#var sphere = MeshInstance3D.new()

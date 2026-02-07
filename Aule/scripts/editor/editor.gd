@@ -21,6 +21,8 @@ var selected_node: EditorNode = null
 var node_inspector: NodeInspector = null
 var node_inspector_enabled = true
 var node_adder_window: NodeAdderWindow = null
+@export_group("Misc")
+var generation_popup: GenerationPopup = null
 
 #@export_subgroup("Toolbar")
 #@export var close_button: Button
@@ -45,8 +47,11 @@ func set_inspector():
 
 func run():
 	if selected_node:
-		print("run")
-		Globals.terrain.generate_terrain(selected_node.functionality.Output())
+		open_generation_popup()
+		generation_popup.set_text("Generating heightmap...")
+		await get_tree().process_frame
+		await get_tree().process_frame
+		Globals.terrain.call_deferred("generate_terrain", selected_node.functionality.Output()) #Globals.terrain.generate_terrain(selected_node.functionality.Output())
 	else:
 		pass
 
@@ -224,8 +229,20 @@ func toggle_inspector():
 		inspector_container.position.x = 0
 		node_inspector_enabled = true
 
+func open_generation_popup(): #Await 2 frames after
+	if !generation_popup:
+		generation_popup = load("res://scenes/generation_popup.tscn").instantiate()
+		add_child(generation_popup)
+		generation_popup.popup_centered(generation_popup.min_size)
+
+func close_generation_popup():
+	if generation_popup:
+		generation_popup.hide()
+		generation_popup.queue_free()
+
 func _on_run_button_pressed():
 	run()
+
 
 func _on_add_button_pressed():
 	open_node_adder()

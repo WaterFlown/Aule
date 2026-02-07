@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dokuv5nqjpc1x"]
+
+[ext_resource type="Script" uid="uid://j5avc85v0d8u" path="res://scripts/editor/generation_popup.gd" id="1_gcw73"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="1_kmaje"]
+
+[node name="GenerationPopup" type="Popup" node_paths=PackedStringArray("text")]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(645, 360)
+visible = true
+always_on_top = true
+theme = ExtResource("1_kmaje")
+script = ExtResource("1_gcw73")
+text = NodePath("Text")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_kmaje")
+
+[node name="Text" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -20.0
+offset_right = 115.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kmaje")
+text = "Generating..."
+horizontal_alignment = 1
+vertical_alignment = 1
