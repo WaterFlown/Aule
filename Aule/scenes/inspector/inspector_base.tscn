@@ -15,7 +15,7 @@ mouse_filter = 1
 theme = ExtResource("1_knh86")
 theme_type_variation = &"NodeInspectorPanel"
 script = ExtResource("2_2da8q")
-inputs = [NodePath(""), NodePath("")]
+inputs = [null, null]
 
 [node name="NodeName" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -76,7 +76,7 @@ offset_left = 8.0
 offset_right = -1520.0001
 grow_horizontal = 2
 grow_vertical = 2
-text = "Basic template node. Generates flat plane, output adds flat \"foo\" variable to every coordinate if connected to another node.
+text = "Basic template node. Generates flat plane.
 "
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer/DescriptionContainer"]

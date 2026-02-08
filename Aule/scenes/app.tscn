@@ -80,3 +80,6 @@ script = ExtResource("4_cl6f3")
 
 [node name="File" type="PopupMenu" parent="MenuUI/MenuBar"]
 theme = ExtResource("3_dmsei")
+
+[node name="Edit" type="PopupMenu" parent="MenuUI/MenuBar"]
+theme = ExtResource("3_dmsei")

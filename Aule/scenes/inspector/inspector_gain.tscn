@@ -12,6 +12,10 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Slider I
 [node name="NodeName" parent="." index="0"]
 text = "Gain"
 
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Outputs an adjusted heightmap based on the gain and bias settings.
+"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
 layout_mode = 0
 offset_left = 8.0

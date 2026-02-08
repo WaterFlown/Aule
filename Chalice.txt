@@ -15,7 +15,7 @@
 - Distortion node
 - Gain and Bias node
 - Exporting
-//- Combiner
+- Combiner
 //- Mask
 //- Radial Gradient
 

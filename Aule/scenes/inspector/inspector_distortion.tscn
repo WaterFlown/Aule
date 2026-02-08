@@ -13,7 +13,7 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric 
 text = "Distortion"
 
 [node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
-text = "Distortion"
+text = "Generates distortion that can then be applied to a noise node. The connected node will then sample values with a distorted offset."
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
 layout_mode = 0

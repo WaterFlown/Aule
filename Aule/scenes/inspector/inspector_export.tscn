@@ -14,6 +14,11 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Button I
 [node name="NodeName" parent="." index="0"]
 text = "Export"
 
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Exports a heightmap to a .png file. Usage of the normalize node is recommended before exporting!
+If no path is selected it will export the image into \\AppData\\Roaming\\Aule\\exported_heightmap.png
+"
+
 [node name="Button Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0" instance=ExtResource("2_imhxa")]
 layout_mode = 1
 anchors_preset = 4

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://5jujohutfmpt"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_0p5pk"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_5l3qs"]
+[ext_resource type="Script" uid="uid://bgl2hrt1grtb" path="res://scripts/editor/functionalities/Normalize.cs" id="3_5l3qs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l3qs"]
+bg_color = Color(0.5337437, 0.19161317, 0.1385706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.1485, 0.13, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_0p5pk")]
+offset_top = -52.0
+offset_bottom = 52.0
+inspector = "res://scenes/inspector/inspector_normalize.tscn"
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l3qs")
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 312.0
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_5l3qs")]
+layout_mode = 2
+label = "Primary Input"
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 316.0
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_5l3qs")]
+layout_mode = 2
+id = 1
+IOtype = 1
+label = "Primary Output"
+
+[node name="Title" parent="." index="5"]
+text = "Normalize"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_5l3qs")

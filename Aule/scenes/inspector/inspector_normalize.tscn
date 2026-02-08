@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://7w0qtqnd3txi"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_rccg7"]
+
+[node name="NodeInspector" instance=ExtResource("1_rccg7")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Normalize"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Outputs a heightmap where the previous highest / lowest value becomes the highest / lowest value possible.
+Usage not recommended if terrain is to be edited further after this node.
+"

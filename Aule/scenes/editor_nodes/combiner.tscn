@@ -6,6 +6,7 @@
 
 [node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_82x36")]
 offset_bottom = 62.0
+inspector = "res://scenes/inspector/inspector_combiner.tscn"
 connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Input Connectors Container/Connector2"), NodePath("Input Connectors Container/Connector3"), NodePath("Input Connectors Container/Connector4"), NodePath("Output Connectors Container2/Connector")]
 
 [node name="Input Connectors Container" parent="." index="3"]
