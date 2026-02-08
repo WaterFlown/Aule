@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://lkeuhxrxtn8h"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_h5rdg"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_berak"]
+[ext_resource type="Script" uid="uid://v7iipxhjskqk" path="res://scripts/editor/functionalities/ApplyMask.cs" id="3_berak"]
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_h5rdg")]
+inspector = "res://scenes/inspector/inspector_apply_mask.tscn"
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Input Connectors Container/Connector2"), NodePath("Output Connectors Container2/Connector")]
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_berak")]
+layout_mode = 2
+label = "Primary Input"
+
+[node name="Connector2" parent="Input Connectors Container" index="1" instance=ExtResource("2_berak")]
+layout_mode = 2
+id = 1
+label = "Mask Input"
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_berak")]
+layout_mode = 2
+id = 2
+IOtype = 1
+label = "Primary Output"
+
+[node name="Title" parent="." index="5"]
+text = "Apply Mask"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_berak")

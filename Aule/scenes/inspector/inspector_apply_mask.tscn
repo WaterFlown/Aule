@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dppxa68x8ea6w"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_fxgce"]
+
+[node name="NodeInspector" instance=ExtResource("1_fxgce")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Apply Mask"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Outputs the primary input heightmap with a mask applied.
+"
