@@ -18,28 +18,28 @@ public partial class Gain : NodeFunctionality
 		float bias = (float)properties["Bias"];
         if (!PrimaryMap.GetLength(0).Equals(0))
         current = PrimaryMap[x, y];
-		bool negative = false;
+		/*bool negative = false;
 		if (current < 0f)
 		{
 			current = Math.Abs(current);
 			negative = true;
-		}
+		}*/
 
 		if (UseMask)
 		{
-            float currentGain = gain * Mathf.InverseLerp(-1f, 1f, MaskMap[x, y]);
+            float currentGain = gain * MaskMap[x, y]; // float currentGain = gain * Mathf.InverseLerp(-1f, 1f, MaskMap[x, y]); 
 			current = (float)Math.Pow(current, currentGain);
 		}
         else
         {
             current = (float)Math.Pow(current, gain);
         }
-		if (negative)	
+		/*if (negative)	
 		{
 			current = -current;
-		}
+		}*/
 
-		return Math.Clamp(current * bias, -1f, 1f);
+		return Math.Clamp(current * bias, 0f, 1f);
 	}
 
 public override T[,] Evaluate<T>(int port){

@@ -27,16 +27,17 @@ public partial class Combiner : NodeFunctionality
 			for (int j = 0; j < CreatedPrimaryMap.GetLength(1); j++) {
 				CreatedPrimaryMap[i, j] = 0;
                 if (Size0.X > i && Size0.Y > j) {
-                    CreatedPrimaryMap[i, j] += Map0[i, j];
+                    CreatedPrimaryMap[i, j] = Math.Clamp(CreatedPrimaryMap[i, j] + Map0[i, j], 0f, 1f);
                 }
                 if (Size1.X > i && Size1.Y > j) {
-                    CreatedPrimaryMap[i, j] += Map1[i, j];
+                    CreatedPrimaryMap[i, j] = Math.Clamp(CreatedPrimaryMap[i, j] + Map1[i, j], 0f, 1f);
+
                 }
                 if (Size2.X > i && Size2.Y > j) {
-                    CreatedPrimaryMap[i, j] += Map2[i, j];
+                    CreatedPrimaryMap[i, j]  = Math.Clamp(CreatedPrimaryMap[i, j] + Map2[i, j], 0f, 1f);
                 }
                 if (Size3.X > i && Size3.Y > j) {
-                    CreatedPrimaryMap[i, j] += Map3[i, j];
+                    CreatedPrimaryMap[i, j] = Math.Clamp(CreatedPrimaryMap[i, j] + Map3[i, j], 0f, 1f);
                 }
 			}
 		}

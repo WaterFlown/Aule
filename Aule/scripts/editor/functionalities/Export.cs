@@ -127,7 +127,7 @@ public partial class Export : NodeFunctionality
         {
             for (int y = 0; y < heightmap.GetLength(1); y++)
             {
-                float value = (heightmap[x, y] + 1) / 2f;
+                float value = heightmap[x, y];
                 image.SetPixel(x, y, new Color(value, value, value));
             }
         }

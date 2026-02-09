@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://buw004cqt63nq"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_lkum1"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_yr1ey"]
+[ext_resource type="Script" uid="uid://bbtofdkx0t86v" path="res://scripts/editor/functionalities/Gradient.cs" id="3_yr1ey"]
+[ext_resource type="Curve" uid="uid://ciebg4kncdoa8" path="res://scenes/editor_nodes/gradient_dependencies/linear_both.tres" id="4_wlq8r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlq8r"]
+bg_color = Color(0.5, 0.45333332, 0.099999994, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44, 0.33557335, 0.048400007, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_lkum1")]
+offset_top = -74.0
+offset_bottom = 74.0
+connectors = [NodePath("Output Connectors Container2/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_wlq8r")
+
+[node name="Input Connectors Container" parent="." index="3"]
+offset_bottom = 448.0
+
+[node name="Output Connectors Container2" parent="." index="4"]
+offset_bottom = 448.0
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_yr1ey")]
+layout_mode = 2
+IOtype = 1
+label = "Primary Output"
+
+[node name="Title" parent="." index="5"]
+text = "Height/Mask Gradient"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_yr1ey")
+LinearX = ExtResource("4_wlq8r")
+LinearY = ExtResource("4_wlq8r")
+defaultOutputPortID = 0

@@ -15,8 +15,8 @@ public partial class Normalize : NodeFunctionality
     private float GetValue(int x, int y)
     {
         float current = 0f;
-        current = Mathf.InverseLerp(minValue, maxValue, PrimaryMap[x, y]) * 2f - 1f;
-        return Math.Clamp(current, -1f, 1f);
+        current = Mathf.InverseLerp(minValue, maxValue, PrimaryMap[x, y]);
+        return Math.Clamp(current, 0f, 1f);
     }
     public override T[,] Evaluate<T>(int port){
             PrimaryMap = getFromInput<float>(0);

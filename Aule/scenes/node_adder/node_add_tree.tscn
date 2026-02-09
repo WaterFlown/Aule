@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_84ri2")
 hide_root = true
 script = ExtResource("2_iynou")
-entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Generators/Gradient"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
 
 [node name="Generators" type="Node" parent="."]
 script = ExtResource("3_pl7dn")
@@ -33,6 +33,13 @@ script = ExtResource("3_pl7dn")
 text = "Distortion"
 id = "basic_distortion"
 node = "res://scenes/editor_nodes/distortion.tscn"
+child_of = "generators"
+
+[node name="Gradient" type="Node" parent="Generators"]
+script = ExtResource("3_pl7dn")
+text = "Gradient"
+id = "gradient"
+node = "res://scenes/editor_nodes/gradient.tscn"
 child_of = "generators"
 
 [node name="Filter" type="Node" parent="."]

@@ -16,7 +16,7 @@
 - Gain and Bias node
 - Exporting
 - Combiner
-//- Mask
+- Apply Mask
 //- Radial Gradient
 
 

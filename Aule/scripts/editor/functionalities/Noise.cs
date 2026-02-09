@@ -59,20 +59,19 @@ public partial class Noise : NodeFunctionality
 		if (UseDistortion)
 		{
 			Vector2 distortion = DistortionMap[x, y];
-			current += tnoise.GetNoise2D(x + distortion.X, y + distortion.Y) * strength;
+			current += (tnoise.GetNoise2D(x + distortion.X, y + distortion.Y)+ 1) / 2 * strength;
 		}
 		else
 		{
-			current += tnoise.GetNoise2D(x, y) * strength;
+			current += (tnoise.GetNoise2D(x, y)+ 1) / 2 * strength;
 		}	
 
 		if (UseMask)
 		{
-			current *= Mathf.InverseLerp(-1f, 1f, MaskMap[x, y]);
-			
+			current *= MaskMap[x, y];
 		}
 
-		return Math.Clamp(current, -1f, 1f);
+		return Math.Clamp(current, 0f, 1f);
 	}
 
 	private void ThreadGenerate(object data)
