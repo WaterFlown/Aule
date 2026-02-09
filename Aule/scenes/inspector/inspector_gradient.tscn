@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwpaef874y522"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_2stxx"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_0p63g"]
+[ext_resource type="PackedScene" uid="uid://5utpryjkbjlj" path="res://scenes/inspector/input_fields/selection_input.tscn" id="3_lein0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_2stxx")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Selection Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Gradient"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Generates a gradient from 0 to 1 based on the gradient preset."
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 127.0
+offset_bottom = 30.0
+theme = ExtResource("2_0p63g")
+text = "Gradient preset"
+vertical_alignment = 1
+
+[node name="Selection Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_lein0")]
+layout_mode = 0
+offset_left = 127.0
+offset_right = 306.0
+offset_bottom = 30.0
+item_count = 2
+popup/item_0/text = "Linear Pyramid"
+popup/item_0/id = 0
+popup/item_1/text = "Smooth Radial"
+popup/item_1/id = 1
+values = Dictionary[int, Variant]({
+0: 0,
+1: 1
+})
+property = "GradientType"
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://buw004cqt63nq"]
+[gd_scene load_steps=7 format=3 uid="uid://buw004cqt63nq"]
 
 [ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_lkum1"]
 [ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_yr1ey"]
 [ext_resource type="Script" uid="uid://bbtofdkx0t86v" path="res://scripts/editor/functionalities/Gradient.cs" id="3_yr1ey"]
 [ext_resource type="Curve" uid="uid://ciebg4kncdoa8" path="res://scenes/editor_nodes/gradient_dependencies/linear_both.tres" id="4_wlq8r"]
+[ext_resource type="Curve" uid="uid://r4njl2wdjyao" path="res://scenes/editor_nodes/gradient_dependencies/smooth_both.tres" id="5_ffpsk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlq8r"]
 bg_color = Color(0.5, 0.45333332, 0.099999994, 1)
@@ -20,6 +21,7 @@ corner_radius_bottom_left = 1
 [node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_lkum1")]
 offset_top = -74.0
 offset_bottom = 74.0
+inspector = "res://scenes/inspector/inspector_gradient.tscn"
 connectors = [NodePath("Output Connectors Container2/Connector")]
 
 [node name="Node Background" parent="." index="1"]
@@ -41,6 +43,6 @@ text = "Height/Mask Gradient"
 
 [node name="Fuctionality" parent="." index="6"]
 script = ExtResource("3_yr1ey")
-LinearX = ExtResource("4_wlq8r")
-LinearY = ExtResource("4_wlq8r")
+LinearP = ExtResource("4_wlq8r")
+Smooth = ExtResource("5_ffpsk")
 defaultOutputPortID = 0

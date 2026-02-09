@@ -6,10 +6,10 @@ public partial class Gradient : NodeFunctionality
     float[,] PrimaryMap = {};
     [ExportGroup("Linear")]
     [Export]
-    Curve LinearX = new Curve();
-
+    Curve LinearP = new Curve();
+    [ExportGroup("Smooth")]
     [Export]
-    Curve LinearY = new Curve();
+    Curve Smooth = new Curve();
 
     public override void Initialize()
     {
@@ -17,12 +17,15 @@ public partial class Gradient : NodeFunctionality
     }
 
     public override T[,] Evaluate<T>(int port){
-        Curve curveX = LinearX;
-        Curve curveY = LinearY;
+        Curve curveX = LinearP;
+        Curve curveY = LinearP;
         switch ((int)properties["GradientType"]) {
             case 0:
+            //Linear Pyramid
                 break;
             case 1:
+                curveX = Smooth;
+                curveY = Smooth;
                 break;
             default:
                 break;

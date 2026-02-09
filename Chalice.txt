@@ -11,6 +11,8 @@
 - koncept node functionalitijev (input -> output, why there are multiple inputs and what they do) -> basic output od -1 do 1, množnje z terrain height
 - inspector, kako dela
 
+- Switch iz heightov -1 do 1 na 0 1 in zakaj (Maske ne delajo, gain/bias se unici ker -1^2 = 1)
+
 - Noise node, opis, kako dela -> Kaj je mask, distortion (svoj node potem), primary input
 - Distortion node
 - Gain and Bias node

@@ -25,5 +25,4 @@ func _on_value_changed(value):
 	numeric_input.value = value
 
 func _on_numeric_input_value_changed(value):
-	print(value)
 	self.value = value
