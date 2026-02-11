@@ -66,7 +66,7 @@ grow_vertical = 2
 theme = ExtResource("3_dmsei")
 theme_type_variation = &"TopMenuBackground"
 
-[node name="MenuBar" type="MenuBar" parent="MenuUI"]
+[node name="MenuBar" type="MenuBar" parent="MenuUI" node_paths=PackedStringArray("File", "Edit")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -77,9 +77,13 @@ offset_bottom = 14.000001
 grow_horizontal = 2
 theme = ExtResource("3_dmsei")
 script = ExtResource("4_cl6f3")
+File = NodePath("File")
+Edit = NodePath("Edit")
 
 [node name="File" type="PopupMenu" parent="MenuUI/MenuBar"]
 theme = ExtResource("3_dmsei")
 
 [node name="Edit" type="PopupMenu" parent="MenuUI/MenuBar"]
 theme = ExtResource("3_dmsei")
+
+[connection signal="index_pressed" from="MenuUI/MenuBar/Edit" to="MenuUI/MenuBar" method="_on_edit_index_pressed"]

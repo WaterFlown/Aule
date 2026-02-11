@@ -11,6 +11,13 @@ public partial class Gradient : NodeFunctionality
     [Export]
     Curve Smooth = new Curve();
 
+    [ExportGroup("Smooth Edges")]
+    [Export]
+    Curve SmoothEdges = new Curve();
+
+    [ExportGroup("Linear Edges")]
+    [Export]
+    Curve LinearEdges = new Curve();
     public override void Initialize()
     {
         properties["GradientType"] = 0;
@@ -26,6 +33,14 @@ public partial class Gradient : NodeFunctionality
             case 1:
                 curveX = Smooth;
                 curveY = Smooth;
+                break;
+            case 2:
+                curveX = SmoothEdges;
+                curveY = SmoothEdges;
+                break;
+            case 3:
+                curveX = LinearEdges;
+                curveY = LinearEdges;
                 break;
             default:
                 break;

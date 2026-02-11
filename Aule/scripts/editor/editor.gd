@@ -24,6 +24,9 @@ var node_adder_window: NodeAdderWindow = null
 @export_group("Misc")
 var generation_popup: GenerationPopup = null
 
+#Setting windows
+var project_settings: ProjectSettingsWindow = null
+
 #@export_subgroup("Toolbar")
 #@export var close_button: Button
 #@export var add_button: Button
@@ -239,6 +242,11 @@ func close_generation_popup():
 	if generation_popup:
 		generation_popup.hide()
 		generation_popup.queue_free()
+
+func open_project_settings():
+	if(!project_settings):
+		project_settings = load("res://scenes/project_settings_window.tscn").instantiate()
+		add_child(project_settings)
 
 func _on_run_button_pressed():
 	run()

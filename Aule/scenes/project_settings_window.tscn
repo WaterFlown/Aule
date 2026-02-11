@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=3 uid="uid://caoe3amhe5s6u"]
+
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="1_4ivtl"]
+[ext_resource type="Script" uid="uid://bcawwfa0ycsye" path="res://scripts/editor/project_settings_window.gd" id="2_yebbf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ivtl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yebbf"]
+
+[node name="ProjectSettingsWindow" type="Window" node_paths=PackedStringArray("TerrainSizeInput", "TerrainHeightInput")]
+oversampling_override = 1.0
+title = "Change project settings"
+initial_position = 2
+size = Vector2i(960, 540)
+always_on_top = true
+min_size = Vector2i(480, 270)
+theme = ExtResource("1_4ivtl")
+script = ExtResource("2_yebbf")
+TerrainSizeInput = NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/SizeInput")
+TerrainHeightInput = NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/HeightInput")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_4ivtl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 8.0
+offset_top = 38.0
+offset_right = 127.0
+offset_bottom = 68.0
+theme = ExtResource("1_4ivtl")
+text = "Project Settings"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+anchors_preset = -1
+anchor_top = 0.066296294
+anchor_right = 1.0
+anchor_bottom = 0.066296294
+offset_top = 39.2
+offset_bottom = 43.2
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.21022223
+anchor_right = 1.0
+anchor_bottom = 0.9296296
+offset_top = -0.5200043
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="InputContainerPanel 0" type="Panel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ivtl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 180.0
+offset_bottom = 30.0
+theme = ExtResource("1_4ivtl")
+text = "Terrain size (X and Y):"
+vertical_alignment = 1
+
+[node name="SizeInput" type="SpinBox" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0"]
+layout_mode = 0
+offset_left = 194.0
+offset_right = 302.0
+offset_bottom = 28.0
+theme = ExtResource("1_4ivtl")
+min_value = 64.0
+max_value = 10000.0
+value = 64.0
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yebbf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 210.0
+offset_bottom = 30.0
+theme = ExtResource("1_4ivtl")
+text = "Terrain maximum height:"
+vertical_alignment = 1
+
+[node name="HeightInput" type="SpinBox" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1"]
+layout_mode = 0
+offset_left = 194.0
+offset_right = 302.0
+offset_bottom = 28.0
+theme = ExtResource("1_4ivtl")
+min_value = 1.0
+max_value = 10000.0
+value = 1.0
+
+[node name="Save" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -38.0
+offset_right = 56.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_4ivtl")
+text = "Save and Close"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]

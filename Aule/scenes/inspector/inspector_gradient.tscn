@@ -29,14 +29,20 @@ layout_mode = 0
 offset_left = 127.0
 offset_right = 306.0
 offset_bottom = 30.0
-item_count = 2
+item_count = 4
 popup/item_0/text = "Linear Pyramid"
 popup/item_0/id = 0
 popup/item_1/text = "Smooth Radial"
 popup/item_1/id = 1
+popup/item_2/text = "Smooth Edges"
+popup/item_2/id = 2
+popup/item_3/text = "Linear Edges"
+popup/item_3/id = 3
 values = Dictionary[int, Variant]({
 0: 0,
-1: 1
+1: 1,
+2: 2,
+3: 3
 })
 property = "GradientType"
 
