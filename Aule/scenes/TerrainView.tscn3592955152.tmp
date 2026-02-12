@@ -14,6 +14,10 @@ background_color = Color(0.07058824, 0.078431375, 0.08235294, 1)
 script = ExtResource("1_yx6wa")
 cameraPivot = NodePath("CameraPoint")
 camera = NodePath("CameraPoint/Camera3D")
+cameraRotateSensitivity = null
+cameraZoomSensitivity = null
+zoom_speed = null
+zoom_increment = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.28754485, 0.79176754, -0.53890836, -0.37272474, 0.6108226, 0.69855, 0.8822665, 3.340935e-08, 0.4707502, 250, 652.8543, 250)

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://xvcxlr7ug20b" path="res://scripts/TerrainView/Terrain.gd" id="1_jgj0g"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3iduy"]
-noise_type = 4
+noise_type = 3
 frequency = 0.2
-fractal_octaves = 4
-fractal_lacunarity = 5.0
+fractal_octaves = 2
+fractal_lacunarity = 6.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yd2fl"]
 width = 1024
@@ -14,7 +14,7 @@ height = 1024
 noise = SubResource("FastNoiseLite_3iduy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgj0g"]
-albedo_color = Color(0.57063013, 0.50915873, 0.34329307, 1)
+albedo_color = Color(0.5381114, 0.43118435, 0.28631347, 1)
 albedo_texture = SubResource("NoiseTexture2D_yd2fl")
 
 [node name="Terrain" type="MeshInstance3D"]

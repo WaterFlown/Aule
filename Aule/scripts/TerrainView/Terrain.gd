@@ -60,6 +60,9 @@ func generate_terrain(heightmap: Array):
 	
 	if Globals.editor:
 		Globals.editor.close_generation_popup()
+		
+	if(Globals.terrain_view):
+		Globals.terrain_view.setCameraProperties()
 
 #func draw_sphere(pos:Vector3):
 	#var sphere = MeshInstance3D.new()

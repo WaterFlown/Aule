@@ -87,8 +87,9 @@ offset_right = 302.0
 offset_bottom = 28.0
 theme = ExtResource("1_4ivtl")
 min_value = 64.0
-max_value = 10000.0
+max_value = 2048.0
 value = 64.0
+rounded = true
 
 [node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)

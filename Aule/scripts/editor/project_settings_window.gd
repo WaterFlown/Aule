@@ -13,6 +13,7 @@ func _ready():
 func _on_save_pressed():
 	Globals.terrain_height = TerrainHeightInput.value
 	Globals.terrain_size = Vector2i(TerrainSizeInput.value, TerrainSizeInput.value)
+	
 	queue_free()
 
 
