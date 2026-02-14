@@ -14,8 +14,11 @@ config/name="Aule"
 run/main_scene="uid://bd1wg4eynxp1l"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
-boot_splash/show_image=false
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.07058824, 0.078431375, 0.08235294, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://dmym6e1mwd801"
+config/icon="uid://jrhoplrnsuc7"
+boot_splash/minimum_display_time=500
 
 [autoload]
 

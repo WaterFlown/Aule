@@ -3,22 +3,21 @@
 [node name="GraphEdit" type="GraphEdit"]
 offset_right = 2171.0
 offset_bottom = 915.0
-scroll_offset = Vector2(-40, -40)
 
 [node name="GraphNode" type="GraphNode" parent="."]
 layout_mode = 0
-offset_left = 266.0
-offset_top = 209.0
-offset_right = 437.0
-offset_bottom = 304.0
+offset_left = 226.0
+offset_top = 169.0
+offset_right = 397.0
+offset_bottom = 264.0
 mouse_filter = 1
 position_offset = Vector2(226, 169)
 
 [node name="GraphNode2" type="GraphNode" parent="."]
 layout_mode = 0
-offset_left = 530.0
-offset_top = 204.0
-offset_right = 701.0
-offset_bottom = 299.0
+offset_left = 490.0
+offset_top = 164.0
+offset_right = 661.0
+offset_bottom = 259.0
 mouse_filter = 1
 position_offset = Vector2(490, 164)
