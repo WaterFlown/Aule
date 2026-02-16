@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://bekg1laqi1t8f"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_bbwct"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_jxgeg"]
+[ext_resource type="PackedScene" uid="uid://kqhtq6ig18ve" path="res://scenes/inspector/input_fields/slider_input.tscn" id="3_awjj1"]
+[ext_resource type="PackedScene" uid="uid://4d1a54tc7tl" path="res://scenes/inspector/input_fields/numeric_input.tscn" id="4_awjj1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_bbwct")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Slider Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/Slider Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 2/Numeric Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Terrace"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Terraces the terrain.
+"
+
+[node name="InputContainerPanel 0" parent="ScrollContainer/VBoxContainer" index="1"]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 114.0
+offset_bottom = 30.0
+theme = ExtResource("2_jxgeg")
+text = "Terrace Width"
+vertical_alignment = 1
+
+[node name="Slider Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_awjj1")]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 294.0
+offset_bottom = 24.0
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.05
+property = "TerraceWidth"
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 114.0
+offset_bottom = 30.0
+theme = ExtResource("2_jxgeg")
+text = "Edge Steepness"
+vertical_alignment = 1
+
+[node name="Slider Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="1" instance=ExtResource("3_awjj1")]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 294.0
+offset_bottom = 24.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+property = "Steepness"
+
+[node name="InputContainerPanel 2" type="Panel" parent="ScrollContainer/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 114.0
+offset_bottom = 30.0
+theme = ExtResource("2_jxgeg")
+text = "Terraces"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 2" index="1" instance=ExtResource("4_awjj1")]
+layout_mode = 0
+offset_left = 136.0
+offset_right = 251.0
+min_value = 1.0
+value = 1.0
+rounded = true
+property = "Terraces"

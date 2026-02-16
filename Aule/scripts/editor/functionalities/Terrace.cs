@@ -1,51 +1,50 @@
 using Godot;
 using System;
 
-public partial class Gain : NodeFunctionality
+public partial class Terrace : NodeFunctionality
 {
     float[,] PrimaryMap = {};
 	float[,] MaskMap = {};
+
+    float terraceWidth = 1f;
+    float terraces = 1f;
+	float steepness = 10f;
     public override void Initialize()
 	{
-		properties["Gain"] = 1f;
-		properties["Bias"] = 1f;
+		properties["Terraces"] = 1;
+        properties["TerraceWidth"] = 0.2f;
+		properties["Steepness"] = 1f;
 
+        terraceWidth = (float)properties["TerraceWidth"];
+        terraces = (float)properties["Terraces"];
 	}
 	private float GetValue(int x, int y, bool UseMask)
 	{
 		float current = 0f;
-		float gain = (float)properties["Gain"];
-		float bias = (float)properties["Bias"];
         if (!PrimaryMap.GetLength(0).Equals(0))
-        current = PrimaryMap[x, y];
-		/*bool negative = false;
-		if (current < 0f)
-		{
-			current = Math.Abs(current);
-			negative = true;
-		}*/
+        current = PrimaryMap[x, y] * terraces;
 
-		if (UseMask)
-		{
-            float currentGain = gain * (1 + MaskMap[x, y]); // float currentGain = gain * Mathf.InverseLerp(-1f, 1f, MaskMap[x, y]); 
-			current = (float)Math.Pow(current, currentGain);
-			current *= bias * MaskMap[x, y];
-		}
-        else
-        {
-            current = (float)Math.Pow(current, gain) * bias;
-        }
-		/*if (negative)	
-		{
-			current = -current;
-		}*/
+		return (float)(Mathf.Round(current) + 0.5 * Mathf.Pow(2*(current - Mathf.Round(current)), 2 * steepness - 1)) / terraces;
 
-		return Math.Clamp(current, 0f, 1f);
+
+    }
+
+	private float round(float current)
+	{
+		float k = (float)Math.Floor(current / terraceWidth);
+        float f = (current - k*terraceWidth) / terraceWidth;
+        float s = Mathf.Min(2 * f, 1f);
+        
+        return (k+s) * terraceWidth;
 	}
 
 public override T[,] Evaluate<T>(int port){
 		PrimaryMap = getFromInput<float>(0);
 		MaskMap = getFromInput<float>(1);
+
+        terraces = (float)properties["Terraces"];
+        terraceWidth = (float)properties["TerraceWidth"];
+		steepness = (float)properties["Steepness"];
 
 		bool UseMask = false;
 		if (MaskMap.GetLength(0) != 0)	

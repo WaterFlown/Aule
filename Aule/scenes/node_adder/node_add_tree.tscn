@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_84ri2")
 hide_root = true
 script = ExtResource("2_iynou")
-entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Generators/Gradient"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Generators/Gradient"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Filter/Terrace"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
 
 [node name="Generators" type="Node" parent="."]
 script = ExtResource("3_pl7dn")
@@ -60,6 +60,13 @@ script = ExtResource("3_pl7dn")
 text = "Normalize"
 id = "normalize"
 node = "res://scenes/editor_nodes/normalize.tscn"
+child_of = "filter"
+
+[node name="Terrace" type="Node" parent="Filter"]
+script = ExtResource("3_pl7dn")
+text = "Terrace"
+id = "terrace"
+node = "res://scenes/editor_nodes/terrace.tscn"
 child_of = "filter"
 
 [node name="Operation" type="Node" parent="."]
