@@ -74,6 +74,8 @@ func get_property(property):
 		return functionality.properties[property]
 	return null
 
-
+func get_properties():
+	return functionality.properties
+	
 func HeightmapFileDialogCloseRequested():
 	pass # Replace with function body.

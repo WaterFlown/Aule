@@ -206,6 +206,7 @@ func add_node(path: String): ##Places an editor node where the camera is
 	var node: EditorNode = load(path).instantiate()
 	node.position = camera.position - camera.get_viewport_rect().size / 2.0
 	add_child(node)
+	return node
 
 func delete_selected_node():
 	if selected_node:
