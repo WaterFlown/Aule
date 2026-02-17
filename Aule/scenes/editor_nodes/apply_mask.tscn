@@ -6,6 +6,7 @@
 
 [node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_h5rdg")]
 inspector = "res://scenes/inspector/inspector_apply_mask.tscn"
+filepath = "res://scenes/editor_nodes/apply_mask.tscn"
 connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Input Connectors Container/Connector2"), NodePath("Output Connectors Container2/Connector")]
 
 [node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_berak")]

@@ -23,6 +23,7 @@ offset_top = -89.0
 offset_right = 91.0
 offset_bottom = 89.0
 inspector = "res://scenes/inspector/inspector_export.tscn"
+filepath = "res://scenes/editor_nodes/export_node.tscn"
 connectors = [NodePath("Input Connectors Container/Connector")]
 
 [node name="Node Background" parent="." index="1"]

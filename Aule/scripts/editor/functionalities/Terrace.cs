@@ -23,9 +23,18 @@ public partial class Terrace : NodeFunctionality
 		float current = 0f;
         if (!PrimaryMap.GetLength(0).Equals(0))
         current = PrimaryMap[x, y] * terraces;
+		
+		float output = (float)(Mathf.Round(current) + 0.5 * Mathf.Pow(2*(current - Mathf.Round(current)), 2 * steepness - 1)); //Formula for terracing
+		if (UseMask)
+		{
+			output = Mathf.Lerp(current, output, MaskMap[x, y]) / terraces; //if using mask, interpolate between original and terraced by mask.
+		}
+		else
+		{
+			output /= terraces; //Dividing because current is primarymap * terraces ig
+		}
 
-		return (float)(Mathf.Round(current) + 0.5 * Mathf.Pow(2*(current - Mathf.Round(current)), 2 * steepness - 1)) / terraces;
-
+		return Math.Clamp(output, 0f, 1f);
 
     }
 

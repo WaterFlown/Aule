@@ -20,6 +20,7 @@ corner_radius_bottom_left = 1
 offset_top = -52.0
 offset_bottom = 40.0
 inspector = "res://scenes/inspector/inspector_distortion.tscn"
+filepath = "res://scenes/editor_nodes/distortion.tscn"
 connectors = [NodePath("Output Connectors Container2/Connector")]
 
 [node name="Node Background" parent="." index="1"]

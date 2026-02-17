@@ -48,7 +48,7 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6r00q")
 functionality = NodePath("Fuctionality")
-connectors = [NodePath(""), NodePath(""), NodePath("")]
+connectors = [null, null, null]
 connector_label = NodePath("Connector Label")
 node_highlight = NodePath("Node Highlight")
 

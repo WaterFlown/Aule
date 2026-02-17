@@ -2,10 +2,13 @@ class_name EditorNode extends Control
 var id = null
 @export var functionality: NodeFunctionality ##This node's functionality
 @export var inspector = "res://scenes/inspector/inspector_base.tscn" ##Path to this node's inspector in assets
+@export var filepath = "res://scenes/editor_node.tscn" ##Path to this node in the filesystem
 @export var connectors: Array[NodeConnector] = []
 
 @export var connector_label: RichTextLabel ##This node's connector description display. Already included, changing is not needed.
 @export var node_highlight: PanelContainer ##This node's hightlight. Already included, changing is not needed.
+
+
 
 var inited = false
 var selected = false

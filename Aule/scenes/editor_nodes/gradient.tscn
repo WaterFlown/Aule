@@ -27,6 +27,7 @@ point_count = 4
 offset_top = -74.0
 offset_bottom = 74.0
 inspector = "res://scenes/inspector/inspector_gradient.tscn"
+filepath = "res://scenes/editor_nodes/gradient.tscn"
 connectors = [NodePath("Output Connectors Container2/Connector")]
 
 [node name="Node Background" parent="." index="1"]

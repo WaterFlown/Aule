@@ -20,6 +20,7 @@ corner_radius_bottom_left = 1
 offset_top = -52.0
 offset_bottom = 52.0
 inspector = "res://scenes/inspector/inspector_normalize.tscn"
+filepath = "res://scenes/editor_nodes/normalize.tscn"
 connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector")]
 
 [node name="Node Background" parent="." index="1"]

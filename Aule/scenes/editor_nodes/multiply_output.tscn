@@ -8,6 +8,7 @@
 offset_top = -74.0
 offset_bottom = 74.0
 inspector = "res://scenes/inspector/inspector_multiplyoutput.tscn"
+filepath = "res://scenes/editor_nodes/multiply_output.tscn"
 connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector"), NodePath("Output Connectors Container2/Connector2"), NodePath("Output Connectors Container2/Connector3"), NodePath("Output Connectors Container2/Connector4")]
 
 [node name="Input Connectors Container" parent="." index="3"]
