@@ -86,4 +86,5 @@ theme = ExtResource("3_dmsei")
 [node name="Edit" type="PopupMenu" parent="MenuUI/MenuBar"]
 theme = ExtResource("3_dmsei")
 
+[connection signal="index_pressed" from="MenuUI/MenuBar/File" to="MenuUI/MenuBar" method="_on_file_index_pressed"]
 [connection signal="index_pressed" from="MenuUI/MenuBar/Edit" to="MenuUI/MenuBar" method="_on_edit_index_pressed"]

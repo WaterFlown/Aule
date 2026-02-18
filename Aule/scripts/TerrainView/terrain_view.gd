@@ -22,8 +22,6 @@ func setCameraProperties():
 	cameraPivot.position.x = Globals.terrain_size.x/2
 	cameraPivot.position.z = Globals.terrain_size.y/2
 	
-	print(Globals.terrain.x_size)
-	
 	camera.position.y = Globals.terrain_size.x * 2
 	camera_target_y = camera.position.y
 	camera_max_y = camera.position.y * 1.25 + 250

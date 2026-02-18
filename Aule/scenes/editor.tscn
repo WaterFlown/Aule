@@ -14,9 +14,10 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 expand_margin_top = 4.0
 expand_margin_bottom = 4.0
 
-[node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager", "camera", "inspector_container", "close_button")]
+[node name="Editor" type="Node" node_paths=PackedStringArray("connection_line_manager", "node_loading_manager", "camera", "inspector_container", "close_button")]
 script = ExtResource("1_q68jb")
 connection_line_manager = NodePath("Connection Line Manager")
+node_loading_manager = NodePath("Node Loading Manager")
 camera = NodePath("Camera")
 inspector_container = NodePath("UI/UI/InspectorContainer")
 close_button = NodePath("UI/UI/InspectorContainer/Toolbar/ButtonContainer/CloseButton")

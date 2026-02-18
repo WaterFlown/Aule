@@ -1,6 +1,7 @@
 class_name Editor extends Node
 
 @export var connection_line_manager: ConnectionLineManager
+@export var node_loading_manager: NodeLoadingManager
 @onready var global_node_id = 0
 
 var connecting: bool = false
@@ -64,6 +65,19 @@ func run():
 			#if selected_node:
 				#selected_node.unselect()
 				#selected_node = null
+
+func clear_project():
+	Globals.terrain_height = 128
+	Globals.terrain_size = Vector2i(512, 512)
+	if (node_inspector):
+		node_inspector.queue_free()
+	selected_node = null
+	for connection in connections:
+		remove_connection(connections.find(connection))
+	for node in nodes:
+		get_node_from_id(node).queue_free()
+	
+	global_node_id = 0
 
 func register_node(node: EditorNode):
 	node.id = global_node_id
