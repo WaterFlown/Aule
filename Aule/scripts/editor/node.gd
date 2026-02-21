@@ -20,7 +20,7 @@ var drag_position = null
 
 func initing():
 	if not inited:
-		Globals.editor.register_node(self)
+		Globals.editor.register_node(self, id)
 		move_node_to_top.connect(Globals.editor.move_node_to_top.bind())
 		select_node.connect(Globals.editor.select_node.bind())
 		functionality.parentID = id;
@@ -77,5 +77,3 @@ func get_property(property):
 func get_properties():
 	return functionality.properties
 	
-func HeightmapFileDialogCloseRequested():
-	pass # Replace with function body.

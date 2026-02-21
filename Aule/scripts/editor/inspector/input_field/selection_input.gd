@@ -8,8 +8,9 @@ func get_value():
 
 func set_value(val):
 	if val != null:
-		if self.selected == values.find_key(val) != null:
-			self.selected = values.find_key(val)
+		var vali: int = val
+		if values.find_key(vali) != null:
+			self.selected = values.find_key(vali)
 
 func _on_item_selected(index):
 	updated.emit(self)

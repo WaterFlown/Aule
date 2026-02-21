@@ -10,6 +10,7 @@ func add_line(from_node: int, to_node: int, from_connector: int, to_connector: i
 	line.to_connector = to_connector
 	lines.append(line)
 	add_child(line)
+	line.update_positions()
 
 
 func remove_line(from_node: int, to_node: int, from_connector: int, to_connector: int):
@@ -18,7 +19,11 @@ func remove_line(from_node: int, to_node: int, from_connector: int, to_connector
 			var removed_line = lines.pop_at(lines.find(line))
 			removed_line.queue_free()
 
-#func remove_all_lines():
-	#for line in lines:
-			#var removed_line = lines.pop_at(lines.find(line))
-			#removed_line.queue_free()
+func remove_all_lines():
+	for line in lines:
+			var removed_line = lines.pop_at(lines.find(line))
+			removed_line.queue_free()
+func update_all_lines():
+	await get_tree().process_frame
+	for line in lines:
+		line.update_positions()

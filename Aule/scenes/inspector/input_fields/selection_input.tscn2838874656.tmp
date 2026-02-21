@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://5utpryjkbjlj"]
+
+[ext_resource type="Script" uid="uid://b4lan228qjl2w" path="res://scripts/editor/inspector/input_field/selection_input.gd" id="1_sxjor"]
+
+[node name="Selection Input" type="OptionButton"]
+offset_right = 230.0
+offset_bottom = 40.0
+script = ExtResource("1_sxjor")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

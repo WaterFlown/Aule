@@ -23,6 +23,8 @@
 - Apply Mask
 - Gradient node
 
+- Saving (seriaizacija nodov, stringifijanje v json -> savanje v file)
+
 
 
 Brez gd docs in yt

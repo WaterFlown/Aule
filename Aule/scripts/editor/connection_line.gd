@@ -39,6 +39,7 @@ func _ready():
 	from_node_extracted.connect("moved_node", update_positions)
 	get_viewport().size_changed.connect(update_positions)
 
+
 func update_positions():
 	points[0] = from_connector_extracted.global_position+from_offset
 	points[1] = to_connector_extracted.global_position+to_offset
