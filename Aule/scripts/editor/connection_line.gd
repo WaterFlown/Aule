@@ -41,5 +41,8 @@ func _ready():
 
 
 func update_positions():
+	if from_connector_extracted == null or to_connector_extracted == null:
+		queue_free()
+		return
 	points[0] = from_connector_extracted.global_position+from_offset
 	points[1] = to_connector_extracted.global_position+to_offset

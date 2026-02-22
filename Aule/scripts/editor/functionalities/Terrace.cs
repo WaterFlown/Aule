@@ -7,16 +7,16 @@ public partial class Terrace : NodeFunctionality
 	float[,] MaskMap = {};
 
     float terraceWidth = 1f;
-    float terraces = 1f;
-	float steepness = 10f;
+    int terraces = 4;
+	float steepness = 2f;
     public override void Initialize()
 	{
-		properties["Terraces"] = 1;
+		properties["Terraces"] = 4;
         properties["TerraceWidth"] = 0.2f;
-		properties["Steepness"] = 1f;
+		properties["Steepness"] = 2f;
 
         terraceWidth = (float)properties["TerraceWidth"];
-        terraces = (float)properties["Terraces"];
+        terraces = (int)properties["Terraces"];
 	}
 	private float GetValue(int x, int y, bool UseMask)
 	{
@@ -51,7 +51,7 @@ public override T[,] Evaluate<T>(int port){
 		PrimaryMap = getFromInput<float>(0);
 		MaskMap = getFromInput<float>(1);
 
-        terraces = (float)properties["Terraces"];
+        terraces = (int)properties["Terraces"];
         terraceWidth = (float)properties["TerraceWidth"];
 		steepness = (float)properties["Steepness"];
 
