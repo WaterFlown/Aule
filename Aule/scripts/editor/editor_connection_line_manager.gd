@@ -1,6 +1,7 @@
 class_name ConnectionLineManager extends Node
 
 var lines: Array[ConnectionLine] = []
+signal remove_all
 
 func add_line(from_node: int, to_node: int, from_connector: int, to_connector: int):
 	var line = ConnectionLine.new()
@@ -20,9 +21,9 @@ func remove_line(from_node: int, to_node: int, from_connector: int, to_connector
 			removed_line.queue_free()
 
 func remove_all_lines():
-	for line in lines:
-			var removed_line = lines.pop_at(lines.find(line))
-			removed_line.queue_free()
+	remove_all.emit()
+	lines.clear()
+
 func update_all_lines():
 	await get_tree().process_frame
 	for line in lines:

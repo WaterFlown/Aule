@@ -9,7 +9,6 @@ var connecting_from: NodeConnector = null
 var hovering_connector: NodeConnector = null
 var connecting_to: NodeConnector = null
 
-
 var nodes := {}
 var connections := []
 

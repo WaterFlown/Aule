@@ -39,6 +39,7 @@ func _ready():
 	from_node_extracted.connect("moved_node", update_positions)
 	get_viewport().size_changed.connect(update_positions)
 
+	Globals.editor.connection_line_manager.remove_all.connect(remove)
 
 func update_positions():
 	if from_connector_extracted == null or to_connector_extracted == null:
@@ -46,3 +47,6 @@ func update_positions():
 		return
 	points[0] = from_connector_extracted.global_position+from_offset
 	points[1] = to_connector_extracted.global_position+to_offset
+
+func remove():
+	queue_free()
