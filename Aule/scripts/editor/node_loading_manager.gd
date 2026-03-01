@@ -32,6 +32,9 @@ func save_project():
 	for cur_node in Globals.editor.nodes:
 		var snode: SerializedNode = SerializedNode.new()
 		var cnode: EditorNode = Globals.editor.get_node_from_id(cur_node)
+		if !cnode:
+			print("Error saving project")
+			return
 		snode.filepath = cnode.filepath
 		snode.node_position = cnode.position
 		snode.properties = cnode.get_properties()
@@ -60,10 +63,12 @@ func load_project():
 				continue
 			match (json.data["type"]):
 				"node":
-					var cnode: EditorNode = Globals.editor.add_node(json.data["filepath"], json.data["id"])
+					var intid:int = json.data["id"]
+					var cnode: EditorNode = Globals.editor.add_node(json.data["filepath"], intid)
 					var position:Vector2 = Vector2(json.data["node_position_x"], json.data["node_position_y"])
 					cnode.initing()
 					cnode.position = position
+					print(Globals.editor.nodes)
 					for property in json.data["properties"]:
 						cnode.set_property(property, json.data["properties"][property])
 				"connection":

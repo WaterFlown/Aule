@@ -20,7 +20,7 @@ var drag_position = null
 
 func initing():
 	if not inited:
-		Globals.editor.register_node(self, id)
+		print(id)
 		move_node_to_top.connect(Globals.editor.move_node_to_top.bind())
 		select_node.connect(Globals.editor.select_node.bind())
 		functionality.parentID = id;

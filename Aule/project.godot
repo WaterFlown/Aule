@@ -40,6 +40,10 @@ folder_colors={
 "res://scripts/": "teal"
 }
 
+[gui]
+
+theme/custom_font="uid://cvocdeohtw0dy"
+
 [input]
 
 add_node={

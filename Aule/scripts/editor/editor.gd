@@ -76,7 +76,8 @@ func clear_project():
 	connection_line_manager.remove_all_lines()
 
 	for node in nodes:
-		get_node_from_id(node).queue_free()
+		if get_node_from_id(node):
+			get_node_from_id(node).queue_free()
 	
 	nodes.clear()
 	connections.clear()
@@ -86,11 +87,16 @@ func clear_project():
 func register_node(node: EditorNode, id = null):
 	if id == null:
 		node.id = global_node_id
-		nodes[node.id] = node
+		#nodes[node.id] = node
+		nodes.set(node.id, node)
 		global_node_id += 1
 	else:
-		node.id = global_node_id
-		nodes[node.id] = node
+		node.id = id
+		nodes.set(node.id, node)
+		if global_node_id <= id:
+			global_node_id = id + 1
+		
+	print(node.id)
 
 func start_connecting(from: NodeConnector):
 	connecting = true
@@ -162,8 +168,8 @@ func get_connection_to(node_id: int, connector_id: int) -> Connection:
 	return null
 
 func get_node_from_id(id: int) -> EditorNode:
-	if nodes[id]:
-		return nodes[id]
+	if nodes.get(id):
+		return nodes.get(id)
 	return null
 
 ## get_connection_to and get_node_from_id call in one function
@@ -231,8 +237,11 @@ func _unhandled_input(event):
 func add_node(path: String, id = null): ##Places an editor node where the camera is
 	var node: EditorNode = load(path).instantiate()
 	node.position = camera.position - camera.get_viewport_rect().size / 2.0
-	if id:
+	if id == null:
 		node.id = null
+	else:
+		node.id = id
+	register_node(node, id)
 	add_child(node)
 	return node
 
@@ -245,6 +254,7 @@ func delete_selected_node():
 		for connection in connections_to_delete:
 			remove_connection(connections.find(connection))
 		
+		nodes.erase(nodes.find_key(selected_node))
 		selected_node.unselect()
 		node_inspector.queue_free()
 		selected_node.queue_free()
