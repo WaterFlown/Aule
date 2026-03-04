@@ -9,6 +9,14 @@ size = Vector3(1024, 1, 1024)
 [sub_resource type="Environment" id="Environment_1670a"]
 background_mode = 1
 background_color = Color(0.07058824, 0.078431375, 0.08235294, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.92, 0.80469334, 0.48759997, 0.6117647)
+ambient_light_energy = 0.1
+ssao_enabled = true
+ssao_intensity = 2.3
+ssil_enabled = true
+fog_mode = 1
+fog_density = 1.0
 
 [node name="TerrainView" type="Node3D" node_paths=PackedStringArray("cameraPivot", "camera")]
 script = ExtResource("1_yx6wa")
@@ -17,7 +25,7 @@ camera = NodePath("CameraPoint/Camera3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.28754485, 0.79176754, -0.53890836, -0.37272474, 0.6108226, 0.69855, 0.8822665, 3.340935e-08, 0.4707502, 250, 652.8543, 250)
-light_energy = 1.25
+light_energy = 1.2
 light_indirect_energy = 1.25
 light_angular_distance = 15.0
 shadow_bias = 0.0

@@ -1,21 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://yrk46vsai2rs"]
+[gd_scene load_steps=6 format=3 uid="uid://yrk46vsai2rs"]
 
 [ext_resource type="Script" uid="uid://xvcxlr7ug20b" path="res://scripts/TerrainView/Terrain.gd" id="1_jgj0g"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_3iduy"]
-noise_type = 3
-frequency = 0.2
-fractal_octaves = 2
-fractal_lacunarity = 6.0
+[sub_resource type="Gradient" id="Gradient_3iduy"]
+colors = PackedColorArray(0.96066123, 0.8752346, 0.7319534, 1, 1, 1, 1, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yd2fl"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_3iduy")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yd2fl"]
+noise_type = 4
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_surk7"]
+noise = SubResource("FastNoiseLite_yd2fl")
+color_ramp = SubResource("Gradient_3iduy")
+seamless = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgj0g"]
-albedo_color = Color(0.5381114, 0.43118435, 0.28631347, 1)
-albedo_texture = SubResource("NoiseTexture2D_yd2fl")
+albedo_color = Color(0.3502334, 0.27548417, 0.15368101, 1)
+albedo_texture = SubResource("NoiseTexture2D_surk7")
+ao_enabled = true
 
 [node name="Terrain" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_jgj0g")

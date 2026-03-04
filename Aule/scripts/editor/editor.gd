@@ -54,7 +54,8 @@ func run():
 		generation_popup.set_text("Generating heightmap...")
 		await get_tree().process_frame
 		await get_tree().process_frame
-		Globals.terrain.call_deferred("generate_terrain", selected_node.functionality.Output()) #Globals.terrain.generate_terrain(selected_node.functionality.Output())
+		#Globals.terrain.call_deferred("generate_terrain", selected_node.functionality.Output()) 
+		Globals.terrain.generate_terrain(selected_node.functionality.Output())
 	else:
 		pass
 
