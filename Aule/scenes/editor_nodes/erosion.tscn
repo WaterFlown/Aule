@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3cjxv7odcd1p"]
+
+[ext_resource type="PackedScene" uid="uid://ywxov3t4uw4n" path="res://scenes/editor_node.tscn" id="1_oqjpc"]
+[ext_resource type="PackedScene" uid="uid://ckbe5tfouwoce" path="res://scenes/node_connector.tscn" id="2_q20j4"]
+[ext_resource type="Script" uid="uid://cp1uhd44nb8ku" path="res://scripts/editor/functionalities/Erosion.cs" id="3_qxrcs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q20j4"]
+bg_color = Color(0.12240001, 0.39190656, 0.68, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16632494, 0.26740962, 0.67655855, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_oqjpc")]
+filepath = "res://scenes/editor_nodes/erosion.tscn"
+connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector")]
+
+[node name="Node Background" parent="." index="1"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_q20j4")
+
+[node name="Connector" parent="Input Connectors Container" index="0" instance=ExtResource("2_q20j4")]
+layout_mode = 2
+label = "Primary Input"
+
+[node name="Connector" parent="Output Connectors Container2" index="0" instance=ExtResource("2_q20j4")]
+layout_mode = 2
+id = 1
+IOtype = 1
+label = "Primary Input"
+
+[node name="Title" parent="." index="5"]
+text = "Erosion"
+
+[node name="Fuctionality" parent="." index="6"]
+script = ExtResource("3_qxrcs")
+defaultOutputPortID = 1

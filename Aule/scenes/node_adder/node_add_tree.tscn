@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_84ri2")
 hide_root = true
 script = ExtResource("2_iynou")
-entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Generators/Gradient"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Filter/Terrace"), NodePath("Operation"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
+entries = [NodePath("Generators"), NodePath("Generators/Basic Noise"), NodePath("Generators/Distortion"), NodePath("Generators/Gradient"), NodePath("Filter"), NodePath("Filter/Gain"), NodePath("Filter/Normalize"), NodePath("Filter/Terrace"), NodePath("Operation"), NodePath("Operation/Erosion"), NodePath("Operation/Multiply Output"), NodePath("Operation/Combiner"), NodePath("Operation/Apply Mask"), NodePath("Export"), NodePath("Export/Export")]
 
 [node name="Generators" type="Node" parent="."]
 script = ExtResource("3_pl7dn")
@@ -74,6 +74,13 @@ script = ExtResource("3_pl7dn")
 category = true
 text = "Operation"
 id = "operation"
+
+[node name="Erosion" type="Node" parent="Operation"]
+script = ExtResource("3_pl7dn")
+text = "Erosion"
+id = "erosion"
+node = "res://scenes/editor_nodes/erosion.tscn"
+child_of = "operation"
 
 [node name="Multiply Output" type="Node" parent="Operation"]
 script = ExtResource("3_pl7dn")
