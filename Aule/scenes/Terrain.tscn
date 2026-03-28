@@ -1,26 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://yrk46vsai2rs"]
+[gd_scene load_steps=10 format=3 uid="uid://yrk46vsai2rs"]
 
 [ext_resource type="Script" uid="uid://xvcxlr7ug20b" path="res://scripts/TerrainView/Terrain.gd" id="1_jgj0g"]
+[ext_resource type="Shader" uid="uid://dk4pno3n5jt20" path="res://shaders/TerrainShader.tres" id="1_yd2fl"]
 
 [sub_resource type="Gradient" id="Gradient_3iduy"]
-colors = PackedColorArray(0.96066123, 0.8752346, 0.7319534, 1, 1, 1, 1, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.9943343)
+colors = PackedColorArray(0.03705, 0.06, 0.008999999, 1, 0.07371999, 0.12, 0.013200002, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yd2fl"]
-noise_type = 4
+noise_type = 5
 frequency = 0.05
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_surk7"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yd2fl"]
 noise = SubResource("FastNoiseLite_yd2fl")
 color_ramp = SubResource("Gradient_3iduy")
 seamless = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgj0g"]
-albedo_color = Color(0.3502334, 0.27548417, 0.15368101, 1)
-albedo_texture = SubResource("NoiseTexture2D_surk7")
-ao_enabled = true
+[sub_resource type="Gradient" id="Gradient_yd2fl"]
+colors = PackedColorArray(0.04885915, 0.030472072, 0.015028001, 1, 0.016919019, 0.009981231, 0.0030439354, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_surk7"]
+noise_type = 5
+frequency = 0.07
+fractal_lacunarity = 3.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_88a1e"]
+noise = SubResource("FastNoiseLite_surk7")
+color_ramp = SubResource("Gradient_yd2fl")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_surk7"]
+render_priority = 0
+shader = ExtResource("1_yd2fl")
+shader_parameter/RockTexture = SubResource("NoiseTexture2D_88a1e")
+shader_parameter/FloorTexture = SubResource("NoiseTexture2D_yd2fl")
+shader_parameter/GroundMaskOffset = 0.8600000883500001
+shader_parameter/GroundMaskFade = 0.250000011875
 
 [node name="Terrain" type="MeshInstance3D"]
-material_override = SubResource("StandardMaterial3D_jgj0g")
+material_override = SubResource("ShaderMaterial_surk7")
 script = ExtResource("1_jgj0g")
 x_size = 512
 z_size = 512

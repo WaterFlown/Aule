@@ -25,7 +25,7 @@
 
 - Saving (seriaizacija nodov, stringifijanje v json -> savanje v file)
 
-
+- Slope shader https://victorkarp.com/godot-terrain-shader/
 
 Brez gd docs in yt
 https://iquilezles.org/articles/morenoise/
@@ -36,3 +36,4 @@ http://www.firespark.de/resources/downloads/implementation%20of%20a%20methode%20
 https://github.com/Auburn/FastNoiseLite
 https://gamedev.stackexchange.com/questions/116205/terracing-mountain-features
 https://www.redblobgames.com/maps/terrain-from-noise/
+https://victorkarp.com/godot-terrain-shader/

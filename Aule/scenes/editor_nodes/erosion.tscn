@@ -17,6 +17,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Editor Node" node_paths=PackedStringArray("connectors") instance=ExtResource("1_oqjpc")]
+inspector = "res://scenes/inspector/inspector_erosion.tscn"
 filepath = "res://scenes/editor_nodes/erosion.tscn"
 connectors = [NodePath("Input Connectors Container/Connector"), NodePath("Output Connectors Container2/Connector")]
 

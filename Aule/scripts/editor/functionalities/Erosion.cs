@@ -33,6 +33,12 @@ public partial class Erosion : NodeFunctionality
     int currentErosionRadius;
     int currentMapSize;
 
+    public override void Initialize()
+    {
+        properties["Iterations"] = 50000;
+    }
+
+
     // Initialization creates a System.Random object and precomputes indices and weights of erosion brush
     public void InitData () {
         int mapSize = PrimaryMap.GetLength(0);
@@ -60,9 +66,7 @@ public partial class Erosion : NodeFunctionality
                     PrimaryMap = CreatedPrimaryMap;
                 } 
                 else {
-                    Erode(PrimaryMap, PrimaryMap.GetLength(0), 70000);
-                    GD.Print("Erosion complete");
-                    GD.Print(PrimaryMap.GetLength(0));
+                    Erode(PrimaryMap, PrimaryMap.GetLength(0), (int)properties["Iterations"]);
                 }
                 return (T[,])(object)PrimaryMap;
             }

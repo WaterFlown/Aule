@@ -18,8 +18,10 @@ var selected_node: EditorNode = null
 @export_group("Inspector")
 @export var inspector_container: Control
 @export var close_button: Button
-var node_inspector: NodeInspector = null
+var node_inspector: NodeInspector = null 
+
 var node_inspector_enabled = true
+
 var node_adder_window: NodeAdderWindow = null
 @export_group("Misc")
 var generation_popup: GenerationPopup = null
@@ -33,6 +35,7 @@ var project_settings: ProjectSettingsWindow = null
 
 func _ready():
 	Globals.editor = self
+	set_inspector_holder()
 
 func select_node(node: EditorNode):
 	if selected_node:
@@ -45,6 +48,13 @@ func set_inspector():
 	if (node_inspector):
 		node_inspector.queue_free()
 	var inspector_scene = load(selected_node.inspector)
+	node_inspector = inspector_scene.instantiate()
+	inspector_container.add_child(node_inspector)
+
+func set_inspector_holder():
+	if (node_inspector):
+		node_inspector.queue_free()
+	var inspector_scene = load("res://scenes/inspector/inspector_holder.tscn")
 	node_inspector = inspector_scene.instantiate()
 	inspector_container.add_child(node_inspector)
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg0ejysoyanwe"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_hmfif"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_hmfif")]
+inputs = []
+
+[node name="NodeName" parent="." index="0"]
+text = "Node Inspector"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Here, node information and settings are displayed. Select a node by clicking on it to load it the inspector.
+"

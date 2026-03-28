@@ -1,0 +1,180 @@
+[gd_resource type="VisualShader" load_steps=19 format=3 uid="uid://dk4pno3n5jt20"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_grgro"]
+parameter_name = "GroundMaskOffset"
+hint = 1
+min = -1.0
+default_value_enabled = true
+default_value = 0.7
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_5olch"]
+parameter_name = "GroundMaskFade"
+hint = 1
+default_value_enabled = true
+default_value = 0.3
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_itg2v"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_v162s"]
+default_input_values = [0, Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0), 1, Vector3(0, 1, 0)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ihvsc"]
+input_name = "view_matrix"
+
+[sub_resource type="VisualShaderNodeIntConstant" id="VisualShaderNodeIntConstant_gog8l"]
+
+[sub_resource type="Gradient" id="Gradient_grgro"]
+offsets = PackedFloat32Array(0.67160493, 0.7061728)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5olch"]
+gradient = SubResource("Gradient_grgro")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_v162s"]
+source = 5
+texture = SubResource("GradientTexture2D_5olch")
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_grgro"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, 0.5]
+op_type = 4
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_grgro"]
+parameter_name = "RockTexture"
+color_default = 1
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_5olch"]
+source = 5
+texture = SubResource("GradientTexture2D_5olch")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_itg2v"]
+parameter_name = "FloorTexture"
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_cekpc"]
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_76dua"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_xj6l1"]
+operator = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_pyebl"]
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_2yejg"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D RockTexture : hint_default_black, repeat_enable;
+uniform sampler2D FloorTexture : repeat_enable;
+uniform float GroundMaskOffset : hint_range(-1.0, 1.0) = 0.69999998807907;
+uniform float GroundMaskFade : hint_range(0.0, 1.0) = 0.30000001192093;
+
+
+
+void fragment() {
+	vec4 n_out18p0;
+// Texture2D:18
+	n_out18p0 = texture(RockTexture, UV);
+
+
+	vec4 n_out21p0;
+// Texture2D:21
+	n_out21p0 = texture(FloorTexture, UV);
+
+
+// FloatParameter:10
+	float n_out10p0 = GroundMaskOffset;
+
+
+// FloatParameter:11
+	float n_out11p0 = GroundMaskFade;
+
+
+// FloatOp:7
+	float n_out7p0 = n_out10p0 - n_out11p0;
+
+
+// FloatOp:8
+	float n_out8p0 = n_out10p0 + n_out11p0;
+
+
+// Input:12
+	vec3 n_out12p0 = NORMAL;
+
+
+// Input:14
+	mat4 n_out14p0 = VIEW_MATRIX;
+
+
+// TransformVectorMult:13
+	vec3 n_in13p1 = vec3(0.00000, 1.00000, 0.00000);
+	vec3 n_out13p0 = (n_out14p0 * vec4(n_in13p1, 0.0)).xyz;
+
+
+// DotProduct:9
+	float n_out9p0 = dot(n_out12p0, n_out13p0);
+
+
+// SmoothStep:6
+	float n_out6p0 = smoothstep(n_out7p0, n_out8p0, n_out9p0);
+
+
+// SmoothStep:5
+	float n_in5p0 = 0.00000;
+	float n_in5p1 = 1.00000;
+	float n_out5p0 = smoothstep(n_in5p0, n_in5p1, n_out6p0);
+
+
+// Mix:2
+	vec3 n_out2p0 = mix(vec3(n_out18p0.xyz), vec3(n_out21p0.xyz), n_out5p0);
+
+
+// IntConstant:15
+	int n_out15p0 = 0;
+
+
+// Output:0
+	ALBEDO = n_out2p0;
+	SPECULAR = float(n_out15p0);
+
+
+}
+"
+nodes/vertex/0/position = Vector2(260, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeMix_grgro")
+nodes/fragment/2/position = Vector2(-114.37499, 214.97011)
+nodes/fragment/5/node = SubResource("VisualShaderNodeSmoothStep_cekpc")
+nodes/fragment/5/position = Vector2(-580, 780)
+nodes/fragment/6/node = SubResource("VisualShaderNodeSmoothStep_76dua")
+nodes/fragment/6/position = Vector2(-920, 860)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_xj6l1")
+nodes/fragment/7/position = Vector2(-1260, 600)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_pyebl")
+nodes/fragment/8/position = Vector2(-1260, 800)
+nodes/fragment/9/node = SubResource("VisualShaderNodeDotProduct_2yejg")
+nodes/fragment/9/position = Vector2(-1135.2771, 1121.7744)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_grgro")
+nodes/fragment/10/position = Vector2(-1800, 480)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatParameter_5olch")
+nodes/fragment/11/position = Vector2(-1800, 800)
+nodes/fragment/12/node = SubResource("VisualShaderNodeInput_itg2v")
+nodes/fragment/12/position = Vector2(-1680, 1120)
+nodes/fragment/13/node = SubResource("VisualShaderNodeTransformVecMult_v162s")
+nodes/fragment/13/position = Vector2(-1420, 1240)
+nodes/fragment/14/node = SubResource("VisualShaderNodeInput_ihvsc")
+nodes/fragment/14/position = Vector2(-1713.9664, 1262.5009)
+nodes/fragment/15/node = SubResource("VisualShaderNodeIntConstant_gog8l")
+nodes/fragment/15/position = Vector2(60, 420)
+nodes/fragment/18/node = SubResource("VisualShaderNodeTexture_v162s")
+nodes/fragment/18/position = Vector2(-640, 280)
+nodes/fragment/20/node = SubResource("VisualShaderNodeTexture2DParameter_grgro")
+nodes/fragment/20/position = Vector2(-1060, 260)
+nodes/fragment/21/node = SubResource("VisualShaderNodeTexture_5olch")
+nodes/fragment/21/position = Vector2(-700, -60)
+nodes/fragment/22/node = SubResource("VisualShaderNodeTexture2DParameter_itg2v")
+nodes/fragment/22/position = Vector2(-1120, -80)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 5, 0, 2, 2, 6, 0, 5, 2, 7, 0, 6, 0, 8, 0, 6, 1, 9, 0, 6, 2, 10, 0, 8, 0, 10, 0, 7, 0, 11, 0, 8, 1, 11, 0, 7, 1, 12, 0, 9, 0, 13, 0, 9, 1, 14, 0, 13, 0, 15, 0, 0, 4, 18, 0, 2, 0, 20, 0, 18, 2, 22, 0, 21, 2, 21, 0, 2, 1)

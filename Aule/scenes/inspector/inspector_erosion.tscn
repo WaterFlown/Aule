@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmbitaqcwul0g"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_fc4a5"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_6asx7"]
+[ext_resource type="PackedScene" uid="uid://4d1a54tc7tl" path="res://scenes/inspector/input_fields/numeric_input.tscn" id="3_cru05"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_fc4a5")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Erosion"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Erodes terrain.
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 211.0
+offset_bottom = 30.0
+theme = ExtResource("2_6asx7")
+text = "Iterations"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_cru05")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+max_value = 100000.0
+rounded = true
+allow_greater = true
+property = "Iterations"
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
