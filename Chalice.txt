@@ -1,3 +1,36 @@
+- Uvod -
+
+
+- Uporaba orodij, pogonov, jezikov -
+
+
+- O aplikaciji -
+	- Generalno
+	- Explanation heightmapov
+
+- Editor, Terrain View -
+	- Terrain
+		- Terrain mesh generation
+		- Terrain Camera
+		- Slope Shader
+	- Workspace
+
+- Node, Node graph -
+	- Generalno
+	- Vsi sistemi
+
+- Meniji za addanje nodov, project settings... -
+
+- Inspector -
+
+- Terrain generation koncept + node functionality zanj -
+
+- Exporting heightmaps and models -
+
+- Saving, Serializacija, Loading, Node copy-paste -
+
+
+
 - app, editor, terrainview distinction
 - inner workings terrain mesh generatinga (input -> generation of vertices & indices)
 - hitrost izvajanja -> c#, gdscript za ui, meshgen etc. <!>
@@ -24,6 +57,8 @@
 - Gradient node
 
 - Saving (seriaizacija nodov, stringifijanje v json -> savanje v file)
+
+- Erosion
 
 - Slope shader https://victorkarp.com/godot-terrain-shader/
 

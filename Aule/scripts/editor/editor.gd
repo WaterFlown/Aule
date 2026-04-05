@@ -69,6 +69,9 @@ func run():
 	else:
 		pass
 
+func run_export_model(output, path):
+		Globals.terrain.generate_export_terrain(output, path)
+
 #func _unhandled_input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_mask == MOUSE_BUTTON_LEFT:

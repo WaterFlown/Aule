@@ -64,6 +64,70 @@ func generate_terrain(heightmap: Array):
 	if(Globals.terrain_view):
 		Globals.terrain_view.setCameraProperties()
 
+
+func generate_export_terrain(heightmap: Array, path: String):
+	var a_mesh: ArrayMesh
+	var surfaceTool = SurfaceTool.new()
+	
+	var max_height = Globals.terrain_height
+	
+	if (Globals.editor && Globals.editor.generation_popup):
+		Globals.editor.generation_popup.set_text("Generating terrain model...")
+		await get_tree().process_frame
+	
+	if heightmap.is_empty():
+		heightmap.resize(Globals.terrain_size.x)
+		for z in range(Globals.terrain_size.x):
+			heightmap.set(z, [])
+			heightmap[z].resize(Globals.terrain_size.y)
+			for x in range(Globals.terrain_size.y):
+				heightmap[z][x] = 0
+	x_size = heightmap.size()-1
+	z_size = heightmap[0].size()-1
+
+	surfaceTool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for z in range(z_size+1):
+		for x in range(x_size+1):
+			var y = heightmap[z][x] * max_height
+			
+			surfaceTool.set_uv(Vector2(inverse_lerp(0, x_size, x), inverse_lerp(0, z_size, z)))
+			surfaceTool.add_vertex(Vector3(x,y,z))
+	
+	for row in range(z_size):
+			for col in range(x_size):
+				var upper_left = row * (x_size + 1) + col #row + etc. because indexes are a one dimensional array
+				var upper_right = row * (x_size + 1) + col + 1
+				var lower_left = (row + 1) * (x_size + 1) + col
+				var lower_right = (row + 1) * (x_size + 1) + col + 1
+			
+				surfaceTool.add_index(upper_left)
+				surfaceTool.add_index(upper_right)
+				surfaceTool.add_index(lower_left)
+				surfaceTool.add_index(upper_right)
+				surfaceTool.add_index(lower_right)
+				surfaceTool.add_index(lower_left)
+	
+	surfaceTool.generate_normals()
+	a_mesh = surfaceTool.commit()
+	mesh = a_mesh
+	
+	if (Globals.editor && Globals.editor.generation_popup):
+		Globals.editor.generation_popup.set_text("Exporting terrain model...")
+		await get_tree().process_frame
+	
+	var gltf_document_save := GLTFDocument.new()
+	var gltf_state_save := GLTFState.new()
+	gltf_document_save.append_from_scene(self, gltf_state_save)
+	gltf_document_save.write_to_filesystem(gltf_state_save, path)
+	
+	
+	if Globals.editor:
+		Globals.editor.close_generation_popup()
+		
+	if(Globals.terrain_view):
+		Globals.terrain_view.setCameraProperties()
+
+
 #func draw_sphere(pos:Vector3):
 	#var sphere = MeshInstance3D.new()
 	#add_child(sphere)

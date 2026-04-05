@@ -39,9 +39,16 @@ public partial class Export : NodeFunctionality
             if (!ExportingHeightmap) {
                 editor.Call("open_generation_popup");
                 GodotObject generationPopup = (GodotObject)editor.Get("generation_popup");
-                generationPopup.Call("set_text", "Exporting heightmap...");
+                if(properties["ExportPath"].ToString() == "" || properties["ExportPath"].ToString().GetExtension() == "png") {
 
-                ExportHeightmap();
+                    generationPopup.Call("set_text", "Exporting heightmap...");
+                    ExportHeightmap(0);
+                }
+                else if (properties["ExportPath"].ToString().GetExtension() == "glb") {
+                    generationPopup.Call("set_text", "Generating heightmap...");
+                    ExportHeightmap(1);
+                }
+                
 
             }
         }
@@ -100,7 +107,7 @@ public partial class Export : NodeFunctionality
     }
 
 
-    public void ExportHeightmap()
+    public void ExportHeightmap(int exportType)
     {
         GodotObject connection = (GodotObject)editor.Call("get_connection_to", parentID, 0);
         if (connection == null) {
@@ -110,6 +117,8 @@ public partial class Export : NodeFunctionality
         }
 
         ExportingHeightmap = true;
+
+        if(exportType == 0) {
 
         Timer timer = new Timer();
         timer.WaitTime = 0.1f;
@@ -132,7 +141,6 @@ public partial class Export : NodeFunctionality
             }
         }
 
-        GD.Print(properties["ExportPath"]);
         if ((string)properties["ExportPath"] == "")
         {
             image.SavePng("user://".PathJoin("exported_heightmap.png"));
@@ -144,9 +152,32 @@ public partial class Export : NodeFunctionality
         ExportingHeightmap = false;
         editor.Call("close_generation_popup");
         return true;
+        
         }));
         AddChild(timer);
         timer.Start();
+        }
+        else if (exportType == 1) {
+            Timer timer = new Timer();
+            timer.WaitTime = 0.1f;
+            timer.OneShot = true;
+            timer.Connect("timeout", Callable.From(() => {
+            float[,] heightmap = getFromInput<float>(0);
+            if (heightmap.GetLength(0) == 0 || heightmap.GetLength(1) == 0) {
+                editor.Call("close_generation_popup");
+                ExportingHeightmap = false;
+                return false;
+            }
+
+            editor.Call("run_export_model", ConvertToGDArray(heightmap), properties["ExportPath"].ToString());
+            ExportingHeightmap = false;
+            return true;
+            
+            }));
+            AddChild(timer);
+            timer.Start();
+        }
     }
 
 }
+
