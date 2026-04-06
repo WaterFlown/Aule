@@ -141,6 +141,7 @@ public partial class Export : NodeFunctionality
             }
         }
 
+
         if ((string)properties["ExportPath"] == "")
         {
             image.SavePng("user://".PathJoin("exported_heightmap.png"));

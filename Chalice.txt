@@ -2,6 +2,9 @@
 
 
 - Uporaba orodij, pogonov, jezikov -
+	- Godot (+ ključene knjižnice kot FastNoiseLite)
+	- GDscript
+	- C#
 
 
 - O aplikaciji -
@@ -28,6 +31,9 @@
 - Exporting heightmaps and models -
 
 - Saving, Serializacija, Loading, Node copy-paste -
+
+
+
 
 
 
