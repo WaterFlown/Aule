@@ -15,7 +15,7 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Button I
 text = "Export"
 
 [node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
-text = "Exports a heightmap to a .png file.
+text = "Exports a heightmap to a .png or .glb file.
 If no path is selected it will export the image into \\AppData\\Roaming\\Aule\\exported_heightmap.png
 "
 

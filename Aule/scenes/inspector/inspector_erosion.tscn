@@ -13,7 +13,7 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric 
 text = "Erosion"
 
 [node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
-text = "Erodes terrain.
+text = "Erodes terrain by simulating rainfall.
 "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
