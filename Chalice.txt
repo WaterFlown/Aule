@@ -33,7 +33,12 @@
 - Saving, Serializacija, Loading, Node copy-paste -
 
 
+--------------
 
+https://stackoverflow.com/questions/4887530/struggling-with-vertex-and-index-buffers-in-direct3d
+https://en.wikipedia.org/wiki/Vertex_(geometry) / https://mathworld.wolfram.com/Vertex.html
+
+--------------
 
 
 
