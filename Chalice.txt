@@ -18,6 +18,8 @@
 		- Slope Shader
 	- Workspace
 
+
+
 - Node, Node graph -
 	- Generalno
 	- Vsi sistemi
@@ -83,3 +85,6 @@ https://github.com/Auburn/FastNoiseLite
 https://gamedev.stackexchange.com/questions/116205/terracing-mountain-features
 https://www.redblobgames.com/maps/terrain-from-noise/
 https://victorkarp.com/godot-terrain-shader/
+https://github.com/SebLague/Hydraulic-Erosion
+https://amanpriyanshu.github.io/The-Mountains-of-Madness/
+
