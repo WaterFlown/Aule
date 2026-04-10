@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://cpxrxlm3sgo4b" path="res://scripts/editor/connection_line.gd" id="1_asxao"]
 
 [node name="Connection Line" type="Line2D"]
+antialiased = true
 script = ExtResource("1_asxao")
