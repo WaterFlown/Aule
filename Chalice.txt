@@ -24,8 +24,6 @@
 	- Generalno
 	- Vsi sistemi
 
-- Meniji za addanje nodov, project settings... -
-
 - Inspector -
 
 - Terrain generation koncept + node functionality zanj -
@@ -33,6 +31,8 @@
 - Exporting heightmaps and models -
 
 - Saving, Serializacija, Loading, Node copy-paste -
+
+- Meniji za addanje nodov, project settings... -
 
 
 --------------
@@ -46,6 +46,7 @@ https://en.wikipedia.org/wiki/Vertex_(geometry) / https://mathworld.wolfram.com/
 
 - app, editor, terrainview distinction
 - inner workings terrain mesh generatinga (input -> generation of vertices & indices)
+
 - hitrost izvajanja -> c#, gdscript za ui, meshgen etc. <!>
 
 - entire node graph system (NE node functionality oz krkol z c#)

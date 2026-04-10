@@ -147,15 +147,11 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 		return
 	#elif is_cycle(to.parent.get_id(), from.parent.get_id()):
 	#	return
-	
 	if from.IOCategory != to.IOCategory:
 		return
-	
 	for c_connection in connections:
 		if (c_connection.to_connector == to.get_id() and c_connection.to_node == to.get_node_id()) or (c_connection.from_connector == to.get_id() and c_connection.from_node == to.get_node_id()):
 			remove_connection(connections.find(c_connection))
-	
-	
 	var connection: Connection = Connection.new()
 	if from.IOtype == Globals.NodeConnectorIOType.OUTPUT and to.IOtype == Globals.NodeConnectorIOType.INPUT: #FROM is not output, TO is not input
 		connection.from_node = from.get_node_id()
@@ -167,8 +163,6 @@ func create_connection(from: NodeConnector, to: NodeConnector):
 		connection.to_node = from.get_node_id()
 		connection.from_connector = to.get_id()
 		connection.to_connector = from.get_id()
-	
-	
 	connections.append(connection)
 	from.connect_connectors(to)
 	to.connect_connectors(from)
