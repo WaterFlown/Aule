@@ -31,7 +31,7 @@ public partial class Terrace : NodeFunctionality
 		}
 		else
 		{
-			output /= terraces; //Dividing because current is primarymap * terraces ig
+			output /= terraces; //Dividing because current is primarymap * terraces
 		}
 
 		return Math.Clamp(output, 0f, 1f);
