@@ -24,7 +24,6 @@ public partial class Erosion : NodeFunctionality
     public float initialWaterVolume = 1;
     public float initialSpeed = 1;
 
-    // Indices and weights of erosion brush precomputed for every node
     Vector2I[][] erosionBrushIndices;
     float[][] erosionBrushWeights;
     System.Random prng;
@@ -39,7 +38,7 @@ public partial class Erosion : NodeFunctionality
     }
 
 
-    // Initialization creates a System.Random object and precomputes indices and weights of erosion brush
+    
     public void InitData () {
         int mapSize = PrimaryMap.GetLength(0);
         currentSeed = seed;
@@ -90,10 +89,10 @@ public partial class Erosion : NodeFunctionality
                 float cellOffsetX = posX - nodeX;
                 float cellOffsetY = posY - nodeY;
 
-                // Calculate droplet's height and direction of flow with bilinear interpolation of surrounding heights
+                
                 HeightAndGradient heightAndGradient = CalculateHeightAndGradient (map, mapSize, posX, posY);
 
-                // Update the droplet's direction and position (move position 1 unit regardless of speed)
+                
                 dirX = (dirX * inertia - heightAndGradient.gradientX * (1 - inertia));
                 dirY = (dirY * inertia - heightAndGradient.gradientY * (1 - inertia));
                 // Normalize direction
@@ -123,8 +122,7 @@ public partial class Erosion : NodeFunctionality
                     float amountToDeposit = (deltaHeight > 0) ? Mathf.Min (deltaHeight, sediment) : (sediment - sedimentCapacity) * depositSpeed;
                     sediment -= amountToDeposit;
 
-                    // Add the sediment to the four nodes of the current cell using bilinear interpolation
-                    // Deposition is not distributed over a radius (like erosion) so that it can fill small pits
+                    
                     map[nodeX, nodeY] += amountToDeposit * (1 - cellOffsetX) * (1 - cellOffsetY);
                     map[nodeX + 1, nodeY] += amountToDeposit * cellOffsetX * (1 - cellOffsetY);
                     map[nodeX, nodeY+1] += amountToDeposit * (1 - cellOffsetX) * cellOffsetY;
@@ -132,10 +130,10 @@ public partial class Erosion : NodeFunctionality
 
                 } else {
                     // Erode a fraction of the droplet's current carry capacity.
-                    // Clamp the erosion to the change in height so that it doesn't dig a hole in the terrain behind the droplet
+                    // Clamp the erosion to the change in height so that it doesn't dig a hole in the terrain
                     float amountToErode = Mathf.Min ((sedimentCapacity - sediment) * erodeSpeed, -deltaHeight);
 
-                    // Use erosion brush to erode from all nodes inside the droplet's erosion radius
+                    // Erosion brush
                     for (int brushPointIndex = 0; brushPointIndex < erosionBrushIndices[dropletIndex].Length; brushPointIndex++) {
                         Vector2I nodeIndex = erosionBrushIndices[dropletIndex][brushPointIndex];
                         float weighedErodeAmount = amountToErode * erosionBrushWeights[dropletIndex][brushPointIndex];
@@ -146,7 +144,7 @@ public partial class Erosion : NodeFunctionality
                     }
                 }
 
-                // Update droplet's speed and water content
+                
                 speed = Mathf.Sqrt (Math.Clamp(speed * speed - deltaHeight * gravity, 0, float.MaxValue));
                 water *= (1 - evaporateSpeed);
             }
