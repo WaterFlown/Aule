@@ -7,7 +7,7 @@ public partial class Erosion : NodeFunctionality
     float[,] PrimaryMap = {};
     public int seed;
     //[Range (2, 8)]
-    public int erosionRadius = 7;
+    public int erosionRadius = 5;
     //[Range (0, 1)]
     public float inertia = .05f; // At zero, water will instantly change direction to flow downhill. At 1, water will never change direction. 
     public float sedimentCapacityFactor = 4; // Multiplier for how much sediment a droplet can carry
@@ -35,6 +35,7 @@ public partial class Erosion : NodeFunctionality
     public override void Initialize()
     {
         properties["Iterations"] = 50000;
+        properties["ErosionRadius"] = 5;
     }
 
 
@@ -43,7 +44,7 @@ public partial class Erosion : NodeFunctionality
         int mapSize = PrimaryMap.GetLength(0);
         currentSeed = seed;
         prng = new System.Random (currentSeed);
-
+        erosionRadius = (int)properties["ErosionRadius"];
         if (erosionBrushIndices == null || currentErosionRadius != erosionRadius || currentMapSize != mapSize) {
             InitializeBrushIndices (mapSize, erosionRadius);
             currentErosionRadius = erosionRadius;

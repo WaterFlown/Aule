@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
 
 [node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_fc4a5")]
-inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric Input")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 1/Numeric Input"), NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 3/Numeric Input")]
 
 [node name="NodeName" parent="." index="0"]
 text = "Erosion"
@@ -19,7 +19,7 @@ text = "Erodes terrain by simulating rainfall.
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
 layout_mode = 0
 offset_left = 8.0
-offset_right = 211.0
+offset_right = 198.0
 offset_bottom = 30.0
 theme = ExtResource("2_6asx7")
 text = "Iterations"
@@ -35,6 +35,53 @@ allow_greater = true
 property = "Iterations"
 
 [node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 195.0
+offset_bottom = 30.0
+theme = ExtResource("2_6asx7")
+text = "Erosion Radius"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 1" index="1" instance=ExtResource("3_cru05")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+min_value = 2.0
+max_value = 10.0
+value = 2.0
+rounded = true
+property = "ErosionRadius"
+
+[node name="InputContainerPanel 3" type="Panel" parent="ScrollContainer/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 3" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 195.0
+offset_bottom = 30.0
+theme = ExtResource("2_6asx7")
+text = "Seed"
+vertical_alignment = 1
+
+[node name="Numeric Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 3" index="1" instance=ExtResource("3_cru05")]
+layout_mode = 0
+offset_left = 203.0
+offset_right = 281.9375
+value = 1.0
+rounded = true
+allow_greater = true
+property = "Seed"
+
+[node name="InputContainerPanel 2" type="Panel" parent="ScrollContainer/VBoxContainer" index="4"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
