@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwquwodp45mwc"]
+
+[ext_resource type="Script" uid="uid://cgjuwacd4owuq" path="res://scripts/editor/inspector/input_field/string_input.gd" id="1_shtm1"]
+
+[node name="String Input" type="LineEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shtm1")
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]

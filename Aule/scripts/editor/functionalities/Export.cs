@@ -39,7 +39,7 @@ public partial class Export : NodeFunctionality
             if (!ExportingHeightmap) {
                 editor.Call("open_generation_popup");
                 GodotObject generationPopup = (GodotObject)editor.Get("generation_popup");
-                if(properties["ExportPath"].ToString() == "" || properties["ExportPath"].ToString().GetExtension() == "png") {
+                if(properties["ExportPath"].ToString() == "" || properties["ExportPath"].ToString().GetExtension() == "png" || properties["ExportPath"].ToString().GetExtension() == "exr") {
 
                     generationPopup.Call("set_text", "Exporting heightmap...");
                     ExportHeightmap(0);
@@ -118,7 +118,7 @@ public partial class Export : NodeFunctionality
 
         ExportingHeightmap = true;
 
-        if(exportType == 0) {
+        if(exportType == 0 || exportType == 2) {
 
         Timer timer = new Timer();
         timer.WaitTime = 0.1f;
@@ -131,7 +131,8 @@ public partial class Export : NodeFunctionality
             return false;
         }
 
-        Image image = Image.CreateEmpty(heightmap.GetLength(0), heightmap.GetLength(1), false, Image.Format.Rgb8);
+        Image image = Image.CreateEmpty(heightmap.GetLength(0), heightmap.GetLength(1), false, Image.Format.Rgbf);
+        
         for (int x = 0; x < heightmap.GetLength(0); x++)
         {
             for (int y = 0; y < heightmap.GetLength(1); y++)
@@ -148,7 +149,12 @@ public partial class Export : NodeFunctionality
         }
         else {
             GD.Print("Exporting heightmap to: " + (string)properties["ExportPath"]);
+            if(((string)properties["ExportPath"]).GetExtension() == "png") {
             image.SavePng((string)properties["ExportPath"]);
+            }
+            if(((string)properties["ExportPath"]).GetExtension() == "exr") {
+            image.SaveExr((string)properties["ExportPath"]);
+            }
         }
         ExportingHeightmap = false;
         editor.Call("close_generation_popup");

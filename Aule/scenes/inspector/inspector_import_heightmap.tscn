@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://kjbt2rd06h0m"]
+
+[ext_resource type="PackedScene" uid="uid://devdrs4jeyij5" path="res://scenes/inspector/inspector_base.tscn" id="1_ds46g"]
+[ext_resource type="Theme" uid="uid://dvbokre1e0ydy" path="res://scenes/themes/editor_general.tres" id="2_uuy57"]
+[ext_resource type="PackedScene" uid="uid://bwquwodp45mwc" path="res://scenes/inspector/input_fields/string_input.tscn" id="3_8m24n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7h7u"]
+
+[node name="NodeInspector" node_paths=PackedStringArray("inputs") instance=ExtResource("1_ds46g")]
+inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/String Input")]
+
+[node name="NodeName" parent="." index="0"]
+text = "Import Heightmap"
+
+[node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
+text = "Imports png or exr heightmap
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 102.0
+offset_bottom = 30.0
+theme = ExtResource("2_uuy57")
+text = "Path"
+vertical_alignment = 1
+
+[node name="String Input" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="1" instance=ExtResource("3_8m24n")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31
+anchor_right = 0.87
+property = "ImportPath"
+metadata/_edit_use_anchors_ = true
+
+[node name="InputContainerPanel 1" type="Panel" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7h7u")
