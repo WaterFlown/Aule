@@ -15,7 +15,7 @@ public partial class HeightmapImport : NodeFunctionality
                 }
 
             Godot.Image heightmap = new Godot.Image();
-            if((string)properties["ImportPath"] != "" && ((string)properties["ImportPath"]).GetExtension() == "png" || ((string)properties["ImportPath"]).GetExtension() == "exr") {
+            if(((string)properties["ImportPath"] != "" && ((string)properties["ImportPath"]).GetExtension() == "png" || ((string)properties["ImportPath"]).GetExtension() == "webp") && Godot.FileAccess.FileExists(properties["ImportPath"].ToString())) {
 
             heightmap.Load(properties["ImportPath"].ToString());
             if(heightmap.IsCompressed()){

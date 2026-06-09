@@ -13,7 +13,7 @@ inputs = [NodePath("ScrollContainer/VBoxContainer/InputContainerPanel 0/String I
 text = "Import Heightmap"
 
 [node name="Description" parent="ScrollContainer/VBoxContainer/DescriptionContainer" index="0"]
-text = "Imports png or exr heightmap
+text = "Imports png or webp heightmap from path
 "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/InputContainerPanel 0" index="0"]

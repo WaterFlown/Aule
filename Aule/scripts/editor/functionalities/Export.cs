@@ -39,7 +39,7 @@ public partial class Export : NodeFunctionality
             if (!ExportingHeightmap) {
                 editor.Call("open_generation_popup");
                 GodotObject generationPopup = (GodotObject)editor.Get("generation_popup");
-                if(properties["ExportPath"].ToString() == "" || properties["ExportPath"].ToString().GetExtension() == "png" || properties["ExportPath"].ToString().GetExtension() == "exr") {
+                if(properties["ExportPath"].ToString() == "" || properties["ExportPath"].ToString().GetExtension() == "png" || properties["ExportPath"].ToString().GetExtension() == "webp") {
 
                     generationPopup.Call("set_text", "Exporting heightmap...");
                     ExportHeightmap(0);
@@ -152,8 +152,8 @@ public partial class Export : NodeFunctionality
             if(((string)properties["ExportPath"]).GetExtension() == "png") {
             image.SavePng((string)properties["ExportPath"]);
             }
-            if(((string)properties["ExportPath"]).GetExtension() == "exr") {
-            image.SaveExr((string)properties["ExportPath"]);
+            if(((string)properties["ExportPath"]).GetExtension() == "webp") {
+            image.SaveWebp((string)properties["ExportPath"]);
             }
         }
         ExportingHeightmap = false;
